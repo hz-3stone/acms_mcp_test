@@ -1,0 +1,126 @@
+{% extends "/layouts/master.html" %}
+
+{% block main %}
+
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+  <!-- Video Background (Simulated with Image for now if video not supported, but intended for mp4) -->
+  <!-- In real scenario, use <video> tag. fallback to image. -->
+  <div class="absolute inset-0 z-0">
+    <!-- Video Background Removed (Veo3 generation not available) -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white/0 via-white/20 to-gemini-ice"></div>
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+    <div class="text-center md:text-left space-y-8 animate-fade-in-up">
+      <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight text-gemini-navy">
+        未来は、<br>
+        もっと<span class="text-gemini-cyan">やわらかい</span>。
+      </h1>
+      <p class="text-xl text-gemini-navy/70 leading-relaxed max-w-lg mx-auto md:mx-0">
+        テクノロジーは冷たいものじゃない。<br>
+        Geminiと一緒に、人に寄り添う<br>
+        新しいデジタルのカタチを見つけよう。
+      </p>
+      <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
+        <a href="#" class="btn-primary group">
+          <span>はじめる</span>
+          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+          </svg>
+        </a>
+        <a href="#"
+          class="inline-flex items-center justify-center font-bold text-gemini-navy hover:text-gemini-cyan transition-colors py-3 px-8">
+          <span class="mr-2">▶</span> コンセプトムービー
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero Image (Overlay) -->
+    <div class="relative hidden md:block animate-float">
+      <!-- Using keyframes defined in tailwind config for float if applying class, here simplified -->
+      <!-- If css animation 'float' is not defined in input.css, we rely on tailwind config or arbitrary values -->
+      <!-- Adding custom style for float animation here for demo -->
+      <style>
+        @keyframes float-y {
+
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+
+        .animate-floaty {
+          animation: float-y 6s ease-in-out infinite;
+        }
+      </style>
+      <img src="/themes/gemini/images/gemini-hero.png" alt="Gemini Hero"
+        class="w-full max-w-lg mx-auto drop-shadow-2xl animate-floaty">
+
+      <!-- Floating Elements -->
+      <div
+        class="absolute top-10 -right-10 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50 animate-bounce delay-700">
+        <span class="text-3xl">🚀</span>
+      </div>
+      <div
+        class="absolute bottom-20 -left-10 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50 animate-bounce delay-1000">
+        <span class="text-3xl">💡</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- News Section (HTMX) -->
+<section class="py-24 bg-white relative">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16 space-y-4">
+      <span class="text-gemini-cyan font-english font-bold tracking-widest uppercase">Latest News</span>
+      <h2 class="text-3xl md:text-4xl font-bold text-gemini-navy">最新のお知らせ</h2>
+      <div class="w-16 h-1 bg-gemini-coral mx-auto rounded-full"></div>
+    </div>
+
+    <!-- htmx loader -->
+    <div hx-get="/themes/gemini/include/parts/news-list.html" hx-trigger="load delay:100ms" hx-swap="innerHTML">
+      <!-- Loading State -->
+      <div class="flex justify-center items-center h-64">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-gemini-cyan"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sticky Navigator -->
+<div class="fixed bottom-8 right-8 z-40" x-data="{ hover: false }">
+  <div class="relative" @mouseenter="hover = true" @mouseleave="hover = false">
+    <!-- Balloon -->
+    <div x-show="hover" x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0 translate-y-4 scale-90"
+      x-transition:enter-end="opacity-100 translate-y-0 scale-100" x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+      x-transition:leave-end="opacity-0 translate-y-4 scale-90"
+      class="absolute bottom-full right-0 mb-4 w-48 bg-white border-2 border-gemini-navy rounded-bubble p-4 shadow-xl origin-bottom-right">
+      <p class="text-sm font-bold text-gemini-navy">何かお探しですか？</p>
+      <div class="mt-2 flex flex-col gap-2">
+        <a href="#" class="text-xs text-gemini-navy/60 hover:text-gemini-cyan">▶ 使い方ガイド</a>
+        <a href="#" class="text-xs text-gemini-navy/60 hover:text-gemini-cyan">▶ よくある質問</a>
+      </div>
+    </div>
+
+    <!-- Icon -->
+    <button
+      class="w-20 h-20 rounded-full border-4 border-white shadow-2xl overflow-hidden hover:scale-110 transition-transform duration-300 ring-4 ring-gemini-cyan/20">
+      <img src="/themes/gemini/images/gemini-nav-icon.png" alt="Nav" class="w-full h-full object-cover">
+    </button>
+
+    <!-- Badge -->
+    <span
+      class="absolute top-0 right-0 w-5 h-5 bg-gemini-coral rounded-full border-2 border-white animate-pulse"></span>
+  </div>
+</div>
+
+{% endblock %}

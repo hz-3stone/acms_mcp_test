@@ -1,0 +1,4 @@
+tpl_top: index.html
+tpl_index: index.html
+tpl_404: index.html
+tpl_twig: enabled

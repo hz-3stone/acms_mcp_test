@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini Theme</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Zen+Maru+Gothic:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS -->
+  <!-- CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'gemini-cyan': '#29D0E0',
+            'gemini-navy': '#1A2B4C',
+            'gemini-coral': '#FF6B6B',
+            'gemini-ice': '#F5FAFB',
+          },
+          fontFamily: {
+            'rounded': ['"Zen Maru Gothic"', 'sans-serif'],
+            'english': ['"Varela Round"', 'sans-serif'],
+          },
+          borderRadius: {
+            'bubble': '24px 24px 4px 24px',
+          },
+          animation: {
+            'wiggle': 'wiggle 1s ease-in-out infinite',
+          },
+          keyframes: {
+            wiggle: {
+              '0%, 100%': { transform: 'rotate(-3deg)' },
+              '50%': { transform: 'rotate(3deg)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer base {
+            body {
+                font-family: 'Zen Maru Gothic', sans-serif;
+                background-color: #F5FAFB;
+                color: #1A2B4C;
+            }
+            .font-english {
+                font-family: 'Varela Round', sans-serif;
+            }
+        }
+        @layer components {
+            .btn-primary {
+                @apply bg-gradient-to-r from-gemini-cyan to-[#20A8B5] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-2;
+            }
+            .card-hover {
+                @apply bg-white rounded-[24px] p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border border-transparent hover:border-gemini-cyan/20;
+            }
+        }
+        [x-cloak] { display: none !important; }
+    </style>
+
+  <!-- JS Libraries -->
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <script src="//unpkg.com/htmx.org@1.9.10"></script>
+</head>
+
+<body class="bg-gemini-ice text-gemini-navy antialiased">
+
+  <!-- Admin Action Box -->
+  @include("/admin/action.html")
+
+  {% include "/include/header.html" %}
+
+  <main>
+    {% block main %}{% endblock %}
+  </main>
+
+  {% include "/include/footer.html" %}
+
+</body>
+
+</html>
