@@ -1,0 +1,59 @@
+<table class="acms-admin-table-admin-edit">
+  <tbody>
+    <tr>
+      <th>メイン画像</th>
+      <td class="js-media-field">
+        <div class="js-droparea" data-thumbnail="{entry_main_image@thumbnail}" data-type="image" data-thumbnail-type="{entry_main_image@type}" data-width="200px" data-height="200px"></div>
+        <p class="js-text acms-admin-text-danger" style="display:none">許可されていないファイルのため挿入できません。</p>
+        <div class="acms-admin-margin-top-mini">
+          <button type="button" class="js-insert acms-admin-btn" data-type="image">メディアを選択</button>
+        </div>
+        <input type="hidden" name="entry_main_image" class="js-value" value="{entry_main_image}" />
+        <input type="hidden" name="field[]" value="entry_main_image" />
+        <input type="hidden" name="entry_main_image:extension" value="media" />
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <span>イベントステータス</span>
+      </th>
+      <td>
+        <div class="acms-admin-form-radio">
+          <input type="radio" name="event_status" {event_status:checked#pre} id="event_status-cHJl" value="pre" />
+          <label for="event_status-cHJl">
+            <i class="acms-admin-ico-radio"></i>募集前</label>
+        </div>
+        <div class="acms-admin-form-radio">
+          <input type="radio" name="event_status" {event_status:checked#open} id="event_status-b3Blbg" value="open" />
+          <label for="event_status-b3Blbg">
+            <i class="acms-admin-ico-radio"></i>募集中</label>
+        </div>
+        <div class="acms-admin-form-radio">
+          <input type="radio" name="event_status" {event_status:checked#full} id="event_status-ZnVsbA" value="full" />
+          <label for="event_status-ZnVsbA">
+            <i class="acms-admin-ico-radio"></i>満員御礼</label>
+        </div>
+        <div class="acms-admin-form-radio">
+          <input type="radio" name="event_status" {event_status:checked#closed} id="event_status-Y2xvc2Vk" value="closed" />
+          <label for="event_status-Y2xvc2Vk">
+            <i class="acms-admin-ico-radio"></i>終了</label>
+        </div>
+        <input type="hidden" name="field[]" value="event_status" />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const element = document.getElementById('seo-entry_main_image');
+    if (element) {
+      element.remove();
+    }
+
+    const titleElement = document.getElementById('seo-entry-accordion-title');
+    if (titleElement) {
+      titleElement.innerText = 'SEO設定';
+    }
+  });
+</script>

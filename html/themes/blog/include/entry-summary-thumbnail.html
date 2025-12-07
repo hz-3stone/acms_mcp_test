@@ -1,0 +1,36 @@
+<!-- BEGIN_MODULE Entry_Summary id="" -->
+<section>
+  @include("/admin/module/setting.html")
+  <h2 class="sub-heading">最新記事</h2>
+  <!-- BEGIN notFound -->
+  <p>お探しの記事は見つかりませんでした。</p>
+  <!-- END notFound -->
+  <ul class="entry-list is-thumbnail">
+    <!-- BEGIN entry:loop -->
+    <li>
+      <a href="{url}">
+        <div class="entry-list-thumbnail-img-outer">
+          <!-- BEGIN_IF [{path}/nem] -->
+          <img class="js-focused-image"
+            data-focus-x="{focalX}"
+            data-focus-y="{focalY}"
+            src="%{ROOT_DIR}{path}[resizeImg(360)]" alt="">
+          <!-- ELSE_IF [<!-- BEGIN blogField -->{noimage@path}<!-- END blogField -->/nem] -->
+            <!-- BEGIN blogField -->
+            <img class="js-focused-image" src="%{MEDIA_ARCHIVES_DIR}{noimage@path}" alt="">
+            <!-- END blogField -->
+          <!-- ELSE -->
+          <img class="js-focused-image" src="/images/noimage.png" alt="">
+          <!-- END_IF -->
+        </div>
+        <div class="entry-list-thumbnail-info">
+          <span class="entry-list-date">{date#Y}年{date#m}月{date#d}日</span>
+          <!-- BEGIN new --><span class="entry-new">NEW</span><!-- END new -->
+          <span class="entry-list-title">{title}</span>
+        </div>
+      </a>
+    </li>
+    <!-- END entry:loop -->
+  </ul>
+</section>
+<!-- END_MODULE Entry_Summary -->

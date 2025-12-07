@@ -1,0 +1,57 @@
+@use "sass:map";
+@use "sass:math";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　バッジ
+------------------------------ */
+
+.badge {
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 2.5rem;
+  padding: 0.25rem 0.5rem;
+  font-size: map.get(global.$font-scales, body-s);
+  color: var(--color-text-2nd);
+  text-align: center;
+  background: var(--color-gray10);
+  border-radius: var(--border-radius-sm);
+}
+
+.badge-pill {
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 2.5rem;
+  padding: 0.25rem 0.5rem;
+  font-size: map.get(global.$font-scales, body-s);
+  line-height: var(--line-height-base);
+  color: var(--color-text-2nd);
+  text-align: center;
+  background: var(--color-gray10);
+  border-radius: var(--border-radius-round);
+}
+
+/* ------------------------------
+　　ラベル
+------------------------------ */
+
+.label {
+  display: inline-block;
+  padding: 0 0.5rem;
+  margin-block: 0;
+  font-size: map.get(global.$font-scales, body-s);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+  background: var(--color-gray10);
+  border-radius: var(--border-radius-md);
+
+  &.is-md {
+    padding: 0.25rem 0.5rem;
+  }
+
+  &.is-dark {
+    color: var(--color-white);
+    background: var(--color-gray80);
+  }
+}

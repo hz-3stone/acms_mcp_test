@@ -1,0 +1,95 @@
+@use "sass:map";
+@use "../../global/acms-common" as acms;
+@use "../../global/common" as global;
+
+/* ------------------------------
+ テーブル
+------------------------------ */
+
+@include acms.editor-style(("table")) {
+  margin: 0 0 var(--entry-el-margin-md);
+  overflow: hidden;
+  border-spacing: 0;
+  border-collapse: separate; /* テーブルに角丸をつけるため separate にしています */
+  background-color: var(--color-white);
+  border: var(--border-width-sm) solid var(--color-gray30);
+  border-radius: var(--border-radius-lg);
+
+  th,
+  td {
+    padding: var(--entry-el-padding-xs);
+    font-size: map.get(global.$font-scales, body-m);
+    line-height: var(--line-height-base);
+    border: 0; /* リセット */
+    border-top: var(--border-width-sm) solid var(--color-gray30);
+    border-left: var(--border-width-sm) solid var(--color-gray30);
+
+    & > * {
+      margin-block: 0; /* リセット */
+    }
+
+    /* 要素間余白を確保(管理画面での行列操作用UIを考慮しつつ) */
+    & > *:not(.ProseMirror-widget) + * {
+      margin-block-start: 1rem;
+    }
+  }
+
+  th:first-child,
+  td:first-child {
+    border-left: 0;
+  }
+
+  tr:first-child th,
+  tr:first-child td {
+    border-top: 0;
+  }
+
+  th {
+    vertical-align: top;
+    text-align: left;
+    background-color: var(--color-gray10);
+  }
+
+  td {
+    background-color: var(--color-white); /* リセット用 */
+  }
+
+  a {
+    @include global.link-text;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    th,
+    td {
+      padding: var(--entry-el-padding-sm);
+      font-size: map.get(global.$font-scales, body-m);
+    }
+  }
+}
+
+// div直下にテーブルがある場合
+@include acms.editor-style(("div:has(> table)")) {
+  margin-bottom: var(--entry-el-margin-md);
+  overflow-x: auto; // 横スクロールする時用
+
+  table {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+/* スクロールするテーブル */
+.acms-table-scrollable,
+.js-table-unit-scroll-hint {
+  th,
+  td {
+    word-break: keep-all; // 横スクロールするテーブルの時は常時テキスト折り返しなし
+    white-space: nowrap;
+  }
+}
+
+/* ブロックエディター編集画面用打ち消し */
+.acms-admin-block-editor-content .entry-style table {
+  overflow: visible; /* ブロックエディター編集画面では装飾操作用UIの表示を妨げないように「overflow: hidden;」はしないでください */
+  border-radius: 0;
+}

@@ -1,0 +1,41 @@
+@extends("/_layouts/two-column.html")
+
+@section("main")
+@include("/include/tag/filter.html")
+
+<!-- BEGIN_IF [%{CID}/nem] -->
+<h2 class="page-sub-title">%{CATEGORY_NAME}</h2>
+<!-- END_IF -->
+
+<!-- BEGIN_IF [%{DATE}/nem] -->
+<h2 class="page-sub-title"><!-- BEGIN_IF [%{DATE_YEAR}/nem] -->%{DATE_YEAR}年<!-- END_IF --><!-- BEGIN_IF [%{DATE_MONTH}/nem] -->%{DATE_MONTH}月<!-- END_IF --><!-- BEGIN_IF [%{DATE_DAY}/nem] -->%{DATE_DAY}日<!-- END_IF --></h2>
+<!-- END_IF -->
+
+<!-- ブログ毎のキーワード検索非対応 -->
+
+<!-- サマリー：記事一覧 -->
+<!-- BEGIN_MODULE Entry_Summary id="summary_date" -->
+<div>
+  @include("/include/edit/module-custom.html",{"hash":"#acms_box2"})
+
+  <!-- BEGIN notFound -->
+  <p class="text-notfound-article">お探しの記事は見つかりませんでした。</p>
+  <!-- END notFound -->
+
+  @include("/include/parts/media-list/list-section.html")
+
+  @include("/include/parts/media-list/pager-read-more.html")
+</div>
+<!-- END_MODULE Entry_Summary -->
+@endsection
+
+@section("side")
+<!-- カテゴリー：リスト表示 -->
+@include("/include/category/list-side.html", {"module_id": "category_list"})
+
+<!-- アーカイブリスト：月表示 -->
+@include("/include/entry/archive-list.html")
+
+<!-- エントリーサマリー：サイドバー用 -->
+@include("/include/entry/summary-side.html")
+@endsection

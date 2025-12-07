@@ -1,0 +1,22 @@
+<!-- BEGIN_MODULE Entry_Body --><!-- BEGIN moduleField -->
+<div class="section-pt<!-- BEGIN_IF [{section_class}/eq/is-bg] --> section-pb section-bg-color<!-- ELSE --> section-mb<!-- END_IF --> js-animation not-editor-style">
+  <div class="{container_type}">
+    @include("/include/edit/module-custom.html",{"hash":"#acms_box3"})
+
+    <!-- BEGIN entry:loop -->
+    <article class="entry {entry:loop.class}">
+        <!-- BEGIN entry:veil -->
+        <div class="acms-entry entry-style">
+          <!-- BEGIN unit:veil -->
+          @include("/include/unit.html")
+          <!-- END unit:veil -->
+        </div>
+        <!-- END entry:veil -->
+    <!-- BEGIN_MODULE Touch_SessionWithCompilation -->
+    <p><a href="%{HOME_URL}bid/{entry:loop.bid}<!-- BEGIN_IF [{entry:loop.cid}/nem] -->/cid/{entry:loop.cid}<!-- END_IF -->/eid/{entry:loop.eid}/admin/entry-edit/" class="acms-btn">編集</a></p>
+    <!-- END_MODULE Touch_SessionWithCompilation -->
+    </article>
+    <!-- END entry:loop -->
+  </div>
+</div>
+<!-- END_MODULE Entry_Body -->

@@ -1,0 +1,34 @@
+<!-- BEGIN_MODULE Entry_Body id="{{module_id}}" -->
+<div>
+  <!-- BEGIN notFound -->
+  <section class="acms-entry entry-column">
+    <h1 class="not-found-title">Not found</h1>
+    <p>お探しの記事は見つかりませんでした。</p>
+  </section>
+  <!-- END notFound -->
+
+  <!-- 1記事▼▼ -->
+  <!-- BEGIN entry:loop -->
+  <div class="acms-box-medium">
+    @include("/admin/entry/revision-info.html")
+  </div>
+  <section class="{entry:loop.class}">
+    <!-- BEGIN entry-column:veil -->
+    <div class="acms-entry entry-style entry-style-top">
+      <!-- BEGIN unit:veil -->
+      @include("/include/unit.html")
+      <!-- END unit:veil -->
+      <!-- 続きを読む -->
+      @include("/include/parts/continue.html")
+    </div>
+    <!-- END entry-column:veil -->
+    <!-- BEGIN_MODULE Touch_SessionWithContribution -->
+    <div class="acms-box-medium">
+      @include("/admin/entry/action.html")
+    </div>
+    <!-- END_MODULE Touch_SessionWithContribution -->
+  </section>
+  <!-- END entry:loop -->
+  <!-- 1記事▲▲ -->
+</div>
+<!-- END_MODULE Entry_Body -->

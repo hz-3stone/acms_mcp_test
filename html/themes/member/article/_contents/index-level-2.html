@@ -1,0 +1,30 @@
+<!-- 子カテゴリー一覧 -->
+<main>
+  <div class="acms-container">
+    <div class="layout-two-columns">
+      <div class="layout-main">
+        <main>
+          <div>
+            <!-- タグフィルター -->
+            @include("/include/tag/filter.html")
+
+            <!-- サマリー：記事一覧 -->
+            @include("/include/entry/summary.html",{"module_id": "summary_index_date"})
+          </div>
+        </main>
+      </div>
+      <div class="layout-side">
+        <div class="section-side-grid">
+          <!-- カテゴリー：リスト表示 -->
+          @include("/include/category/list_side.html", {"module_id": "category_list_article"})
+
+          <!-- リンク集 -->
+          @include("/include/parts/side-link.html", {"module_id": "MF_side_links"})
+
+          <!-- タグ：リスト表示 -->
+          @include("/include/tag/list_side.html", {"module_id": "tag_cloud"})
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

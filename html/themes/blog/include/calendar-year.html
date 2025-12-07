@@ -1,0 +1,41 @@
+<!-- BEGIN_MODULE Calendar_Year -->
+<div class="calendar-year">
+  @include("/admin/module/setting.html")
+  <ul class="year-nav">
+    <!-- BEGIN prevLink --><li class="year-nav-prev"><a href="{url}" title="前年へ" class="year-nav-prev-link"><span class="acms-icon-arrow-small-left"></span></a></li><!-- END prevLink -->
+    <li class="year-nav-center">{year}</li>
+    <!-- BEGIN nextLink --><li class="year-nav-next"><a href="{url}" title="翌年へ" class="year-nav-next-link"><span class="acms-icon-arrow-small-right"></span></a></li><!-- END nextLink -->
+  </ul>
+  <div class="year-table">
+    <!-- BEGIN unit:loop -->
+      <!-- BEGIN month:loop -->
+      <div class="year-table-month">
+        <p class="month-date-outer"><a href="{monthUrl}" class="month-date">{monthDate}[date('n')]</a></p>
+        <table class="calendar-table">
+          <tr>
+            <!-- BEGIN weekLabel:loop -->
+            <td class="week <!-- BEGIN_IF [{w}/eq/6] -->sat<!-- ELSE_IF [{w}/eq/0] -->sun<!-- END_IF -->">{label}</td>
+            <!-- END weekLabel:loop -->
+          </tr>
+          <!-- BEGIN week:loop -->
+          <tr>
+            <!-- BEGIN day:loop -->
+            <!-- BEGIN spacer -->
+            <td> </td>
+            <!-- END spacer -->
+            <!-- BEGIN none -->
+            <td>{day}</td>
+            <!-- END none -->
+            <!-- BEGIN link -->
+            <td class="success"><a href="{url}">{day}</a></td>
+            <!-- END link -->
+            <!-- END day:loop -->
+          </tr>
+          <!-- END week:loop -->
+        </table>
+      </div>
+      <!-- END month:loop -->
+    <!-- END unit:loop -->
+  </div>
+</div>
+<!-- END_MODULE Calendar_Year -->

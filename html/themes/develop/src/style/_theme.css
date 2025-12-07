@@ -1,0 +1,16 @@
+@theme {
+  --font-sans:
+    --apple-system, blinkmacsystemfont, 'Helvetica Neue', 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
+    arial, meiryo, sans-serif;
+}
+
+:root {
+  --unit-margin-top: 0;
+  --unit-margin-bottom: 1.5em;
+  --unit-gap-x: 1em;
+
+  @media (width >= 520px) {
+    --unit-margin-bottom: 2em;
+    --unit-gap-x: 2em;
+  }
+}

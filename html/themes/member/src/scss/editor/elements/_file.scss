@@ -1,0 +1,149 @@
+@use "sass:map";
+@use "../../global/acms-common" as acms;
+@use "../../global/common" as global;
+
+/* ------------------------------
+ - ブロックエディターのファイル（縦積み、ボタン型）
+ - メディアファイル
+ - ファイル
+ ※ media-downloadは動的、storageは静的書き出しに対応
+------------------------------ */
+:where(.#{acms.$entry-class}) .node-fileBlock,
+.media-file-block,
+[class*="column-media"]:has(a[href*="media-download"], a[href*="storage"]),
+[class*="column-file"] {
+  margin-block: 0 global.$entry-el-margin-md;
+  font-size: 0; /* Descender space 対策 */
+  text-align: center;
+}
+
+/* ボタン型
+------------------------------ */
+
+/* リンク */
+.acms-admin-block-editor-file-link,
+.media-file-block[data-display-type="button"] a,
+[class*="column-media"] a[href*="media-download"],
+[class*="column-media"] a[href*="storage"],
+[class*="column-file"] a {
+  box-sizing: border-box;
+  display: inline-flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  color: global.$color-text;
+  text-decoration: none; /* リセット */
+  background-color: global.$color-white;
+  border: global.$border-width-sm solid global.$color-gray40;
+  border-radius: global.$border-radius-md;
+}
+
+/* リンク動作スタイル（閲覧画面のみ） */
+.media-file-block[data-display-type="button"] a,
+[class*="column-media"] a[href*="media-download"],
+[class*="column-media"] a[href*="storage"],
+[class*="column-file"] a,
+.entry-style [class*="column-file"] a { /* hover動作上書きのため詳細度高めて指定 */
+  @media (hover: hover) {
+    transition: background-color 0.2s ease;
+
+    &:where(:any-link):hover {
+      background-color: global.$color-gray20;
+      border-color: global.$color-gray40; /* hover動作上書きのため */
+    }
+  }
+}
+
+/* ファイルアイコン */
+.acms-admin-block-editor-file-link img,
+.media-file-block[data-display-type="button"] img,
+[class*="column-media"] .columnIcon,
+[class*="column-file"] .columnIcon {
+  display: inline-block;
+  width: 1.75rem;
+  max-width: 100%;
+  height: auto;
+}
+
+/* キャプションタイポグラフィ設定 */
+.acms-admin-block-editor-file-link .caption,
+.media-file-block[data-display-type="button"] .caption,
+[class*="column-file"] .caption,
+[class*="column-media"]:has(a[href*="media-download"], a[href*="storage"]):has(.columnIcon) .caption {
+  margin: 0; /* リセット */
+  font-size: map.get(global.$font-scales, body-m);
+  line-height: global.$line-height-sm;
+  color: currentcolor;
+  text-align: left;
+}
+
+/* PDFプレビュー
+------------------------------ */
+
+/* リンク */
+[class*="column-media"]:has(.column-pdf-image) {
+  a {
+    display: inline-grid;
+    gap: 0.25rem;
+    justify-content: center;
+
+    /* リンクスタイルリセット */
+    padding: 0;
+    border: 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border: global.$border-width-sm solid global.$color-gray40;
+  }
+
+  .caption {
+    display: block;
+    margin: 4px 0 0; /* 余白リセットのため全方向指定 */
+    font-size: map.get(global.$font-scales, body-s);
+    line-height: global.$line-height-sm;
+    color: global.$color-text-side;
+  }
+}
+
+
+/* ブロックエディターのファイル（縦積み）
+------------------------------ */
+
+/* キャプション */
+.acms-admin-block-editor-file:not(:has(.acms-admin-block-editor-file-link)) .caption,
+.media-file-block[data-display-type="icon"] .caption {
+  display: block;
+  margin: 4px 0 0; /* 余白リセットのため全方向指定 */
+  font-size: map.get(global.$font-scales, body-s);
+  line-height: global.$line-height-sm;
+  color: global.$color-text-side;
+}
+
+.acms-admin-block-editor-file:not(:has(.acms-admin-block-editor-file-link)),
+.media-file-block[data-display-type="icon"] {
+  text-align: center;
+
+  img {
+    width: 70px;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* リンク動作スタイル（閲覧画面のみ） */
+.media-file-block[data-display-type="icon"] a,
+[class*="column-media"]:has(.column-pdf-image) a {
+  /* リンクスタイルリセット */
+  padding: 0;
+  border: 0;
+
+  @media (hover: hover) {
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}

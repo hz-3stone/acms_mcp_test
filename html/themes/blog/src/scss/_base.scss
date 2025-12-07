@@ -1,0 +1,132 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ----------------
+　ベース
+------------------ */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.5;
+}
+
+body {
+  font-family: YuGothic,"Yu Gothic", 'Hiragino Kaku Gothic ProN', "Hiragino Sans", Meiryo, sans-serif;
+  color: global.$text-color-base;
+
+  @include acms.font-size(14);
+}
+
+a {
+  color: global.$link-color;
+  text-decoration: none;
+}
+
+a:link {
+  color: global.$link-color;
+}
+
+a:visited {
+  color: global.$link-color-visited;
+}
+
+dt {
+  font-weight: bold;
+}
+
+td,
+th {
+  text-align: left;
+}
+
+/* ----------------
+　コンテナ
+------------------ */
+.base-container {
+  @include global.container;
+}
+
+.base-container-onecolumn {
+  @include global.container(global.$main-column-width);
+}
+
+.base-container-grid {
+  display: block;
+}
+
+.main-column,
+.sub-column {
+  min-height: 1px;
+}
+
+.main-column {
+  max-width: 100%;
+}
+
+.main-wrap {
+  margin-bottom: 80px;
+}
+
+.sub-column {
+  width: 100%;
+}
+
+@include acms.media-breakpoint-up(md) {
+  .base-container-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .main-column {
+    flex: 1 1 global.$main-column-width;
+    max-width: calc( global.$main-column-width + global.$main-column-right-padding );
+    padding-right: global.$main-column-right-padding;
+
+    &.is-onecolumn {
+      max-width: 100%;
+      padding-right: 0;
+    }
+  }
+
+  .sub-column {
+    width: global.$sub-column-width;
+  }
+}
+
+/* ----------------
+　パーツ
+------------------ */
+
+.base-required-label {
+  float: right;
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 2px 5px 0;
+  font-weight: normal;
+  line-height: 1.3;
+  color: #e30314;
+  border: 1px solid #e30314;
+
+  @include acms.font-size(11);
+}
+
+.sub-heading {
+  margin: 0 0 10px;
+  font-weight: bold;
+
+  @include acms.font-size(14);
+}
+
+#js-seo_info th {
+  width: 200px;
+}
+
+@include acms.media-breakpoint-down(md) {
+  #offcanvas {
+    padding: 0 0 15px 10px;
+  }
+}

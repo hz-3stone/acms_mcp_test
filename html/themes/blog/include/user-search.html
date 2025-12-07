@@ -1,0 +1,55 @@
+<!-- BEGIN_MODULE User_Search id="" -->
+<!-- BEGIN user:loop -->
+<!-- BEGIN_IF [{position}{user_title}{profile}{image@thumbnail}{twitter}{facebook}{profile_link}/nem] -->
+<section class="profile">
+  <!-- BEGIN_MODULE Touch_SessionWithAdministration -->
+  <p class="acms-admin-module-edit"><a href="/bid/%{BID}/uid/{id}/admin/user_edit/?edit=update#acms_custom" class="js-dialog-btn">編集</a></p>
+  <!-- END_MODULE Touch_SessionWithAdministration -->
+
+  <div class="profile-info">
+    <!-- BEGIN image:veil -->
+    <img src="%{MEDIA_ARCHIVES_DIR}{image@path}[resizeImg(80, 80)]" class="profile-img" alt="{image@alt}" />
+    <!-- END image:veil -->
+
+    <div class="profile-info-base">
+      <!-- BEGIN name:veil -->
+      <h2 class="profile-name">{name}</h2>
+      <!-- END name:veil -->
+      <!-- BEGIN position_title:veil -->
+      <p class="profile-position">
+        <!-- BEGIN position:veil --><span>{position}</span><!-- END position:veil -->
+        <!-- BEGIN user_title:veil --><span>{user_title}</span><!-- END user_title:veil -->
+      </p>
+      <!-- END position_title:veil -->
+      <!-- BEGIN_IF [{profile_link}/nem/_or_/{twitter}/nem/_or_/{facebook}/nem] -->
+      <div class="profile-icon-list">
+        <!-- BEGIN_IF [{profile_link}/nem] -->
+        <a href="{profile_link}" class="social-icon">
+          <span class="acms-hide-visually">{name}のプロフィールへのリンク</span>
+          <i class="acms-icon-user"></i>
+        </a>
+        <!-- END_IF -->
+        <!-- BEGIN twitter:veil -->
+        <a href="{twitter}" class="social-icon social-icon-twitter">
+          <span class="acms-hide-visually">{twitter}のX（旧Twitter）へのリンク</span>
+          <i class="acms-icon-x"></i>
+        </a>
+        <!-- END twitter:veil -->
+        <!-- BEGIN facebook:veil -->
+        <a href="{facebook}" class="social-icon social-icon-facebook">
+          <span class="acms-hide-visually">{facebook}のFacebookへのリンク</span>
+          <i class="acms-icon-facebook"></i>
+        </a>
+        <!-- END facebook:veil -->
+      </div>
+      <!-- END_IF -->
+    </div>
+  </div>
+  <!-- BEGIN profile:veil -->
+  <p class="profile-text <!-- BEGIN_IF [{profile-img}/em] -->-profile-img-none<!-- END_IF -->">{profile}[raw|nl2br]</p>
+  <!-- END profile:veil -->
+
+</section>
+<!-- END_IF -->
+<!-- END user:loop -->
+<!-- END_MODULE User_Search -->

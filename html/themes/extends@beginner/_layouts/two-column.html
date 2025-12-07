@@ -1,0 +1,23 @@
+@extends("/_layouts/base.html")
+
+@section("content-wrapper")
+<div class="acms-container js-pretty-scroll-container">
+  <div class="content-wrapper two-columns">
+    <div class="main-container">
+      <main>
+        @section("main")
+        <p>継承してメインコンテンツを設定してください</p>
+        @endsection
+      </main>
+    </div>
+    <div class="side-container">
+      <div class="js-pretty-scroll">
+        <div class="section-side-layout">
+          @section("side")
+          @endsection
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

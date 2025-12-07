@@ -1,0 +1,76 @@
+@use "../global/acms-common" as acms;
+@use "../global/common" as global;
+
+/* ------------------------------
+ グループ・ユニット
+------------------------------ */
+.#{acms.$entry-class} {
+  /* 全てのグループ・ユニット */
+  [class*="gu-"] {
+    @include acms.media-breakpoint-up(md) {
+      .pricing-group {
+        padding: 4rem 0 2rem;
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .gu-bg-gray {
+    background: global.$color-gray20;
+  }
+
+  .gu-bg-primary {
+    background: global.$color-primary-bg;
+  }
+
+  .gu-bg-gray,
+  .gu-bg-primary,
+  .gu-border {
+    padding: global.$entry-el-padding-md calc(global.$entry-el-padding-md - (var(--unit-gap-x) / 2));
+    margin-bottom: global.$entry-el-margin-md;
+
+    > *:not(.not-editor-style):first-child,
+    > *:first-child.column-block-editor > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:not(.not-editor-style):last-child,
+    > *:last-child.column-block-editor > *:last-child {
+      margin-bottom: 0;
+    }
+
+    @include acms.media-breakpoint-up(md) {
+      padding: global.$entry-el-padding-md calc(global.$entry-el-padding-md - (var(--unit-gap-x) / 2));
+      margin-bottom: global.$entry-el-margin-lg;
+
+      > *:not(.not-editor-style):first-child,
+      > *:first-child.column-block-editor > *:first-child {
+        margin-top: 0;
+      }
+
+      > *:not(.not-editor-style):last-child,
+      > *:last-child.column-block-editor > *:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .gu-border {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      content: "";
+      border: global.$border-width-sm solid global.$color-gray40;
+    }
+  }
+
+  .gu-narrow {
+    max-width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

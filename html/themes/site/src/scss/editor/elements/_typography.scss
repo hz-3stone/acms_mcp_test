@@ -1,0 +1,343 @@
+@use "sass:map";
+@use "../../global/acms-common" as acms;
+@use "../../global/common" as global;
+
+/* ------------------------------
+ テキスト
+------------------------------ */
+
+/* リンク
+----------------------------- */
+@include acms.editor-style(
+  ("a"),
+  $exclude-classes: ("not-editor-style", "media-image-block", "column-image", "column-media", "column-eximage")
+) {
+  @include global.link-text;
+}
+
+.entryFormLiteEditor {
+  a {
+    @include global.link-text;
+  }
+}
+
+/* em
+----------------------------- */
+@include acms.editor-style(
+  ("em"),
+) {
+  font-style: italic;
+}
+
+/* strong
+----------------------------- */
+@include acms.editor-style(
+  ("strong"),
+) {
+  font-weight: bold;
+}
+
+/* mark
+----------------------------- */
+@include acms.editor-style(
+  ("mark"),
+) {
+  color: inherit;
+  background-color: var(--color-highlight);
+}
+
+/* code
+----------------------------- */
+@include acms.editor-style(
+  ("code"),
+  $exclude-classes: ("not-editor-style", "code-highlight")
+) {
+  padding: 0.0.25rem;
+  margin-inline: 0.25rem;
+  font-size: 87.5%;
+  color: var(--color-primary);
+  background-color: var(--color-white);
+  border: var(--border-width-sm) solid currentcolor;
+  border-radius: var(--border-radius-sm);
+}
+
+/* 見出し
+----------------------------- */
+@include acms.editor-style(("h1", "h2", "h3", "h4", "h5", "h6")) {
+  margin-block: calc(var(--entry-el-margin-md) + var(--unit-heading-margin-top-add)) var(--entry-el-margin-sm);
+}
+
+@include acms.editor-style(("h2", "h3", "h4")) {
+  &.heading-line {
+    padding-block-end: var(--entry-el-padding-xs);
+    border-block-end: var(--border-width-md) solid var(--color-gray100);
+  }
+
+  &.heading-primary {
+    position: relative;
+    padding-block-end: calc(var(--entry-el-padding-xs) + var(--border-width-lg));
+
+    &::before {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: block;
+      width: 2em;
+      height: var(--border-width-lg);
+      content: "";
+      background: var(--color-primary);
+    }
+  }
+}
+
+@include acms.editor-style("h2") {
+  font-size: map.get(global.$font-scales, heading-s);
+  line-height: var(--line-height-base);
+
+  @include acms.media-breakpoint-up(md) {
+    font-size: map.get(global.$font-scales, heading-m);
+  }
+}
+
+@include acms.editor-style("h3") {
+  font-size: map.get(global.$font-scales, heading-ss);
+  line-height: var(--line-height-base);
+
+  @include acms.media-breakpoint-up(md) {
+    font-size: map.get(global.$font-scales, heading-s);
+  }
+}
+
+@include acms.editor-style("h4") {
+  font-size: map.get(global.$font-scales, body-m);
+  line-height: var(--line-height-base);
+
+  @include acms.media-breakpoint-up(md) {
+    font-size: map.get(global.$font-scales, heading-ss);
+  }
+}
+
+/* 本文
+----------------------------- */
+@include acms.editor-style("p") {
+  margin-block: 0 var(--entry-el-margin-md);
+  font-size: map.get(global.$font-scales, body-m);
+  line-height: var(--line-height-lg);
+}
+
+/* リスト
+----------------------------- */
+@include acms.editor-style("ul") {
+  --list-space-y: 0.5rem; /* アイテム間の縦余白 */
+
+  display: grid;
+  gap: var(--list-space-y);
+  padding-left: calc(1lh + 0.375rem);
+  margin-block: 0 var(--entry-el-margin-md);
+
+  & > li { /* ul 内に ol, ol 内に ul が入っていた時の対策として子セレクタで指定 */
+    position: relative;
+    font-size: map.get(global.$font-scales, body-m);
+    line-height: var(--line-height-base);
+
+    &::marker {
+      content: none;
+    }
+
+    &::before {
+      position: absolute;
+      top: calc(0.5lh - 0.1875rem);
+      left: calc((0.5lh + 0.1875rem) * -1);
+      width: 0.375rem;
+      height: 0.375rem;
+      content: "";
+      background: var(--color-secondary);
+      border-radius: 50%;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    & > * {
+      /* ブロックエディタ：リセット用 */
+      margin-block: 0;
+    }
+
+    ul {
+      margin-top: var(--list-space-y);
+    }
+  }
+}
+
+/* 番号付きリスト */
+@include acms.editor-style("ol") {
+  --order-list-space-y: 0.5rem; /* アイテム間の縦余白 */
+
+  display: grid;
+  grid-template-columns: minmax(1lh, auto) 1fr; /* 列を「番号用」と「テキスト用」に分ける */ /* ulの1階層目テキストはじまりと揃えるために minmax(1lh, auto) で最小値を設定 */
+  gap: var(--order-list-space-y) 0.375rem; /* アイテム間余白, 番号とテキスト間余白 */
+  padding-inline-start: 0;
+  margin-block: 0 var(--entry-el-margin-md);
+  counter-reset: order-list;
+
+  & > li { /* ul 内に ol, ol 内に ul が入っていた時の対策として子セレクタで指定 */
+    clear: both;
+    display: grid;
+    grid-template-columns: subgrid; /* アイテム番号の幅を揃えるための設定 */
+    grid-column: 1 / -1; /* 列をまたいで全幅を確保 */
+    grid-auto-flow: column;
+    font-size: map.get(global.$font-scales, body-m);
+    line-height: var(--line-height-base);
+
+    &::marker {
+      content: none;
+    }
+
+    &::before {
+      grid-column: 1;
+      padding-top: 1.4px; /* 番号位置の微調整 */
+      font-weight: bold;
+      color: var(--color-text-2nd);
+      word-break: keep-all;
+      white-space: nowrap;
+      content: counters(order-list, "-") ". ";
+      counter-increment: order-list;
+    }
+
+    & > * {
+      /* ブロックエディタ：リセット用 */
+      margin-block: 0;
+    }
+
+    ol {
+      grid-column: 1 / -1; /* 列をまたいで全幅を確保 */
+      padding-left: 1rem;
+      margin-top: var(--order-list-space-y);
+    }
+  }
+}
+
+/* 記述リスト */
+@include acms.editor-style("dl") {
+  display: block; /* リセット用 */
+  padding-block: 0; /* リセット用 */
+  margin-block: 0 var(--entry-el-margin-md);
+  border: 0; /* リセット用 */
+
+  dt {
+    margin-bottom: 0.5rem;
+    font-size: map.get(global.$font-scales, body-m);
+    font-weight: bold;
+    line-height: var(--line-height-base);
+  }
+
+  dd {
+    margin-bottom: 1rem;
+    margin-left: 0; /* リセット用 */
+    font-size: map.get(global.$font-scales, body-m);
+    line-height: var(--line-height-base);
+  }
+
+  dd + dt {
+    margin-top: 0; /* リセット用 */
+  }
+
+  &.box-bordered {
+    border: var(--border-width-sm) solid var(--color-gray30);
+    border-radius: var(--border-radius-lg);
+
+    dt {
+      padding-inline: var(--entry-el-padding-xs);
+      padding-top: var(--entry-el-padding-sm);
+      border-top: var(--border-width-sm) solid var(--color-gray30);
+
+      &:first-child {
+        border: 0;
+      }
+    }
+
+    dd {
+      padding-inline: var(--entry-el-padding-xs);
+      padding-bottom: var(--entry-el-padding-sm);
+      margin-bottom: 0;
+    }
+
+    @include acms.media-breakpoint-up(md) {
+      dt {
+        padding-inline: var(--entry-el-padding-md);
+        padding-top: var(--entry-el-padding-md);
+      }
+
+      dd {
+        padding-inline: var(--entry-el-padding-md);
+        padding-bottom: var(--entry-el-padding-md);
+      }
+    }
+  }
+}
+
+/* ソースコード
+----------------------------- */
+@include acms.editor-style(
+  ("pre"),
+  $exclude-classes: ("not-editor-style", "code-highlight")
+) {
+  max-width: 100%;
+  padding: var(--entry-el-padding-sm);
+  margin-block: 0 var(--entry-el-margin-md);
+  overflow: auto;
+  font-size: map.get(global.$font-scales, body-m);
+  line-height: var(--line-height-lg);
+  color: var(--color-text); /* 閲覧側画面の文字色はライブラリに依存 */
+  background-color: var(--color-white);
+  border: var(--border-width-sm) solid var(--color-primary);
+  border-radius: var(--border-radius-lg);
+
+  code {
+    padding: 0;
+
+    /* リセット用 */
+    margin: 0;
+    font-size: inherit;
+    color: inherit;
+    background-color: inherit;
+    border: none;
+    box-shadow: none;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    padding: var(--entry-el-padding-md);
+  }
+}
+
+/* 水平罫線
+----------------------------- */
+@include acms.editor-style(
+  ("hr"),
+) {
+  margin-bottom: var(--entry-el-margin-md);
+  border: 0 solid var(--color-gray70);
+  border-top-width: var(--border-width-sm);
+
+  @include acms.media-breakpoint-up(md) {
+    margin-bottom: var(--entry-el-margin-lg);
+  }
+}
+
+/* ブロックエディタ用 */
+[data-type="horizontalRule"] {
+  margin-block: var(--entry-el-margin-md);
+
+  hr {
+    margin-block: 0;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    margin-block: var(--entry-el-margin-md);
+
+    hr {
+      margin-block: 0;
+    }
+  }
+}

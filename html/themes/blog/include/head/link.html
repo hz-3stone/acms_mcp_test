@@ -1,0 +1,19 @@
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="%{BASE_URL}rss2.xml">
+<!-- BEGIN_IF [<!-- BEGIN_MODULE Blog_Field -->{enable_amp}<!-- END_MODULE Blog_Field -->/eq/true] --><!-- BEGIN_MODULE Touch_Entry -->
+<link rel="amphtml" href="%{CURRENT_URL}/tpl/amp.html"><!-- END_MODULE Touch_Entry --><!-- END_IF -->
+<link rel="stylesheet" href="/css/normalize.min.css">
+<link rel="stylesheet" href="/css/acms-admin.min.css">
+<link rel="stylesheet" href="/css/acms.min.css">
+
+<!-- 編集画面とエディタ内要素のスタイル（編集・閲覧画面両方に適用）を読み込み -->
+<link rel="stylesheet" href="/css/acms-editor.min.css">
+
+<link rel="stylesheet" href="/dest/bundle.css">
+
+<!-- BEGIN_MODULE Blog_Field --><!-- BEGIN style:veil -->
+<!-- キーカラーとのコントラスト比がより高い方の色を取得 -->
+<!-- BEGIN_SetRendered id="contrast_color" -->
+{key_color}[contrastColor('#666666','#FFFFFF')]
+<!-- END_SetRendered -->
+<style>@include("/include/style/custom.css")</style>
+<!-- END style:veil --><!-- END_MODULE Blog_Field -->

@@ -1,0 +1,33 @@
+<!-- ブログのSEO設定 -->
+@include("/admin/blog/field-seo.html")
+<!-- OGP設定 -->
+@include("/admin/blog/field-ogp.html")
+<!-- Twitter設定 -->
+@include("/admin/blog/field-twitter.html")
+
+<!-- カスタム設定 -->
+<h3 class="acms-admin-admin-title2">カスタム設定</h3>
+<table class="adminTable acms-admin-table-admin-edit" style="margin-bottom:30px">
+  @include("/admin/blog/field-header.html")
+  @include("/admin/blog/field-color.html")
+  <!-- BEGIN_IF [%{BID}/eq/%{RBID}] -->
+  <tr>
+    <th><label for="input-text-year">ブログ開設年</label><i class="acms-admin-icon-tooltip js-acms-tooltip-hover" data-acms-tooltip="フッターのコピーライトの開始年を設定します。"></i></th>
+    <td>
+      <input type="text" name="year" value="{year}" placeholder="例）%{Y}" />
+      <input type="hidden" name="field[]" value="year" />
+      <span style="display:inline-block;margin-left:5px;">年</span>
+    </td>
+  </tr>
+  <!-- END_IF -->
+  <tr>
+    <th><label for="input-text-google_analytics">Google Analytics</label><i data-acms-tooltip="Google Analytics の解析用のタグを設定します。" class="acms-admin-icon-tooltip js-acms-tooltip-hover"></i></th>
+    <td>
+      <textarea name="google_analytics" cols="60" rows="5" id="input-text-google_analytics" class="acms-admin-form-width-large">{google_analytics}</textarea>
+      <input type="hidden" name="field[]" value="google_analytics" />
+    </td>
+  </tr>
+</table>
+
+<!-- Search Consoleの設定 -->
+@include("/admin/blog/field-search-console.html")

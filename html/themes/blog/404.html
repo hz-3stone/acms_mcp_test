@@ -1,0 +1,40 @@
+@extends("/_layouts/one-column.html")
+
+@section("main")
+<!-- Not Found -->
+<article class="not-found" aria-labelledby="article-404">
+	<header>
+		<h2 id="article-404" class="not-found-title">お探しの記事は見つかりませんでした</h2>
+	</header>
+	<div class="not-found-message">
+		<p class="not-found-message-text">削除または移動した可能性があります。</p>
+		<a href="%{BLOG_URL}" class="not-found-return">TOPページへ戻る</a>
+	</div>
+</article>
+@endsection
+
+@section("sub")
+<!-- エントリー一覧 -->
+@include("/include/entry-summary-thumbnail.html")
+
+<!-- エントリー一覧（画像なし） -->
+<!-- @include("/include/entry-summary.html") -->
+
+<!-- エントリー一覧（画像大きめ） -->
+<!-- @include("/include/thumbnail.html") -->
+
+<!-- カテゴリー一覧 -->
+@include("/include/category-list.html")
+
+<!-- アーカイブ -->
+@include("/include/archive-list.html")
+
+<!-- タグクラウド -->
+@include("/include/tag-cloud.html")
+
+<!-- 検索フォーム -->
+@include("/include/search.html")
+
+<!-- バナー一覧 -->
+@include("/include/banner.html")
+@endsection

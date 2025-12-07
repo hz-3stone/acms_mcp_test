@@ -1,0 +1,61 @@
+@use "sass:map";
+@use "sass:math";
+@use "../../global/acms-common" as acms;
+@use "../../global/common" as global;
+
+/* ------------------------------
+ 引用
+------------------------------ */
+
+@include acms.editor-style("blockquote") {
+  padding: var(--entry-el-padding-sm);
+  margin-block: 0 var(--entry-el-margin-md);
+
+  /* リセット用 */
+  margin-inline: 0;
+  font-size: map.get(global.$font-scales, body-m);
+  line-height: var(--line-height-lg);
+  border: var(--border-width-md) solid var(--color-gray30);
+
+  /* ブロックエディタ調整：リセット用 */
+  & > * {
+    margin-block: 0;
+  }
+
+  /* ブロックエディタ調整 */
+  * + * {
+    margin-block-start: 1rem;
+  }
+
+  a {
+    @include global.link-text;
+
+    /* 中に画像が入っているリンクの時 */
+    &:has(img) {
+      display: inline-block;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+
+      @media (hover: hover) {
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+
+  img {
+    width: 100%;
+  }
+
+  strong {
+    /* リセット用 */
+    background: transparent;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    padding: var(--entry-el-padding-md);
+    margin-bottom: var(--entry-el-margin-lg);
+  }
+}
+

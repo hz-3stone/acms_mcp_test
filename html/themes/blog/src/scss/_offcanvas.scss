@@ -1,0 +1,69 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　オフキャンバスのボタン
+------------------------------ */
+.offcanvas-btn {
+	display: none;
+}
+
+@include acms.media-breakpoint-down(md) {
+	.offcanvas-btn {
+		position: fixed;
+		right: 20px;
+		bottom: 20px;
+		z-index: 2;
+		display: block;
+		width: 50px;
+		height: 50px;
+		padding: 16px 0;
+		cursor: pointer;
+		background: global.$bg-color-dark;
+		border: none;
+		border-radius: 10px;
+	}
+
+	.offcanvas-btn-line {
+		display: block;
+		width: 20px;
+		height: 3px;
+		margin: 0 auto 4px;
+		background: #FFF;
+	}
+}
+
+/* ------------------------------
+　　オフキャンバス
+------------------------------ */
+@include acms.media-breakpoint-up(md) {
+	.js-acms-offcanvas-body-right {
+		left: -300px;
+	}
+
+	.js-acms-offcanvas-body-left {
+		left: 300px;
+	}
+
+	.js-acms-offcanvas-active {
+		& .js-acms-offcanvas-sidebar {
+			width: 300px;
+		}
+
+		& .js-acms-offcanvas-sidebar-right {
+			margin-right: -300px;
+		}
+
+		& .js-acms-offcanvas-sidebar-left {
+			margin-left: -300px;
+		}
+	}
+
+	.js-acms-offcanvas-body-right .js-acms-header-fixed {
+		margin-left: -300px;
+	}
+
+	.js-acms-offcanvas-body-left .js-acms-header-fixed {
+		margin-left: 300px;
+	}
+}

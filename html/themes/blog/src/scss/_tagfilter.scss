@@ -1,0 +1,32 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　タグフィルター
+------------------------------ */
+.tag-filter {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.tag-filter-list {
+	padding: 0;
+	margin: 0;
+	text-align: left;
+}
+
+.tag-filter-list li {
+	display: inline-block;
+	margin-right: 7px;
+	list-style-type: none;
+
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+.tag-filter-list a {
+	@include global.link-color(#9B9B9B);
+	@include global.only-underline-on-hover;
+}

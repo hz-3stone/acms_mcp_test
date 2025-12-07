@@ -1,0 +1,37 @@
+<h3 class="acms-admin-admin-title2">セクション設定</h3>
+<table class="acms-admin-table-admin-edit">
+  <tbody>
+    <tr>
+      <th>背景色</th>
+      <td>
+        <div class="acms-admin-form-checkbox">
+          <input type="checkbox" name="section_class[]" {section_class:checked#is-bg} id="input-checkbox-section_class-is-bg" value="is-bg" />
+          <label for="input-checkbox-section_class-is-bg">
+            <i class="acms-admin-ico-checkbox"></i>設定する</label>
+        </div>
+        <input type="hidden" name="field[]" value="section_class" />
+      </td>
+    </tr>
+    <tr>
+      <th>コンテナ幅</th>
+      <td>
+        <div class="acms-admin-form-radio">
+          <input type="radio" name="container_type" {container_type:checked#container-full} id="input-radio-container_type-container-full" value="container-full" />
+          <label for="input-radio-container_type-container-full">
+            <i class="acms-admin-ico-radio"></i>全体</label>
+        </div>
+        <div class="acms-admin-form-radio">
+          <input type="radio" name="container_type" {container_type:checked#acms-container} id="input-radio-container_type-acms-container" value="acms-container" />
+          <label for="input-radio-container_type-acms-container">
+            <i class="acms-admin-ico-radio"></i>通常</label>
+        </div>
+        <div class="acms-admin-form-radio">
+          <input type="radio" name="container_type" {container_type:checked#container-sm} id="input-radio-container_type-container-sm" value="container-sm" />
+          <label for="input-radio-container_type-container-sm">
+            <i class="acms-admin-ico-radio"></i>狭い</label>
+        </div>
+        <input type="hidden" name="field[]" value="container_type" />
+      </td>
+    </tr>
+  </tbody>
+</table>

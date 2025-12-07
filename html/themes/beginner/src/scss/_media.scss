@@ -1,0 +1,241 @@
+@use "sass:map";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　メディアリスト
+------------------------------ */
+
+.media-list-section + .media-list-section {
+  margin-top: var(--col-gutter); /* 「もっと見る」ボタンでリストを追加表示したときの余白確保 */
+}
+
+/* 記事全体リンク */
+.media-item-link {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+
+  &::after {
+    position: absolute;
+    inset: calc(var(--card-bg-space) * -1);
+    z-index: 1;
+    content: "";
+    background-color: transparent;
+    border-radius: var(--border-radius-lg);
+
+    @media (hover: hover) {
+      transition: background-color 0.3s ease;
+    }
+  }
+
+  @media (hover: hover) {
+    .media-item-img {
+      transition: transform 0.4s 0.2s ease-out;
+      will-change: transform;
+    }
+
+    .media-item-read-more-icon {
+      transition: background-color 0.3s ease;
+    }
+
+    &:any-link:hover {
+      @include acms.media-breakpoint-up(sm) {
+        /*
+        * sm幅以上でのみ、リンクホバー時に背景色が表示されるように設定しています。
+        * この背景色は、シャドウのようにコンテンツからはみ出して表示されます。
+        * sm幅未満では画面端に角丸背景色が接することで、視覚的バランスを損なうため適用していません。
+        */
+        &::after {
+          background-color: var(--color-hover-bg-2nd);
+        }
+      }
+
+      .media-item-img {
+        transform: scale(1.2);
+      }
+
+      .media-item-read-more-icon {
+        background-color: var(--color-icon-bg-hover);
+      }
+    }
+  }
+}
+
+.media-item-link-inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* メディア記事アイテムレイアウト */
+.media-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+
+  @include acms.media-breakpoint-up(sm) {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    gap: 2rem;
+  }
+}
+
+/* メディア記事アイテム画像 */
+.media-item-img-warp {
+  position: relative;
+  flex-shrink: 0;
+  aspect-ratio: var(--card-img-aspect-ratio, 16 / 9);
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+
+  @include acms.media-breakpoint-up(sm) {
+    width: 180px;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    width: 280px;
+  }
+}
+
+.media-item-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* テキスト類全体の縦積みレイアウト */
+.media-item-texts-layout {
+  display: flex;
+  flex: 1; /* 画像なし + テキストが短い 時の表示崩れ対策 */
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ラベルの横並びレイアウト */
+.media-item-labels-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+}
+
+/* 日付とNewラベル配置 */
+.media-item-date-layout {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+/* 日付 */
+.media-item-date {
+  font-size: map.get(global.$font-scales, body-s);
+  line-height: var(--line-height-base);
+  color: var(--color-text-2nd);
+}
+
+/* 見出し */
+.media-item-title {
+  width: 100%;
+  margin-block: 0;
+  font-size: map.get(global.$font-scales, heading-ss);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+
+  @include acms.media-breakpoint-up(md) {
+    font-size: map.get(global.$font-scales, heading-s);
+  }
+
+}
+
+/* 概要文 */
+.media-item-description {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  font-size: map.get(global.$font-scales, body-m);
+  color: var(--color-text-2nd);
+  -webkit-box-orient: vertical;
+}
+
+/* タグ横並びリスト */
+.media-item-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  align-items: flex-start;
+}
+
+/* 詳しく見る */
+.media-item-read-more {
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
+  height: 1.5rem;
+  margin: 0;
+  line-height: 1;
+
+  @include acms.media-breakpoint-up(md) {
+    gap: 0.5rem;
+    height: 1.75rem;
+  }
+}
+
+.media-item-read-more-text {
+  font-size: map.get(global.$font-scales, body-s);
+  font-weight: bold;
+  color: var(--color-text);
+
+  @include acms.media-breakpoint-up(md) {
+    font-size: map.get(global.$font-scales, body-m);
+  }
+}
+
+.media-item-read-more-icon {
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  width: 1rem;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color-icon-bg);
+  border-radius: 50%;
+
+  svg {
+    width: 0.625rem;
+    height: 0.625rem;
+    color: var(--color-white);
+    object-fit: contain;
+
+    path {
+      stroke: currentcolor;
+    }
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    width: 1.25rem;
+  }
+}
+
+/* リスト下のもっと見るボタン
+------------------------------ */
+.media-list-pager-button-wrap {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-block-start: 3rem;
+
+  @include acms.media-breakpoint-up(md) {
+    margin-block-start: 4rem;
+  }
+}

@@ -1,0 +1,212 @@
+@use "sass:map";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　タグ
+------------------------------ */
+.tag-sm-label {
+  font-size: map.get(global.$font-scales, body-s);
+  color: var(--color-text-2nd);
+}
+
+/* Tag_Cloud
+----------------------------- */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding-inline-start: 0;
+  margin-block: 0;
+  list-style-type: none;
+}
+
+.tag-item {
+  display: grid;
+  place-items: center;
+  font-size: map.get(global.$font-scales, body-s);
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.tag-item-level9,
+.tag-item-level10,
+.tag-item-level11,
+.tag-item-level12,
+.tag-item-level13,
+.tag-item-level14,
+.tag-item-level15,
+.tag-item-level16 {
+  font-size: map.get(global.$font-scales, body-m);
+}
+
+.tag-item-level17,
+.tag-item-level18,
+.tag-item-level19,
+.tag-item-level20,
+.tag-item-level21,
+.tag-item-level22,
+.tag-item-level23,
+.tag-item-level24,
+.tag-item-level25 {
+  font-size: map.get(global.$font-scales, heading-ss);
+}
+
+.tag-item a {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+
+  &,
+  &:link,
+  &:visited {
+    color: inherit;
+  }
+
+  &::after {
+    position: absolute;
+    inset: -0.25rem -0.5rem;
+    z-index: 1;
+    content: "";
+    background-color: transparent;
+    border-radius: var(--border-radius-lg);
+
+    @media (hover: hover) {
+      transition: background-color 0.3s ease;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      &::after {
+        background-color: var(--color-hover-bg-2nd);
+      }
+    }
+  }
+}
+
+/* Tag_Filter
+----------------------------- */
+.tag-filter {
+  margin-bottom: 3rem;
+}
+
+/* 選択されているタグ */
+.tag-filter-heading {
+  margin-block: 0 0.5rem;
+  font-size: map.get(global.$font-scales, heading-m);
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.tag-filter-selected-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding-inline-start: 0;
+  margin-block: 0;
+  list-style-type: none;
+}
+
+.tag-filter-selected-item {
+  font-size: map.get(global.$font-scales, body-m);
+  font-weight: bold;
+  line-height: 1.5;
+
+  a {
+    text-decoration: none;
+
+    &,
+    &:link,
+    &:visited {
+      color: inherit;
+    }
+
+    @media (hover: hover) {
+      transition: opacity 0.3s ease;
+
+      &:any-link:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+}
+
+/* さらにタグで絞り込む */
+.tag-filter-heading-more {
+  margin-block: 1rem 0.5rem;
+  font-size: map.get(global.$font-scales, body-m);
+  font-weight: normal;
+  line-height: 1.7;
+}
+
+.tag-filter-choice-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding-inline-start: 0;
+  margin-block: 0;
+  list-style-type: none;
+}
+
+.tag-filter-choice-item {
+  font-size: map.get(global.$font-scales, body-m);
+  line-height: 1.7;
+  color: var(--color-text);
+
+  a {
+    &:any-link {
+      text-decoration: underline dotted 1px;
+      text-underline-offset: 3px;
+    }
+
+    &,
+    &:link,
+    &:visited {
+      color: inherit;
+    }
+
+    @media (hover: hover) {
+      &:any-link:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+/* Entry_TagRelational の 「この記事のハッシュタグ」リスト
+----------------------------- */
+.tag-list-relational {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding-inline-start: 0;
+  margin-block: 0;
+  margin-inline-end: 1rem;
+  list-style-type: none;
+
+  li {
+    font-size: inherit;
+    line-height: 1.7;
+    color: var(--color-text);
+  }
+
+  a {
+    &:any-link {
+      text-decoration: underline dotted 1px;
+      text-underline-offset: 3px;
+    }
+
+    &,
+    &:link,
+    &:visited {
+      color: inherit;
+    }
+
+    @media (hover: hover) {
+      &:any-link:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

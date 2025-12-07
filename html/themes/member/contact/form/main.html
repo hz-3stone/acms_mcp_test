@@ -1,0 +1,163 @@
+<!-- BEGIN_MODULE Form -->
+
+<!-- BEGIN error -->
+<!-- BEGIN_MODULE Touch_SessionWithContribution -->
+<section class="acms-admin-alert acms-admin-alert-danger acms-mb-8">
+  <h2 class="acms-mt-0 acms-mb-3">管理者向け: バリデーションエラー通知</h2>
+  <p class="acms-mt-0 acms-mb-3">※このメッセージは投稿者以上の権限を持つユーザーにのみ表示されています</p>
+  <p class="acms-mt-0 acms-mb-3">フォームID「{formID}」の項目「{errorKey}」で入力ルール違反（バリデーションエラー）が検出されました。以下を確認してください。</p>
+  <ul class="acms-m-0">
+    <li>入力ミス：必須項目の未入力、形式間違い、各入力欄にエラーメッセージが出ていないかをご確認ください。</li>
+    <li>設定の不一致：正しい入力をしていてもエラーが続く場合、テンプレートの入力欄とフォームID管理の「入力チェック（バリデーター）」設定が一致していない可能性があります。</li>
+  </ul>
+</section>
+<!-- END_MODULE Touch_SessionWithContribution -->
+<!-- END error -->
+
+<!-- BEGIN step -->
+<!-- フォームステップ：初期 -->
+<div>
+  @include("/include/entry/body-content-only.html", {"module_id": "body_no_date"})
+
+  <!-- BEGIN_MODULE Touch_NotEdit -->
+  <section>
+    <h2 class="heading-lg heading-primary">フォームからのお問い合わせ</h2>
+    <p>ご質問やご要望がありましたら、お気軽にお問い合わせください。</p>
+    <!-- フォームステップ -->
+    @include("/contact/form/step.html")
+
+    <form action="?step=reapply" method="post" class="js-unload_alert js-validator h-adr acms-form" enctype="multipart/form-data">
+      @include("/contact/form/input.html")
+      <!-- BEGIN_MODULE Category_Field --><div>
+      <p>{contact_supplementary}[nl2br|raw]</p>
+      <!-- BEGIN_MODULE Touch_SessionWithAdministration -->
+      <p class="acms-module-edit"><a href="/bid/%{BID}/cid/{id}/admin/category_edit/?edit=update#acms_custom" class="js-dialog-btn">編集</a></p>
+      <!-- END_MODULE Touch_SessionWithAdministration -->
+      </div><!-- END_MODULE Category_Field -->
+      <div class="form-button-group">
+        <input type="hidden" name="step" value="confirm" />
+        <input type="hidden" name="error" value="reapply" />
+
+        <input type="hidden" name="id" value="contactForm" />
+        <button
+          id="btnConfirm"
+          type="submit"
+          name="ACMS_POST_Form_Confirm"
+          class="button is-lg is-width-lg"
+        >
+          内容の確認へ
+      </div>
+    </form>
+  </section><!-- END_MODULE Touch_NotEdit -->
+</div>
+<!-- END step -->
+
+<!-- BEGIN step#reapply -->
+<!-- フォームステップ：修正・エラー -->
+<div>
+  <!-- フォームステップ -->
+  @include("/contact/form/step.html")
+  <p class="form-message">入力内容を、もう一度ご確認下さい。</p>
+
+  <form action="?step=reapply" method="post" class="js-unload_alert js-validator h-adr acms-form" enctype="multipart/form-data">
+    @include("/contact/form/input.html")
+    <div class="form-button-group">
+      <input type="hidden" name="step" value="confirm" />
+      <input type="hidden" name="error" value="reapply" />
+
+      <input type="hidden" name="id" value="contactForm" />
+      <button
+        id="btnConfirm"
+        type="submit"
+        name="ACMS_POST_Form_Confirm"
+        class="button is-lg is-width-lg"
+      >
+        内容の確認へ
+      </button>
+    </div>
+  </form>
+</div>
+<!-- END step#reapply -->
+
+
+<!-- BEGIN step#confirm -->
+<!-- フォームステップ：確認画面 -->
+<div>
+  <!-- フォームステップ -->
+  @include("/contact/form/step.html")
+  <p class="form-message">内容に誤りがないか、よくご確認ください。</p>
+  @include("/contact/form/confirm.html")
+  <div class="form-button-group">
+    <form action="" method="post" class="js-unload_alert form-button form-button-return">
+      <input type="hidden" name="step" value="reapply" />
+      <input type="hidden" name="takeover" value="{takeover}" />
+      <button
+        type="submit"
+        name="ACMS_POST_Form_Chain"
+        class="button is-lg is-bordered"
+      >
+        修正する
+      </button>
+    </form>
+
+    <form action="thanks.html" method="post" class="js-unload_alert form-button form-button-send" enctype="multipart/form-data">
+      <input type="hidden" name="To[]" value="{email}" />
+      <input type="hidden" name="AdminReply-To[]" value="{email}" />
+      <input type="hidden" name="AdminFrom[]" value="{email}" />
+      <input type="hidden" name="step" value="result" />
+      <input type="hidden" name="takeover" value="{takeover}" />
+      <input type="hidden" name="id" value="contactForm" />
+      <button
+        type="submit"
+        name="ACMS_POST_Form_Submit"
+        class="button is-lg is-width-lg"
+      >
+        送信する
+      </button>
+    </form>
+  </div>
+</div>
+<!-- END step#confirm -->
+
+<!-- BEGIN step#result -->
+<!-- フォームステップ：完了画面 -->
+<div>
+  <!-- フォームステップ -->
+  @include("/contact/form/step.html")
+
+  @include("/include/entry/body-content-only.html", {"module_id": "body_no_date"})
+
+
+  @include("/contact/form/confirm.html")
+
+  <div class="form-message-group">
+    <p class="form-message-back"><a href="%{BASE_URL}" class="button is-lg is-width-lg">トップページに戻る</a></p>
+  </div>
+</div>
+<!-- END step#result -->
+
+<!-- BEGIN step#forbidden -->
+<div>
+  <section>
+    <h2 class="heading-lg heading-primary">不正なアクセスです。</h2>
+    <div class="form-message-group">
+      <p class="form-message-text">お手数ですが、はじめからやり直して下さい。</p>
+      <p class="form-message-back"><a href="%{BASE_URL}contact/" class="button is-lg is-width-lg">お問い合わせフォームに戻る</a></p>
+    </div>
+  </section>
+</div>
+<!-- END step#forbidden -->
+
+<!-- BEGIN step#repeated -->
+<div>
+  <section>
+    <h2 class="heading-lg heading-primary">連続投稿は禁止されています。</h2>
+    <div class="form-message-group">
+      <p class="form-message-text">入力された内容は正常に送信されました。<br>送信内容は、登録されたメールアドレス宛にお送りした確認メールからご確認ください。</p>
+      <p class="form-message-back"><a href="%{BASE_URL}" class="button is-lg is-width-lg">トップページに戻る</a></p>
+    </div>
+  </section>
+</div>
+<!-- END step#repeated -->
+
+<!-- END_MODULE Form -->

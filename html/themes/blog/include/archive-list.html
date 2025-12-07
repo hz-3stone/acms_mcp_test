@@ -1,0 +1,11 @@
+<!-- BEGIN_MODULE Entry_ArchiveList id="" -->
+<section class="list-add-amount">
+@include("/admin/module/setting.html")
+<h2 class="sub-heading">アーカイブ</h2>
+  <ul><!-- BEGIN archive:loop -->
+    <li>
+      <a href="{url}">{date#Y}年{date#n}月<!-- BEGIN amount:veil --><span class="acms-hide-visually">エントリー数</span><span class="list-add-amount-label">{amount}</span><span class="acms-hide-visually">件</span><!-- END amount:veil --></a>
+    </li><!-- END archive:loop -->
+  </ul>
+</section>
+<!-- END_MODULE Entry_ArchiveList -->

@@ -1,0 +1,110 @@
+<!-- HTML属性 command / commandfor の polyfill -->
+<script type="module" async src="https://unpkg.com/invokers-polyfill@latest/invoker.min.js"></script>
+
+<div class="entry-share-modal">
+  <button type="button" commandfor="share-dialog-article" command="show-modal" class="button is-width-lg is-bg-white-bordered">
+    <span class="button-icon" aria-hidden="true">@include("/images/icon/arrow-up-to-line.svg")</span>
+    <span>この記事をシェアする</span>
+  </button>
+
+  <dialog
+    id="share-dialog-article"
+    closedby="any"
+    aria-labelledby="share-dialog-article-title"
+    autofocus
+    class="share-dialog">
+
+    <h3 id="share-dialog-article-title" class="dialog-title">この記事をシェアする</h3>
+
+    <ul class="sns-list">
+      <li>
+        <a href="https://twitter.com/intent/tweet?text=%{ENTRY_TITLE}%0a%{PERMALINK}" class="sns-link" target="_blank" rel="noopener noreferrer">
+          <span class="acms-hide-visually">この記事をXでシェアする</span>
+          <img src="/images/sns-logo/x-color.svg" width="40" height="40" alt="">
+        </a>
+      </li>
+      <li>
+        <a href="http://www.facebook.com/share.php?u=%{PERMALINK}" class="sns-link" onclick="window.open(this.href, 'FBwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes, noopener, noreferrer'); return false;" target="_blank" rel="noopener noreferrer">
+          <span class="acms-hide-visually">この記事をFacebookでシェアする</span>
+          <img src="/images/sns-logo/facebook-color.svg" width="40" height="40" alt="">
+        </a>
+      </li>
+      <li>
+        <a href="https://social-plugins.line.me/lineit/share?url=%{PERMALINK}" class="sns-link line" target="_blank" rel="noopener noreferrer">
+          <span class="acms-hide-visually">この記事をLINEでシェアする</span>
+          <img src="/images/sns-logo/line-color.svg" width="40" height="40" alt="">
+        </a>
+      </li>
+    </ul>
+    <div class="url-copy-area">
+      <div class="copy-input-wrap">
+        <span class="copy-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+          </svg> </span>
+        <input type="text" readonly value="%{PERMALINK}" class="copy-input" id="share-article-url">
+      </div>
+      <div class="copy-button-wrap">
+        <button type="button" class="button" id="share-url-copy-button" onclick="copyToClipboard('share-article-url', 'share-url-copy-button')">
+          <span>コピーする</span>
+        </button>
+      </div>
+    </div>
+    <button type="button" commandfor="share-dialog-article" command="close" class="dialog-close">
+      <span class="acms-hide-visually">この記事をシェアするモーダルを閉じる</span>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+        <path stroke-linecap  ="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </dialog>
+</div>
+
+<script>
+  function handleSuccessFeedback(buttonElement, originalHtml) {
+    // ボタンのテキストを一時的に変更するなどのUIフィードバック
+    buttonElement.innerHTML = '<span>コピーしました</span>';
+    buttonElement.disabled = true;
+
+    setTimeout(() => {
+      // ボタンを元の状態に戻す
+      buttonElement.innerHTML = originalHtml;
+      buttonElement.disabled = false;
+    }, 3000);
+  }
+
+  function copyToClipboard(inputId, buttonId) {
+    // コピー対象
+    const inputElement = document.getElementById(inputId);
+    // コピー実行ボタン
+    const buttonElement = document.getElementById(buttonId);
+
+    if (!inputElement || !buttonElement) {
+      console.error('指定されたIDの要素が見つかりません。');
+      return;
+    }
+
+    const originalHtml = buttonElement.innerHTML;
+    if (navigator.clipboard && window.isSecureContext) {
+      // 現代的なブラウザ（SSL環境下）での処理
+      navigator.clipboard.writeText(inputElement.value).then(() => {
+        handleSuccessFeedback(buttonElement, originalHtml);
+      }).catch(err => {
+        console.error('コピーに失敗しました', err);
+      });
+    } else {
+      // 非SSL環境や古いブラウザでのフォールバック処理
+      try {
+        inputElement.focus();
+        inputElement.select();
+        const success = document.execCommand('copy');
+        if (success) {
+          handleSuccessFeedback(buttonElement, originalHtml);
+        } else {
+          console.error('コピーに失敗しました (execCommand)');
+        }
+      } catch (err) {
+        console.error('コピーに失敗しました', err);
+      }
+    }
+  }
+</script>

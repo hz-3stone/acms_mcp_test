@@ -1,0 +1,1348 @@
+@charset "UTF-8";
+/**
+ * グリッドシステム（非推奨）
+ */
+/**
+ * グリッドシステム（非推奨）
+ */
+/**
+ * グリッドシステム（非推奨）
+ */
+/* ------------------------------
+  Popover
+------------------------------- */
+.acms-password-strength-meter {
+  width: 100%;
+  height: 6px;
+  margin: 0 0 5px;
+  background-color: #999;
+}
+.acms-password-strength-meter.js-result-0 {
+  background: #c5001d;
+}
+.acms-password-strength-meter.js-result-1 {
+  background: #ffa342;
+}
+.acms-password-strength-meter.js-result-2 {
+  background: #ffed60;
+}
+.acms-password-strength-meter.js-result-3 {
+  background: #009812;
+}
+.acms-password-strength-meter.js-result-4 {
+  background: #005cee;
+}
+
+.acms-password-strength-label::before {
+  margin: 0 5px 0 0;
+  font-family: acms-fonts;
+}
+.acms-password-strength-label.js-label-0 {
+  color: #c5001d;
+}
+.acms-password-strength-label.js-label-1 {
+  color: #ffa342;
+}
+.acms-password-strength-label.js-label-2 {
+  color: #ffed60;
+}
+.acms-password-strength-label.js-label-3 {
+  color: #009812;
+}
+.acms-password-strength-label.js-label-4 {
+  color: #005cee;
+}
+.acms-password-strength-label.js-label-0::before {
+  content: "\e999";
+}
+.acms-password-strength-label.js-label-1::before {
+  content: "\e999";
+}
+.acms-password-strength-label.js-label-2::before {
+  content: "\e904";
+}
+.acms-password-strength-label.js-label-3::before {
+  content: "\e90c";
+}
+.acms-password-strength-label.js-label-4::before {
+  content: "\e90c";
+}
+
+/* ------------------------------
+ ベーススタイル
+------------------------------ */
+.entry-style .acms-cssgrid {
+  --acms-gap: var(--unit-gap-x);
+}
+.entry-style .acms-stack,
+.entry-style .acms-vstack,
+.entry-style .acms-hstack {
+  --acms-stack-spacing: var(--unit-gap-x);
+}
+
+.entry-style {
+  /* コンテンツの初めの要素には上余白をつけない */
+}
+.entry-style > *:first-child, .entry-style > *:first-child.column-block-editor > *:first-child, .entry-style > *:first-child.js-edit_inplace > *:first-child, .entry-style > *:first-child.js-edit_inplace-hovering + .js-edit_inplace > *:first-child {
+  margin-block-start: 0;
+}
+
+/* stylelint-disable max-line-length */
+/* stylelint-enable max-line-length */
+/* ------------------------------
+　フィールドスタイル調整
+------------------------------ */
+/* 価格表ユニットのユニットグループアイテムの境界線 */
+[data-unit-type=custom_pricing] .acms-admin-table-admin-edit {
+  border-collapse: collapse;
+}
+[data-unit-type=custom_pricing] .acms-admin-table-admin-edit .sortable-item {
+  border-top: 1px solid #ccc;
+}
+[data-unit-type=custom_pricing] .acms-admin-table-admin-edit .sortable-item:first-child {
+  border: 0;
+}
+
+/* ------------------------------
+ テキスト
+------------------------------ */
+/* リンク
+----------------------------- */
+.entry-style a:not(:where([class~=not-editor-style], [class~=not-editor-style] *, [class~=media-image-block], [class~=media-image-block] *, [class~=column-image], [class~=column-image] *, [class~=column-media], [class~=column-media] *, [class~=column-eximage], [class~=column-eximage] *)) {
+  padding-block: 2px;
+  color: var(--color-link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-link);
+}
+@media (hover: hover) {
+  .entry-style a:not(:where([class~=not-editor-style], [class~=not-editor-style] *, [class~=media-image-block], [class~=media-image-block] *, [class~=column-image], [class~=column-image] *, [class~=column-media], [class~=column-media] *, [class~=column-eximage], [class~=column-eximage] *)):where(:-moz-any-link):hover {
+    border-color: transparent;
+  }
+  .entry-style a:not(:where([class~=not-editor-style], [class~=not-editor-style] *, [class~=media-image-block], [class~=media-image-block] *, [class~=column-image], [class~=column-image] *, [class~=column-media], [class~=column-media] *, [class~=column-eximage], [class~=column-eximage] *)):where(:any-link):hover {
+    border-color: transparent;
+  }
+}
+.entry-style a:not(:where([class~=not-editor-style], [class~=not-editor-style] *, [class~=media-image-block], [class~=media-image-block] *, [class~=column-image], [class~=column-image] *, [class~=column-media], [class~=column-media] *, [class~=column-eximage], [class~=column-eximage] *))[href^="tel:"] {
+  color: currentcolor;
+  border-bottom: 1px dashed;
+}
+@media (hover: hover) {
+  .entry-style a:not(:where([class~=not-editor-style], [class~=not-editor-style] *, [class~=media-image-block], [class~=media-image-block] *, [class~=column-image], [class~=column-image] *, [class~=column-media], [class~=column-media] *, [class~=column-eximage], [class~=column-eximage] *))[href^="tel:"]:where(:-moz-any-link):hover {
+    border-color: transparent;
+  }
+  .entry-style a:not(:where([class~=not-editor-style], [class~=not-editor-style] *, [class~=media-image-block], [class~=media-image-block] *, [class~=column-image], [class~=column-image] *, [class~=column-media], [class~=column-media] *, [class~=column-eximage], [class~=column-eximage] *))[href^="tel:"]:where(:any-link):hover {
+    border-color: transparent;
+  }
+}
+
+/* em
+----------------------------- */
+.entry-style em:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+  font-style: italic;
+  color: var(--color-gray100);
+}
+
+/* strong
+----------------------------- */
+.entry-style strong:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+  font-weight: bold;
+  background: linear-gradient(transparent 60%, var(--color-highlight-light) 60%);
+}
+
+/* mark
+----------------------------- */
+.entry-style mark:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+  padding-block: 0.125rem;
+  color: inherit;
+  background-color: var(--color-highlight-light);
+  border-radius: 0.125rem; /* 2px */
+  -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
+}
+
+/* code
+----------------------------- */
+.entry-style code:not(:where([class~=not-editor-style], [class~=not-editor-style] *, [class~=code-highlight], [class~=code-highlight] *)) {
+  padding: 0.25em;
+  margin-inline: 0.25rem;
+  font-size: 87.5%;
+  color: var(--color-primary);
+  background-color: var(--color-white);
+  border: 1px solid currentcolor;
+  border-radius: 3px;
+}
+
+/* 見出し
+----------------------------- */
+.entry-style h2:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+  margin-block: 0 1.5rem;
+  font-size: 1.5625rem;
+  line-height: 1.4;
+}
+.entry-style h2:not(:where([class~=not-editor-style], [class~=not-editor-style] *)).heading-line {
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-gray100);
+}
+.entry-style h2:not(:where([class~=not-editor-style], [class~=not-editor-style] *)).heading-primary {
+  position: relative;
+  margin-bottom: 2.75rem;
+}
+.entry-style h2:not(:where([class~=not-editor-style], [class~=not-editor-style] *)).heading-primary::before {
+  position: absolute;
+  bottom: -1.25rem;
+  left: 0;
+  display: block;
+  width: 4rem;
+  height: 4px;
+  content: "";
+  background: var(--color-primary);
+}
+@media (min-width: 48rem) {
+  .entry-style h2:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+    font-size: 1.953125rem;
+  }
+  .entry-style h2:not(:where([class~=not-editor-style], [class~=not-editor-style] *)).heading-primary {
+    margin-bottom: 3.75rem;
+  }
+  .entry-style h2:not(:where([class~=not-editor-style], [class~=not-editor-style] *)).heading-primary::before {
+    bottom: -1.5rem;
+  }
+}
+
+.entry-style h3:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+  margin-block: 0 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+.entry-style h3:not(:where([class~=not-editor-style], [class~=not-editor-style] *)).heading-line {
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-gray100);
+}
+@media (min-width: 48rem) {
+  .entry-style h3:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+    font-size: 1.5625rem;
+  }
+}
+
+.entry-style h4:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+  margin-block: 0 1.5rem;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.entry-style h4:not(:where([class~=not-editor-style], [class~=not-editor-style] *)).heading-line {
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-gray100);
+}
+@media (min-width: 48rem) {
+  .entry-style h4:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+    font-size: 1.25rem;
+  }
+}
+
+/* 本文
+----------------------------- */
+.entry-style p:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+  margin-block: 0 2rem;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* リスト
+----------------------------- */
+.entry-style ul:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+  padding-left: 2rem;
+  margin-block: 0 2rem;
+}
+.entry-style ul:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) li {
+  position: relative;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  list-style: none;
+}
+.entry-style ul:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) li::before {
+  position: absolute;
+  top: 0.5rem;
+  left: -1.5rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  content: "";
+  background: var(--color-secondary);
+  border-radius: 50%;
+}
+.entry-style ul:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) li:last-child {
+  margin-bottom: 0;
+}
+.entry-style ul:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) li > * {
+  /* ブロックエディター：リセット用 */
+  margin-block: 0;
+}
+.entry-style ul:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) li ul {
+  margin-top: 0.5rem;
+}
+
+/* 番号付きリスト */
+.entry-style ol:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+  padding-left: 2rem;
+  margin-block: 0 2rem;
+  counter-reset: order-list;
+}
+.entry-style ol:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) li {
+  position: relative;
+  clear: both;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  list-style: none;
+}
+.entry-style ol:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) li::before {
+  position: absolute;
+  top: 2px;
+  left: -2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0 1rem 0 0;
+  font-size: 0.8rem;
+  color: var(--color-white);
+  content: counter(order-list);
+  counter-increment: order-list;
+  background: var(--color-secondary);
+  border-radius: 50%;
+}
+.entry-style ol:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) li:last-child {
+  margin-bottom: 0;
+}
+.entry-style ol:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) li > * {
+  /* ブロックエディター：リセット用 */
+  margin-block: 0;
+}
+.entry-style ol:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) li ol {
+  margin-top: 0.5rem;
+}
+
+/* 記述リスト */
+.entry-style dl:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+  display: block; /* リセット用 */
+  padding-block: 0; /* リセット用 */
+  margin-block: 0 2rem;
+  border: 0; /* リセット用 */
+}
+.entry-style dl:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) dt {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.4;
+}
+.entry-style dl:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) dd {
+  margin-bottom: 1rem;
+  margin-left: 0; /* リセット用 */
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.entry-style dl:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) dd + dt {
+  margin-top: 0; /* リセット用 */
+}
+.entry-style dl:not(:where([class~=not-editor-style], [class~=not-editor-style] *)).box-bordered {
+  border: 1px solid var(--color-gray40);
+}
+.entry-style dl:not(:where([class~=not-editor-style], [class~=not-editor-style] *)).box-bordered dt {
+  padding-inline: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-gray40);
+}
+.entry-style dl:not(:where([class~=not-editor-style], [class~=not-editor-style] *)).box-bordered dt:first-child {
+  border: 0;
+}
+.entry-style dl:not(:where([class~=not-editor-style], [class~=not-editor-style] *)).box-bordered dd {
+  padding-inline: 1.5rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 0;
+}
+@media (min-width: 48rem) {
+  .entry-style dl:not(:where([class~=not-editor-style], [class~=not-editor-style] *)).box-bordered dt {
+    padding-inline: 2rem;
+    padding-top: 2rem;
+  }
+  .entry-style dl:not(:where([class~=not-editor-style], [class~=not-editor-style] *)).box-bordered dd {
+    padding-inline: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* ソースコード
+----------------------------- */
+.entry-style pre:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+  max-width: 100%;
+  padding: 1.5rem;
+  margin-block: 0 2rem;
+  overflow: auto;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-gray100); /* 閲覧側画面の文字色はライブラリに依存 */
+  background-color: var(--color-white);
+  border: 1px solid var(--color-primary);
+  border-radius: 6px;
+}
+.entry-style pre:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) code {
+  padding: 0;
+  /* リセット用 */
+  margin: 0;
+  font-size: inherit;
+  color: inherit;
+  background-color: inherit;
+  border: none;
+  box-shadow: none;
+}
+@media (min-width: 48rem) {
+  .entry-style pre:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+    padding: 2rem;
+  }
+}
+
+/* 水平罫線
+----------------------------- */
+.entry-style hr:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+  margin-bottom: 2rem;
+  border: 0 solid var(--color-gray70);
+  border-top-width: 1px;
+}
+@media (min-width: 48rem) {
+  .entry-style hr:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+    margin-bottom: 3rem;
+  }
+}
+
+/* ブロックエディター用 */
+[data-type=horizontalRule] {
+  margin-block: 2rem;
+}
+[data-type=horizontalRule] hr {
+  margin-block: 0;
+}
+@media (min-width: 48rem) {
+  [data-type=horizontalRule] {
+    margin-block: 2rem;
+  }
+  [data-type=horizontalRule] hr {
+    margin-block: 0;
+  }
+}
+
+/* ------------------------------
+ ブロックエディター内要素のレイアウト
+------------------------------ */
+/* レイアウト */
+:where(.entry-style) :where([data-type=columns]) {
+  box-sizing: border-box;
+  display: grid;
+  grid-auto-flow: column;
+  margin-block: 0 2rem;
+}
+:where(.entry-style) :where([data-type=columns]).layout-two-column {
+  grid-template-columns: repeat(2, 1fr);
+}
+:where(.entry-style) :where([data-type=columns]).layout-three-column {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* 管理画面側 */
+:where(.acms-admin-block-editor) :where([data-type=columns]) {
+  gap: 1rem !important;
+}
+
+/* 閲覧画面側 */
+:where(.entry-style) :where([data-type=columns]) {
+  gap: var(--unit-gap-x);
+}
+
+/* カラム上下余白
+/* 編集画面でのブロックエディターでのカラム上下余白親要素でとるため、
+/* 子要素の最初と最後の上下マージンをリセット
+/* 上書きのため詳細度高め（0,0,2,0）
+----------------------------- */
+:where(.entry-style) [data-type=column] > *:first-child {
+  margin-block-start: 0;
+}
+:where(.entry-style) [data-type=column] > *:last-child {
+  margin-block-end: 0;
+}
+
+/* メディアサイズ
+----------------------------- */
+:where(.media-image-block) figure {
+  /* リセット用 */
+  margin: 0;
+}
+:where(.media-image-block) .media-width-25 {
+  max-width: 25%;
+}
+:where(.media-image-block) .media-width-33 {
+  max-width: 33%;
+}
+:where(.media-image-block) .media-width-50 {
+  max-width: 50%;
+}
+:where(.media-image-block) .media-width-66 {
+  max-width: 66%;
+}
+:where(.media-image-block) .media-width-75 {
+  max-width: 75%;
+}
+:where(.media-image-block) .media-width-100 {
+  max-width: 100%;
+}
+
+/* ------------------------------
+ グループ・ユニット
+------------------------------ */
+.entry-style {
+  /* 全てのグループ・ユニット */
+}
+@media (min-width: 48rem) {
+  .entry-style [class*=gu-] .pricing-group {
+    padding: 4rem 0 2rem;
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+.entry-style .gu-bg-gray {
+  background: var(--color-gray20);
+}
+.entry-style .gu-bg-primary {
+  background: var(--color-primary-light);
+}
+.entry-style .gu-bg-gray,
+.entry-style .gu-bg-primary,
+.entry-style .gu-border {
+  padding: 2rem calc(2rem - var(--unit-gap-x) / 2);
+  margin-bottom: 2rem;
+}
+.entry-style .gu-bg-gray > *:not(.not-editor-style):first-child,
+.entry-style .gu-bg-gray > *:first-child.column-block-editor > *:first-child,
+.entry-style .gu-bg-primary > *:not(.not-editor-style):first-child,
+.entry-style .gu-bg-primary > *:first-child.column-block-editor > *:first-child,
+.entry-style .gu-border > *:not(.not-editor-style):first-child,
+.entry-style .gu-border > *:first-child.column-block-editor > *:first-child {
+  margin-top: 0;
+}
+.entry-style .gu-bg-gray > *:not(.not-editor-style):last-child,
+.entry-style .gu-bg-gray > *:last-child.column-block-editor > *:last-child,
+.entry-style .gu-bg-primary > *:not(.not-editor-style):last-child,
+.entry-style .gu-bg-primary > *:last-child.column-block-editor > *:last-child,
+.entry-style .gu-border > *:not(.not-editor-style):last-child,
+.entry-style .gu-border > *:last-child.column-block-editor > *:last-child {
+  margin-bottom: 0;
+}
+@media (min-width: 48rem) {
+  .entry-style .gu-bg-gray,
+  .entry-style .gu-bg-primary,
+  .entry-style .gu-border {
+    padding: 2rem calc(2rem - var(--unit-gap-x) / 2);
+    margin-bottom: 3rem;
+  }
+  .entry-style .gu-bg-gray > *:not(.not-editor-style):first-child,
+  .entry-style .gu-bg-gray > *:first-child.column-block-editor > *:first-child,
+  .entry-style .gu-bg-primary > *:not(.not-editor-style):first-child,
+  .entry-style .gu-bg-primary > *:first-child.column-block-editor > *:first-child,
+  .entry-style .gu-border > *:not(.not-editor-style):first-child,
+  .entry-style .gu-border > *:first-child.column-block-editor > *:first-child {
+    margin-top: 0;
+  }
+  .entry-style .gu-bg-gray > *:not(.not-editor-style):last-child,
+  .entry-style .gu-bg-gray > *:last-child.column-block-editor > *:last-child,
+  .entry-style .gu-bg-primary > *:not(.not-editor-style):last-child,
+  .entry-style .gu-bg-primary > *:last-child.column-block-editor > *:last-child,
+  .entry-style .gu-border > *:not(.not-editor-style):last-child,
+  .entry-style .gu-border > *:last-child.column-block-editor > *:last-child {
+    margin-bottom: 0;
+  }
+}
+.entry-style .gu-border {
+  position: relative;
+}
+.entry-style .gu-border::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  border: 1px solid var(--color-gray40);
+}
+.entry-style .gu-narrow {
+  max-width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* ------------------------------
+ ユニット配置
+------------------------------ */
+.align-left {
+  display: flex;
+}
+.align-left {
+  justify-content: flex-start;
+}
+
+.align-right {
+  display: flex;
+}
+.align-right {
+  justify-content: flex-end;
+}
+
+.align-center {
+  display: flex;
+}
+.align-center {
+  justify-content: center;
+}
+
+/* ------------------------------
+ 引用
+------------------------------ */
+.entry-style blockquote:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+  padding: 1.5rem;
+  margin-block: 0 2rem;
+  /* リセット用 */
+  margin-inline: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  border: 2px solid var(--color-gray40);
+  /* ブロックエディター調整：リセット用 */
+  /* ブロックエディター調整 */
+}
+.entry-style blockquote:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) > * {
+  margin-block: 0;
+}
+.entry-style blockquote:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) * + * {
+  margin-block-start: 1rem;
+}
+.entry-style blockquote:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) a {
+  padding-block: 2px;
+  color: var(--color-link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-link);
+  /* 中に画像が入っているリンクの時 */
+}
+.entry-style blockquote:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) a:hover {
+  border-color: transparent;
+}
+.entry-style blockquote:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) a:has(img) {
+  display: inline-block;
+  padding-block: 0; /* リセット用 */
+  border-bottom: 0; /* リセット用 */
+  transition: opacity 0.2s ease;
+}
+.entry-style blockquote:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) a:has(img):hover {
+  opacity: 0.7;
+}
+.entry-style blockquote:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) img {
+  width: 100%;
+}
+.entry-style blockquote:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) strong {
+  /* リセット用 */
+  background: transparent;
+}
+@media (min-width: 48rem) {
+  .entry-style blockquote:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+    padding: 2rem;
+  }
+}
+
+/* ------------------------------
+ リンクボタン
+------------------------------ */
+/* 上下余白 */
+:where(.entry-style) .node-linkButton,
+.link-button-block {
+  margin-block: 0 2rem;
+}
+
+/* リンク */
+.acms-admin-block-editor-link-button-link,
+.link-button-block-link {
+  box-sizing: border-box;
+  display: inline-flex;
+  place-items: center;
+  min-height: auto;
+  min-height: 3rem;
+  padding: 0.75rem 2.25rem;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.5;
+  text-decoration: none; /* リセット */
+  background-color: var(--color-primary);
+  border-radius: 4px;
+}
+.acms-admin-block-editor-link-button-link, .acms-admin-block-editor-link-button-link:link, .acms-admin-block-editor-link-button-link:visited,
+.link-button-block-link,
+.link-button-block-link:link,
+.link-button-block-link:visited {
+  color: var(--color-white);
+}
+@media (min-width: 48rem) {
+  .acms-admin-block-editor-link-button-link,
+  .link-button-block-link {
+    font-size: 1.25rem;
+  }
+}
+
+/* リンクスタイル（閲覧画面のみ） */
+.link-button-block-link {
+  text-decoration: none;
+}
+@media (hover: hover) {
+  .link-button-block-link {
+    transition: background-color 0.2s;
+  }
+  .link-button-block-link:where(:-moz-any-link):hover {
+    background: var(--color-primary-hover);
+  }
+  .link-button-block-link:where(:any-link):hover {
+    background: var(--color-primary-hover);
+  }
+}
+
+.entry-style .link-button-block-link {
+  border: none; /* リセット */
+}
+
+/* ------------------------------
+ カスタムユニット
+------------------------------ */
+/* カード
+------------------------------ */
+.entry-style .card-item,
+.entry-style .card-bordered-item {
+  padding: 0;
+}
+
+/* 目次ユニット
+------------------------------ */
+.entry-style .entry-outline {
+  padding: 1rem;
+  margin: 0 0 3rem;
+  border: 4px solid var(--color-gray30);
+}
+.entry-style .entry-outline-title {
+  padding: 0 0 0.5rem;
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-bottom: 2px solid var(--color-gray30);
+}
+.entry-style .entry-outline-list-wrap .outline-list {
+  padding: 0 0 0 1.5rem;
+  margin: 0;
+  counter-reset: a;
+}
+.entry-style .entry-outline-list-wrap .outline-list.level-1 {
+  padding: 0;
+}
+.entry-style .entry-outline-list-wrap .outline-item {
+  list-style: none;
+}
+.entry-style .entry-outline-list-wrap .outline-item::marker {
+  content: none;
+}
+.entry-style .entry-outline-list-wrap .outline-item a {
+  display: block;
+  margin: 0 0 1rem 0.25rem;
+  color: var(--color-gray100);
+  text-decoration: none;
+}
+.entry-style .entry-outline-list-wrap .outline-item a:hover {
+  text-decoration: underline;
+}
+.entry-style .entry-outline-list-wrap .outline-item a::before {
+  display: inline-block;
+  padding-right: 0.5rem;
+  font-weight: 700;
+  color: var(--color-gray90);
+  white-space: nowrap;
+  content: counters(a, "-") ". ";
+  counter-increment: a;
+}
+
+@media (min-width: 48rem) {
+  .entry-style .entry-outline {
+    padding: 2rem;
+  }
+  .entry-style .entry-outline-title {
+    padding: 0 0 1rem;
+    margin: 0 0 1.5rem;
+    font-size: 1.25rem;
+  }
+}
+/* 料金テーブル
+------------------------------ */
+.entry-style .pricing-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 4rem 0 2rem;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+.entry-style .pricing-group:has(.is-recommend) {
+  padding-top: 16px;
+}
+.entry-style .pricing-item {
+  position: relative;
+  display: flex;
+  flex: 0 1 100%;
+  margin: 0 0 2rem;
+  list-style: none;
+}
+.entry-style .pricing-inner {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 2.5rem 1.5rem 1.5rem;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease;
+}
+.entry-style .pricing-header {
+  padding: 0 0 1rem;
+  margin: 0 0 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-gray30);
+}
+.entry-style .pricing-label-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  transform: translateY(-50%);
+}
+.entry-style .pricing-label {
+  display: inline-block;
+  padding: 0.25rem 1.5rem;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.5;
+  color: var(--color-white);
+  background: var(--color-primary);
+  border-radius: 10em;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+.entry-style .pricing-label::after {
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  width: 12px;
+  height: 10px;
+  content: "";
+  background-color: var(--color-primary);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  transform: translateX(-50%);
+}
+.entry-style .pricing-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+.entry-style .pricing-desc {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--color-text-2nd);
+}
+.entry-style .pricing-price {
+  margin: 0 0 0.5rem;
+  font-size: 2.44140625rem;
+  font-weight: bold;
+  line-height: 1.25;
+  text-align: center;
+}
+.entry-style .pricing-unit {
+  font-size: 1rem;
+}
+.entry-style .pricing-check-group {
+  padding: 0;
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  list-style: none;
+}
+.entry-style .pricing-check-group li {
+  margin: 0 0 0.5rem;
+}
+.entry-style .pricing-check-group li::before {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0 0.375rem 0 0;
+  vertical-align: top;
+  content: "";
+  background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzc1MjFfMTU2NTcpIj4KPHBhdGggZD0iTTkuOTk5ODQgMTguMzMzN0MxNC42MDIyIDE4LjMzMzcgMTguMzMzMiAxNC42MDI3IDE4LjMzMzIgMTAuMDAwM0MxOC4zMzMyIDUuMzk3OTUgMTQuNjAyMiAxLjY2Njk5IDkuOTk5ODQgMS42NjY5OUM1LjM5NzQ2IDEuNjY2OTkgMS42NjY1IDUuMzk3OTUgMS42NjY1IDEwLjAwMDNDMS42NjY1IDE0LjYwMjcgNS4zOTc0NiAxOC4zMzM3IDkuOTk5ODQgMTguMzMzN1oiIHN0cm9rZT0iIzJmOTAzZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNNy41IDkuOTk5NjdMOS4xNjY2NyAxMS42NjYzTDEyLjUgOC4zMzMwMSIgc3Ryb2tlPSIjMmY5MDNlIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzc1MjFfMTU2NTciPgo8cmVjdCB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==);
+  background-size: contain;
+}
+.entry-style .pricing-button {
+  display: block;
+  margin: 0 0 1rem;
+}
+.entry-style .pricing-text-info {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: var(--line-height-base);
+  color: var(--color-text-2nd);
+  text-align: center;
+}
+
+@media (min-width: 48rem) {
+  .entry-style .pricing-group {
+    flex-flow: row wrap;
+    gap: 2rem;
+    padding: 6rem 0 4rem;
+    margin: 0;
+  }
+  .entry-style .pricing-item {
+    box-sizing: border-box;
+    flex: 1 1 calc(33.3333333333% - 2rem);
+    margin: 0 0 2rem;
+  }
+  .entry-style .pricing-item:hover .pricing-inner {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+  .entry-style .pricing-label {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.25rem;
+  }
+  .entry-style .pricing-title {
+    font-size: 1.25rem;
+  }
+}
+/* 埋め込みユニット
+------------------------------ */
+[class*=column-embed] {
+  margin-block: 0 2rem;
+}
+[class*=column-embed] a.acms-embed-link {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--color-gray100);
+  text-decoration: none;
+  border: 1px solid var(--color-gray40);
+  border-radius: 6px;
+  transition: 0.25s background-color ease;
+}
+[class*=column-embed] a.acms-embed-link:hover {
+  background-color: var(--color-gray20);
+  border-color: var(--color-gray40); /* リセット用 */
+  opacity: 1; /* リセット用 */
+}
+[class*=column-embed] .acms-embed-link-image-container img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+[class*=column-embed] .acms-embed-link-content {
+  padding: 1rem;
+  margin: 0; /* リセット用 */
+}
+[class*=column-embed] .acms-embed-link-title {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.4;
+}
+[class*=column-embed] .acms-embed-link-site-name {
+  margin: 0; /* リセット用 */
+  font-size: 1rem;
+  color: var(--color-gray90);
+}
+[class*=column-embed] .acms-embed-link-description {
+  display: none;
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+}
+@media (min-width: 48rem) {
+  [class*=column-embed] a.acms-embed-link {
+    flex-direction: row;
+  }
+  [class*=column-embed] .acms-embed-link-image-container {
+    box-sizing: border-box;
+    flex: 1 0 auto;
+    width: 33.3333333333%;
+    padding: 2rem 1rem 2rem 2rem;
+  }
+  [class*=column-embed] .acms-embed-link-image-container img {
+    width: 100%;
+  }
+  [class*=column-embed] .acms-embed-link-content {
+    box-sizing: border-box;
+    width: 66.6666666667%;
+    padding: 2rem 2rem 2rem 1rem;
+    text-align: left;
+  }
+  [class*=column-embed] .acms-embed-link-title {
+    margin: 0 0 1.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  [class*=column-embed] .acms-embed-link-description {
+    display: block;
+  }
+}
+
+/* ------------------------------
+ - ブロックエディターのファイル（縦積み、ボタン型）
+ - メディアファイル
+ - ファイル
+ ※ media-downloadは動的、storageは静的書き出しに対応
+------------------------------ */
+:where(.entry-style) .node-fileBlock,
+.media-file-block,
+[class*=column-media]:has(a[href*=media-download], a[href*=storage]),
+[class*=column-file] {
+  margin-block: 0 2rem;
+  font-size: 0; /* Descender space 対策 */
+  text-align: center;
+}
+
+/* ボタン型
+------------------------------ */
+/* リンク */
+.acms-admin-block-editor-file-link,
+.media-file-block[data-display-type=button] a,
+[class*=column-media] a[href*=media-download],
+[class*=column-media] a[href*=storage],
+[class*=column-file] a {
+  box-sizing: border-box;
+  display: inline-flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  color: var(--color-gray100);
+  text-decoration: none; /* リセット */
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray40);
+  border-radius: 4px;
+}
+
+/* リンク動作スタイル（閲覧画面のみ） */
+.media-file-block[data-display-type=button] a,
+[class*=column-media] a[href*=media-download],
+[class*=column-media] a[href*=storage],
+[class*=column-file] a,
+.entry-style [class*=column-file] a { /* hover動作上書きのため詳細度高めて指定 */ }
+@media (hover: hover) {
+  .media-file-block[data-display-type=button] a,
+  [class*=column-media] a[href*=media-download],
+  [class*=column-media] a[href*=storage],
+  [class*=column-file] a,
+  .entry-style [class*=column-file] a {
+    transition: background-color 0.2s ease;
+  }
+  .media-file-block[data-display-type=button] a:where(:-moz-any-link):hover, [class*=column-media] a[href*=media-download]:where(:-moz-any-link):hover, [class*=column-media] a[href*=storage]:where(:-moz-any-link):hover, [class*=column-file] a:where(:-moz-any-link):hover, .entry-style [class*=column-file] a:where(:-moz-any-link):hover {
+    background-color: var(--color-gray20);
+    border-color: var(--color-gray40); /* hover動作上書きのため */
+  }
+  .media-file-block[data-display-type=button] a:where(:any-link):hover,
+  [class*=column-media] a[href*=media-download]:where(:any-link):hover,
+  [class*=column-media] a[href*=storage]:where(:any-link):hover,
+  [class*=column-file] a:where(:any-link):hover,
+  .entry-style [class*=column-file] a:where(:any-link):hover {
+    background-color: var(--color-gray20);
+    border-color: var(--color-gray40); /* hover動作上書きのため */
+  }
+}
+
+/* ファイルアイコン */
+.acms-admin-block-editor-file-link img,
+.media-file-block[data-display-type=button] img,
+[class*=column-media] .columnIcon,
+[class*=column-file] .columnIcon {
+  display: inline-block;
+  width: 1.75rem;
+  max-width: 100%;
+  height: auto;
+}
+
+/* キャプションタイポグラフィ設定 */
+.acms-admin-block-editor-file-link .caption,
+.media-file-block[data-display-type=button] .caption,
+[class*=column-file] .caption,
+[class*=column-media]:has(a[href*=media-download], a[href*=storage]):has(.columnIcon) .caption {
+  margin: 0; /* リセット */
+  font-size: 1rem;
+  line-height: 1.4;
+  color: currentcolor;
+  text-align: left;
+}
+
+/* PDFプレビュー
+------------------------------ */
+/* リンク */
+[class*=column-media]:has(.column-pdf-image) a {
+  display: inline-grid;
+  gap: 0.25rem;
+  justify-content: center;
+  /* リンクスタイルリセット */
+  padding: 0;
+  border: 0;
+}
+[class*=column-media]:has(.column-pdf-image) img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--color-gray40);
+}
+[class*=column-media]:has(.column-pdf-image) .caption {
+  display: block;
+  margin: 4px 0 0; /* 余白リセットのため全方向指定 */
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--color-gray90);
+}
+
+/* ブロックエディターのファイル（縦積み）
+------------------------------ */
+/* キャプション */
+.acms-admin-block-editor-file:not(:has(.acms-admin-block-editor-file-link)) .caption,
+.media-file-block[data-display-type=icon] .caption {
+  display: block;
+  margin: 4px 0 0; /* 余白リセットのため全方向指定 */
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--color-gray90);
+}
+
+.acms-admin-block-editor-file:not(:has(.acms-admin-block-editor-file-link)),
+.media-file-block[data-display-type=icon] {
+  text-align: center;
+}
+.acms-admin-block-editor-file:not(:has(.acms-admin-block-editor-file-link)) img,
+.media-file-block[data-display-type=icon] img {
+  width: 70px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* リンク動作スタイル（閲覧画面のみ） */
+.media-file-block[data-display-type=icon] a,
+[class*=column-media]:has(.column-pdf-image) a {
+  /* リンクスタイルリセット */
+  padding: 0;
+  border: 0;
+}
+@media (hover: hover) {
+  .media-file-block[data-display-type=icon] a,
+  [class*=column-media]:has(.column-pdf-image) a {
+    transition: opacity 0.2s ease;
+  }
+  .media-file-block[data-display-type=icon] a:hover,
+  [class*=column-media]:has(.column-pdf-image) a:hover {
+    opacity: 0.7;
+  }
+}
+
+/* ------------------------------
+ メディア画像・画像・画像URL
+------------------------------ */
+/* 管理画面側：ブロックエディターfigure要素リセット用 */
+.acms-admin-block-editor-image {
+  margin: 0;
+}
+
+/* 上下余白 */
+:where(.media-image-block),
+:where(.entry-style) .node-imageBlock,
+[class*=column-image],
+[class*=column-media]:not(:has(a[href*=media-download], a[href*=storage])),
+[class*=column-eximage] {
+  margin-block: 0 2rem;
+}
+
+/* 画像ユニット：style属性でwidth指定された場合の横はみ出し防止 */
+[class*=column-image][style*=width] {
+  max-width: 100%;
+}
+
+/* 共通設定
+------------------------------ */
+:where(.media-image-block),
+:where(.acms-admin-block-editor-image),
+[class*=column-image],
+[class*=column-media]:not(:has(a[href*=media-download], a[href*=storage])),
+[class*=column-eximage] {
+  line-height: 0; /* Descender space 対策 */
+}
+:where(.media-image-block) a,
+:where(.acms-admin-block-editor-image) a,
+[class*=column-image] a,
+[class*=column-media]:not(:has(a[href*=media-download], a[href*=storage])) a,
+[class*=column-eximage] a {
+  display: inline-block;
+  /* リセット用 */
+  text-decoration: none;
+  /* マウスオーバー用 */
+  transition: opacity 0.2s ease;
+}
+:where(.media-image-block) a:hover,
+:where(.acms-admin-block-editor-image) a:hover,
+[class*=column-image] a:hover,
+[class*=column-media]:not(:has(a[href*=media-download], a[href*=storage])) a:hover,
+[class*=column-eximage] a:hover {
+  opacity: 0.7;
+}
+:where(.media-image-block) img,
+:where(.acms-admin-block-editor-image) img,
+[class*=column-image] img,
+[class*=column-media]:not(:has(a[href*=media-download], a[href*=storage])) img,
+[class*=column-eximage] img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+
+:where(.media-image-block),
+:where(.acms-admin-block-editor-image) {
+  text-align: center;
+}
+
+/* キャプション
+------------------------------ */
+:where(.media-image-block) figcaption,
+:where(.acms-admin-block-editor-image) figcaption,
+[class*=column-image] .caption,
+[class*=column-media]:not(:has(a[href*=media-download], a[href*=storage])) .caption,
+[class*=column-eximage] .caption {
+  display: block;
+  margin: 4px 0 0; /* 余白リセットのため全方向指定 */
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--color-gray90);
+}
+
+[class*=column-image] .caption,
+[class*=column-media]:not(:has(a[href*=media-download], a[href*=storage])) .caption,
+[class*=column-eximage] .caption {
+  text-align: center;
+}
+
+/* ------------------------------
+ 地図
+------------------------------ */
+.column-map,
+.column-street-view {
+  margin-block: 0 2rem;
+}
+
+:where(.column-map .js-open-street-map),
+:where(.column-map .js-s2d-ready),
+:where(.column-street-view .js-street-view) {
+  aspect-ratio: 16/9; /* デフォルトのアスペクト比 */
+}
+
+/* ------------------------------
+ モジュールユニット
+------------------------------ */
+[class*=column-module] {
+  margin-block: 0 1.5rem;
+}
+
+/* ------------------------------
+ テーブル
+------------------------------ */
+.entry-style table:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+  margin: 0 0 2rem;
+  border-collapse: collapse;
+  background-color: var(--color-white);
+  border: 0; /* リセット用 */
+  border-bottom: 1px solid var(--color-gray30);
+}
+.entry-style table:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) tr {
+  border-top: 1px solid var(--color-gray30);
+}
+.entry-style table:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) th,
+.entry-style table:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) td {
+  min-width: auto;
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  vertical-align: top;
+  text-align: left;
+  white-space: normal;
+  border: 0; /* リセット用 */
+}
+.entry-style table:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) th {
+  background-color: var(--color-gray10);
+}
+.entry-style table:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) td {
+  background-color: var(--color-white); /* リセット用 */
+}
+.entry-style table:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) p {
+  margin-block: 0;
+}
+.entry-style table:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) a {
+  padding-block: 2px;
+  color: var(--color-link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-link);
+}
+.entry-style table:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) a:hover {
+  border-color: transparent;
+}
+.entry-style table:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) a[href^="tel:"] {
+  color: currentcolor;
+  border-bottom: 1px dashed;
+}
+.entry-style table:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) a[href^="tel:"]:hover {
+  border-color: transparent;
+}
+@media (min-width: 48rem) {
+  .entry-style table:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) th,
+  .entry-style table:not(:where([class~=not-editor-style], [class~=not-editor-style] *)) td {
+    padding: 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* ブロックエディター内のテーブル */
+.entry-style div:has(> table):not(:where([class~=not-editor-style], [class~=not-editor-style] *)) {
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+.entry-style div:has(> table):not(:where([class~=not-editor-style], [class~=not-editor-style] *)) table {
+  width: 100%;
+  margin: 0;
+}
+
+/* テーブルユニット */
+[class*=column-table] {
+  min-width: 0;
+}
+
+/* スクロールするテーブル */
+.acms-table-scrollable th,
+.acms-table-scrollable td,
+.js-table-unit-scroll-hint th,
+.js-table-unit-scroll-hint td {
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+/* ------------------------------
+ 動画ユニット
+------------------------------ */
+.column-youtube,
+.column-video {
+  margin-block: 0 2rem;
+}
+
+:where(.column-iframe iframe) {
+  display: block; /* Descender space 対策 */
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16/9; /* デフォルトのアスペクト比 */
+}

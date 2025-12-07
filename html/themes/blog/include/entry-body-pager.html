@@ -1,0 +1,58 @@
+<!-- BEGIN serialNavi:veil -->
+<nav class="serial-nav clearfix">
+  <ul class="serial-nav-list">
+    <!-- BEGIN prevLink -->
+    <li class="serial-nav-prev">
+      <a href="{url}">
+      <span class="acms-icon-arrow-small-left serial-nav-prev-icon"></span>
+      <span class="serial-nav-prev-title">{name}[trim(54, '...')|escape]</span>
+      </a>
+    </li>
+    <!-- END prevLink -->
+    <!-- BEGIN nextLink -->
+    <li class="serial-nav-next">
+      <a href="{url}">
+        <span class="serial-nav-next-title">{name}[trim(54, '...')|escape]</span>
+        <span class="acms-icon-arrow-small-right serial-nav-next-icon"></span>
+      </a>
+    </li>
+    <!-- END nextLink -->
+    <li class="serial-nav-index"><a href="{upperUrl}">一覧へ</a></li>
+  </ul>
+</nav>
+<!-- END serialNavi:veil -->
+
+<!-- BEGIN pager:veil -->
+<!-- ページ送り　開始▼▼ -->
+<nav class="pager" aria-label="ページ送り">
+  <ul class="clearfix">
+    <!-- BEGIN page:loop -->
+    <li class="pager-item"><!-- BEGIN link#front --><a href="{url}"><!-- END link#front --><span>{page}</span><!-- BEGIN link#rear --></a><!-- END link#rear --><!-- BEGIN glue --><!-- END glue --></li><!-- END page:loop -->
+    <!-- BEGIN lastPage:veil --><li class="pager-item">...</li><li class="pager-item"><a href="{lastPageUrl}"><span>{lastPage}</span></a></li><!-- END lastPage:veil -->
+  </ul>
+</nav>
+<!-- ページ送り　終了▲▲ -->
+<!-- END pager:veil -->
+
+<!-- BEGIN simplePager:veil -->
+<nav class="serial-nav clearfix">
+  <ul>
+    <!-- BEGIN prevPage -->
+    <li class="serial-nav-prev">
+      <a href="{url}">
+        <span class="acms-icon-arrow-small-left serial-nav-prev-icon"></span>
+        前ページ
+      </a>
+    </li>
+    <!-- END prevPage -->
+    <!-- BEGIN nextPage -->
+    <li class="serial-nav-next">
+      <a href="{url}">
+        次ページ
+        <span class="acms-icon-arrow-small-right serial-nav-next-icon"></span>
+      </a>
+    </li>
+    <!-- END nextPage -->
+  </ul>
+</nav>
+<!-- END simplePager:veil -->

@@ -1,0 +1,28 @@
+@extends("/_layouts/two-column.html")
+
+@section("head-meta")
+@parent
+<!-- GET_Rendered id="meta_twitter_creator" -->
+@endsection
+
+@section("main")
+<!-- エントリー本文 -->
+@include("/include/entry/body-blog.html")
+
+<!-- 関連エントリー -->
+@include("/include/entry/tagrelational-blog.html")
+@endsection
+
+@section("side")
+<!-- カテゴリー：リスト表示 -->
+@include("/include/category/list-side.html", {"module_id": "category_list"})
+
+<!-- タグ：リスト表示 -->
+@include("/include/tag/cloud.html")
+
+<!-- カレンダー：月表示 -->
+@include("/include/calendar/month.html", {"module_id": "calendar_side"})
+
+<!-- エントリーサマリー：サイドバー用 -->
+@include("/include/entry/summary-side.html")
+@endsection

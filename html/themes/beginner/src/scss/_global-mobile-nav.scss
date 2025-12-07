@@ -1,0 +1,266 @@
+@use "sass:map";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+  モバイルメニュー
+------------------------------ */
+@include acms.media-breakpoint-down(lg) {
+  /* モバイルメニューを開いた時に背後のコンテンツがスクロールしないように */
+  body.is-locked {
+    overflow: hidden;
+  }
+}
+
+@include acms.media-breakpoint-up(lg) {
+  /* PC幅の時モバイルメニューを非表示に */
+  .global-nav-mobile.is-active,
+  .global-nav-mobile-menu {
+    display: none;
+  }
+}
+
+.global-nav-mobile-menu-btn {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--zindex-mobile-nav);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: var(--header-height-fixed);
+  height: var(--header-height-fixed);
+  text-decoration: none;
+  background-color: var(--color-primary);
+
+  &:active,
+  &:focus {
+    outline: 0;
+  }
+}
+
+.global-nav-mobile-menu-text {
+  margin: 0.5rem 0 0;
+  font-size: map.get(global.$font-scales, body-s);
+  font-weight: bold;
+  line-height: var(--line-height-ss);
+  color: var(--color-white);
+}
+
+/* トグルメニューアイコン */
+.global-nav-mobile-icon-toggle-menu {
+  position: relative;
+  display: inline-block;
+  width: 1.25rem;
+  height: 2px;
+  margin: 0.5rem auto;
+  vertical-align: middle;
+  background-color: var(--color-white);
+  border-radius: 1px;
+  transition: 0.1s all;
+
+  &::before,
+  &::after {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    content: "";
+    background-color: var(--color-white);
+    border-radius: 1px;
+    transition: 0.3s all;
+  }
+
+  &::before {
+    top: -0.4rem;
+  }
+
+  &::after {
+    bottom: -0.4rem;
+  }
+}
+
+.global-nav-mobile-menu-btn[aria-expanded="true"] .global-nav-mobile-icon-toggle-menu {
+  background: transparent;
+
+  &::before {
+    width: 1.25rem;
+    transform: translate(0, 0.4rem) rotate(45deg);
+  }
+
+  &::after {
+    width: 1.25rem;
+    transform: translate(0, -0.4rem) rotate(-45deg);
+  }
+}
+
+.global-nav-mobile {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--zindex-mobile-nav);
+  box-sizing: border-box;
+  display: none;
+  width: 100%;
+  margin-top: var(--header-height);
+  overflow-y: scroll;
+  background: var(--color-globalnav-bg);
+  opacity: 0;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-duration: 0.3s;
+  transition-property: all;
+
+  &.is-active {
+    display: block;
+  }
+
+  &.is-opened {
+    opacity: 1;
+  }
+
+  .footer-sns-item img {
+    width: 30px;
+  }
+}
+
+/* モバイルメニュー内メインナビゲーション
+------------------------------ */
+.global-nav-mobile-inner {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-lg);
+
+  @include acms.media-breakpoint-up(md) {
+    max-width: 44rem;
+    padding: 2rem;
+    margin: 2rem auto;
+  }
+}
+
+/* メニュー内レイアウト */
+.global-nav-mobile-navbar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem 0;
+  align-items: center;
+  width: 100%;
+}
+
+/* ナビリスト */
+.global-nav-mobile-group {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  .global-nav-mobile-navbar > & {
+    border-top: var(--border-width-sm) solid var(--color-gray30);
+  }
+
+  /* 下層リスト */
+  .global-nav-mobile-item & {
+    display: none;
+    padding: 0 0 0 1rem;
+  }
+
+  /* 下層リスト最後のリスト下に余白をつける */
+  .global-nav-mobile-item.level-1 > &:last-child {
+    padding-bottom: 1rem;
+  }
+}
+
+.global-nav-mobile-link.is-cta + .global-nav-mobile-group {
+  /* ボタン型アイテムの下層メニューの場合の余白 */
+  padding-top: 0.5rem;
+}
+
+/* ナビリストアイテム */
+.global-nav-mobile-item {
+  font-size: map.get(global.$font-scales, body-m);
+  font-weight: bold;
+  color: var(--color-text);
+
+  /* 第一階層のアイテムでボタン型以外にラインをつける */
+  &.level-1:not(:has(> .global-nav-mobile-link.is-cta)) {
+    border-bottom: var(--border-width-sm) solid var(--color-gray30);
+  }
+
+  /* 下階層アイテム */
+  .global-nav-mobile-item {
+    font-size: map.get(global.$font-scales, body-s);
+    color: var(--color-text-2nd);
+  }
+}
+
+/* 開閉トグル */
+.icon-expand {
+  display: none;
+}
+
+:where(.global-nav-mobile-item.level-1:has(.global-nav-mobile-group)) > .global-nav-mobile-link .icon-expand {
+  position: absolute;
+  top: calc(50% - 12px);
+  right: 0;
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentcolor;
+  mask-image: url("#{global.$root-theme-img}icon/chevron-right.svg");
+  mask-size: contain;
+  transform: rotate(90deg);
+  transition: transform 0.3s ease;
+
+  &.is-close {
+    transform: rotate(-90deg);
+  }
+}
+
+/* ナビリストアイテムリンク */
+.global-nav-mobile-link {
+  position: relative;
+  display: block;
+  padding: 1rem 0;
+  color: inherit;
+  text-decoration: none;
+
+  /* ボタン */
+  &.is-cta {
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    margin: 1.5rem 0 0;
+    color: var(--color-text-inverse);
+    text-align: center;
+    background: var(--color-primary);
+    border-radius: var(--border-radius-lg);
+
+    .icon-expand {
+      right: 1rem;
+      background-color: var(--color-white);
+    }
+  }
+
+  /* 下階層アイテムリンク */
+  .global-nav-mobile-item .global-nav-mobile-item & {
+    padding: 0.75rem 0 0.75rem 1rem;
+
+    &::before {
+      position: absolute;
+      top: calc(50% - 0.5rem);
+      left: 0;
+      display: inline-block;
+      width: 0.75rem;
+      height: 0.75rem;
+      content: "";
+      background-image: url("#{global.$root-theme-img}icon-color/list-before-gray.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 0.375rem;
+    }
+  }
+}

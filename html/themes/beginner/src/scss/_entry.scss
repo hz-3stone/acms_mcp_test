@@ -1,0 +1,247 @@
+@use "sass:math";
+@use "sass:map";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　エントリー
+------------------------------ */
+
+/*
+　ヘッダー
+------------------------------ */
+.entry-header {
+  margin: 0 0 var(--entry-el-margin-md);
+  line-height: 1.5;
+
+  // エントリータイトル非表示時に要素ごと非表示
+  &:not(:has(*)) {
+    display: none;
+  }
+}
+
+.entry-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.entry-header-date {
+  font-size: map.get(global.$font-scales, body-s);
+  line-height: var(--line-height-base);
+  color: var(--color-text-2nd);
+}
+
+.entry-header-category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-block: 0;
+}
+
+.entry-header-category-label {
+  padding: 0.25rem 0.5rem;
+  font-size: map.get(global.$font-scales, body-s);
+  font-weight: bold;
+  line-height: var(--line-height-base);
+  text-decoration: none;
+  border: 1px solid var(--color-gray30);
+  border-radius: var(--border-radius-md);
+
+  &,
+  &:link,
+  &:visited {
+    color: var(--color-text);
+  }
+
+  @media (hover: hover) {
+    &:any-link:hover {
+      background-color: var(--color-hover-bg-2nd);
+    }
+  }
+}
+
+.entry-header-title {
+  position: relative;
+  padding: 0 0 1rem;
+  margin: 0 0 1.5rem;
+  font-size: map.get(global.$font-scales, heading-ss);
+  border-bottom: var(--border-width-lg) solid var(--color-gray10);
+
+  &::before {
+    position: absolute;
+    bottom: calc(var(--border-width-lg) * -1);
+    width: 3.5rem;
+    height: var(--border-width-lg);
+    content: "";
+    background: var(--color-primary);
+  }
+}
+
+.entry-header-title-link {
+  color: currentcolor;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+@include acms.media-breakpoint-up(md) {
+  .entry-header {
+    margin: 0 0 3rem;
+  }
+
+  .entry-header-info {
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .entry-header-title {
+    padding: 0 0 1.5rem;
+    margin: 0 0 1.5rem;
+    font-size: map.get(global.$font-scales, heading-m);
+
+  }
+}
+
+
+/* タグリスト */
+.entry-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding-inline-start: 0;
+  margin-block: 0.5rem 0;
+  list-style: none;
+}
+
+.entry-tag-item {
+  font-size: map.get(global.$font-scales, body-s);
+  color: var(--color-text);
+
+  a {
+    &:any-link {
+      text-decoration: underline dotted 1px;
+      text-underline-offset: 3px;
+    }
+
+    &,
+    &:link,
+    &:visited {
+      color: inherit;
+    }
+
+    @media (hover: hover) {
+      &:any-link:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+/*
+　フッター
+------------------------------ */
+.entry-footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--col-gutter);
+  margin-block-start: 4rem;
+}
+
+/*
+　詳細パネル
+------------------------------ */
+
+.detail-panel-group {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.detail-panel {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 2rem 1rem;
+  margin: 0 0 2rem;
+  border: 1px solid var(--color-gray30);
+  border-radius: var(--border-radius-md);
+
+  dt {
+    font-weight: bold;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  a {
+    @include global.link-text;
+  }
+}
+
+@include acms.media-breakpoint-up(md) {
+  .detail-panel,
+  .detail-panel-group {
+    flex-direction: row;
+  }
+
+  .detail-panel-group {
+    .is-works &,
+    .is-event & {
+      flex-direction: row;
+      gap: 1rem 2rem;
+      width: 100%;
+    }
+  }
+
+  .detail-panel {
+    padding: 2rem;
+
+    dt {
+      width: 4.5rem;
+    }
+
+    dd {
+      flex: 1;
+    }
+
+    .link-url {
+      color: var(--color-text);
+
+      svg {
+        width: 14px;
+        height: 14px;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .detail-panel-group {
+    gap: 1rem 2rem;
+    width: calc(50% - 1rem);
+  }
+}
+
+/*
+　エントリー下部の追加コンテンツ
+------------------------------ */
+.entry-aside-section {
+  margin-block-start: 3rem;
+
+  &:empty {
+    display: none;
+  }
+}
+
+@include acms.media-breakpoint-up(md) {
+  .entry-aside-section {
+    margin-block-start: 4rem;
+  }
+}

@@ -1,0 +1,42 @@
+@extends("/_layouts/one-column.html")
+
+@section("main")
+<!-- 検索結果 -->
+@include("/include/search-result.html")
+
+<!-- タグフィルター -->
+@include("/include/tag-filter.html")
+
+<!-- エントリーボディ -->
+@include("/include/entry-body.html")
+
+@endsection
+
+@section("sub")
+
+<!-- エントリー一覧 -->
+@include("/include/entry-summary-thumbnail.html")
+
+<!-- エントリー一覧（画像なし） -->
+<!-- @include("/include/entry-summary.html") -->
+
+<!-- エントリー一覧（画像大きめ） -->
+<!-- @include("/include/thumbnail.html") -->
+
+<!-- カテゴリー一覧 -->
+@include("/include/category-list.html")
+
+<!-- アーカイブ -->
+@include("/include/archive-list.html")
+
+<!-- タグクラウド -->
+@include("/include/tag-cloud.html")
+
+<!-- 検索フォーム -->
+@include("/include/search.html")
+
+<!-- バナー一覧 -->
+@include("/include/banner.html")
+
+
+@endsection

@@ -1,0 +1,24 @@
+<!-- 親カテゴリー一覧 -->
+<main>
+  <div class="acms-container">
+    <!-- サマリー：記事一覧 -->
+    @include("/include/category/entry-summary-thumbnail.html",{"module_id": "category_entry_summary"})
+
+    <div class="section-bottom">
+      <div class="acms-cssgrid">
+        <div class="acms-g-col-12 acms-g-col-md-4">
+          <div class="section-side-grid">
+            <!-- カテゴリー：リスト表示 -->
+            @include("/include/category/list_side.html", {"module_id": "category_list_article"})
+          </div>
+        </div>
+        <div class="acms-g-col-12 acms-g-col-md-8">
+          <div class="section-side-grid">
+            <!-- タグ：リスト表示 -->
+            @include("/include/tag/list_side.html", {"module_id": "tag_cloud"})
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

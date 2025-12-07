@@ -1,0 +1,221 @@
+@use "sass:map";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　フッター
+------------------------------ */
+.footer {
+  margin: 0;
+  border-top: global.$border-width-sm solid global.$color-gray20;
+
+  .cta-visual + &,
+  .cta + & {
+    margin-top: 0;
+  }
+}
+
+.footer-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-gap-x);
+  width: 100%;
+  padding: 3rem 0;
+}
+
+.footer-item {
+  box-sizing: border-box;
+  display: flex;
+
+  &.-navigation {
+    display: none;
+  }
+}
+
+.footer-description {
+  margin: 0 0 0.5rem;
+  color: global.$color-text-side;
+}
+
+.footer-sns {
+  margin: auto;
+}
+
+/* 企業情報 */
+.footer-item-title {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: map.get(global.$font-scales, body-s);
+}
+
+.footer-company-catch {
+  margin: 0 0 0.5rem;
+  color: global.$color-text-side;
+}
+
+.footer-company-title {
+  margin: 0 0 1rem;
+  font-size: map.get(global.$font-scales, heading-s);
+}
+
+.footer-company-logo {
+  margin: 0;
+}
+
+@include acms.media-breakpoint-up(md) {
+  .footer {
+    .cta-visual &,
+    .cta & {
+      margin-top: 0;
+    }
+  }
+
+  .footer-group {
+    flex-direction: row;
+  }
+
+  .footer-item {
+    &.-address {
+      width: calc(4 / 12 * 100%);
+    }
+
+    &.-navigation {
+      display: block;
+      width: calc(8 / 12 * 100%);
+    }
+  }
+}
+
+/* ナビゲーション */
+.footer-item-nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.footer-nav {
+  margin: 0;
+  font-size: map.get(global.$font-scales, body-s);
+}
+
+.footer-nav-group {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.footer-nav-item {
+  font-size: map.get(global.$font-scales, body-m);
+  font-weight: bold;
+
+  .footer-nav-item {
+    position: relative;
+    margin: 0 0 0 1rem;
+    font-size: map.get(global.$font-scales, body-s);
+    font-weight: normal;
+
+    &::before {
+      position: absolute;
+      top: 0.5em;
+      left: -1rem;
+      display: inline-block;
+      content: "";
+      border: 0.2rem solid transparent;
+      border-left: 0.4rem solid rgb(0 0 0 / 30%);
+    }
+  }
+}
+
+.footer-nav-link {
+  display: inline-block;
+  margin: 0 0 1rem;
+  color: global.$color-text;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  .footer-nav-item .footer-nav-item & {
+    margin: 0 0 0.5rem;
+    color: global.$color-text-side;
+
+    &:hover {
+      color: global.$color-text;
+    }
+  }
+
+  & + .footer-nav-group {
+    margin-top: -5px;
+  }
+}
+
+.footer-bottom {
+  padding: 1rem 0;
+  border-top: global.$border-footer;
+}
+
+/* コピーライト */
+.footer-copyright-text {
+  margin: 0 0 0.5rem;
+  font-size: map.get(global.$font-scales, body-s);
+  font-weight: bold;
+}
+
+/* SNS */
+.footer-bottom-sns {
+  display: none;
+}
+
+.footer-sns {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 0.5rem 0 0 auto;
+}
+
+.footer-sns-group {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.footer-sns-item {
+  margin: 0 0.25rem;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.footer-sns-link {
+  display: inline-block;
+  padding: 0.5rem;
+  vertical-align: top;
+}
+
+@include acms.media-breakpoint-up(md) {
+  .footer-bottom-inner {
+    display: flex;
+    align-items: center;
+  }
+
+  .footer-copyright-text {
+    margin: 0;
+  }
+
+  .footer-bottom-sns {
+    display: block;
+    margin-left: auto;
+  }
+
+  .footer-sns {
+    display: none;
+  }
+}

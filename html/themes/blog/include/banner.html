@@ -1,0 +1,15 @@
+<!-- BEGIN_MODULE Media_Banner id="" -->
+<div>
+@include("/admin/module/setting.html")
+<ul class="banner">
+  <!-- BEGIN banner:loop -->
+  <!-- BEGIN banner#src -->
+  <li>{src}[raw]</li>
+  <!-- END banner#src -->
+  <!-- BEGIN banner#img -->
+  <li {attr1}[raw]><a href="{url}" target="{target}"><img src="%{MEDIA_ARCHIVES_DIR}{img}[resizeImg(310)]" width="310" class="acms-img-responsive" alt="{alt}" /></a></li>
+  <!-- END banner#img -->
+  <!-- END banner:loop -->
+</ul>
+</div>
+<!-- END_MODULE Media_Banner -->

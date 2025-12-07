@@ -1,0 +1,75 @@
+@extends("/_layouts/base.html")
+
+@section("page-title")
+<!-- BEGIN_MODULE Touch_RootBlog -->
+<!-- BEGIN_MODULE Touch_NotCategory -->
+<!-- BEGIN_MODULE Touch_Keyword -->
+@include("/include/parts/page-title/global-search-results.html")
+<!-- END_MODULE Touch_Keyword -->
+<!-- END_MODULE Touch_NotCategory -->
+
+<!-- BEGIN_MODULE Touch_Category -->
+@include("/include/parts/page-title/root-category-name.html")
+<!-- END_MODULE Touch_Category -->
+<!-- END_MODULE Touch_RootBlog -->
+
+<!-- BEGIN_MODULE Touch_NotRootBlog -->
+@include("/include/parts/page-title/blog-name.html")
+<!-- END_MODULE Touch_NotRootBlog -->
+@endsection
+
+@section("main")
+<div class="acms-container">
+  <main class="main">
+    <div>
+      <div class="container-md">
+        @include("/include/tag/filter.html")
+
+        <!-- BEGIN_IF [%{CID}/nem] -->
+        <h2 class="page-sub-title">%{CATEGORY_NAME}</h2>
+        <!-- END_IF -->
+
+        <!-- BEGIN_IF [%{DATE}/nem] -->
+        <h2 class="page-sub-title"><!-- BEGIN_IF [%{DATE_YEAR}/nem] -->%{DATE_YEAR}年<!-- END_IF --><!-- BEGIN_IF [%{DATE_MONTH}/nem] -->%{DATE_MONTH}月<!-- END_IF --><!-- BEGIN_IF [%{DATE_DAY}/nem] -->%{DATE_DAY}日<!-- END_IF --></h2>
+        <!-- END_IF -->
+
+        <!-- BEGIN_IF [%{KEYWORD}/nem]-->
+        <div class="search-result-heading">
+          @include("/include/parts/search-general.html", {"search-id":"heading"})
+        </div>
+        <!-- END_IF -->
+
+        <!-- サマリー：記事一覧、キーワードの検索テキスト表示 -->
+        <!-- BEGIN_MODULE Entry_Summary id="summary_date" -->
+        <section id="summary_list">
+          @include("/include/edit/module-custom.html")
+
+          <h2 class="acms-hide-visually">記事一覧</h2>
+
+          <!-- BEGIN_IF [%{KEYWORD}/nem] -->
+          <!-- BEGIN_IF [{itemsAmount}/nem/_and_/{itemsAmount}/neq/0] -->
+          <p class="text-result-amount">「%{KEYWORD}」に一致する記事　{itemsAmount}件</p>
+          <!-- END_IF -->
+          <!-- END_IF -->
+
+          <!-- BEGIN notFound -->
+          <!-- BEGIN_IF [%{KEYWORD}/nem] -->
+          <p class="text-notfound-article">「%{KEYWORD}」に一致する記事は見つかりませんでした。</p>
+          <!-- ELSE -->
+          <p class="text-notfound-article">お探しの記事は見つかりませんでした。</p>
+          <!-- END_IF -->
+          <div class="search-back-button-wrap">
+            <a href="%{ROOT_BLOG_URL}" class="button is-width-lg is-bg-white-bordered">ホームへ戻る</a>
+          </div>
+          <!-- END notFound -->
+
+          @include("/include/parts/media-list/list-section.html")
+
+          @include("/include/parts/media-list/pager-read-more.html")
+        </div>
+        <!-- END_MODULE Entry_Summary -->
+      </div>
+    </div>
+  </main>
+</div>
+@endsection

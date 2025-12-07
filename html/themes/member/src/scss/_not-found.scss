@@ -1,0 +1,40 @@
+@use "sass:map";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　404ページ
+------------------------------ */
+.not-found-content {
+  margin: 0 0 4rem;
+  text-align: center;
+}
+
+.not-found-title {
+  margin: 0 0 0.5rem;
+  font-size: 6rem;
+  font-weight: bold;
+  line-height: global.$line-height-sm;
+  color: global.$color-primary;
+}
+
+.not-found-paragraph {
+  margin: 0 0 2.5rem;
+  font-size: map.get(global.$font-scales, heading-ss);
+  font-weight: bold;
+}
+
+@include acms.media-breakpoint-up(md) {
+  .not-found-content {
+    margin: 0 0 7.5rem;
+  }
+
+  .not-found-title {
+    font-size: 15rem;
+  }
+
+  .not-found-paragraph {
+    margin: 0 0 2.5rem;
+    font-size: map.get(global.$font-scales, heading-ss);
+  }
+}

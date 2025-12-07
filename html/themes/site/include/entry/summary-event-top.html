@@ -1,0 +1,121 @@
+<!-- BEGIN_MODULE Entry_Summary id="summary_event_top" --><!-- BEGIN moduleField -->
+<section id="message" class="section-pt<!-- BEGIN_IF [{section_class}/eq/is-bg] --> section-pb section-bg-color<!-- ELSE --> section-mb<!-- END_IF --> js-animation">
+  <div class="acms-container">
+    <div class="section-horizontal">
+      @include("/include/edit/module-custom.html")
+
+      <header class="section-horizontal-header">
+        <div class="section-horizontal-header-inner">
+          <h2 id="summary_event_top" class="section-horizontal-heading">{module_heading}</h2>
+          <!-- BEGIN module_heading_small:veil -->
+          <p class="section-horizontal-heading-side">{module_heading_small}[raw]</p>
+          <!-- END module_heading_small:veil -->
+        </div>
+      </header>
+      <!-- END moduleField -->
+
+      <!-- BEGIN notFound -->
+      <p class="text-notfound-article">お探しの記事は見つかりませんでした。</p>
+      <!-- END notFound -->
+
+      <!-- BEGIN entry_list:veil -->
+      <div class="section-horizontal-main">
+        <div class="acms-cssgrid<!-- BEGIN_IF [{parent.loop.class}/nem] --> {parent.loop.class}<!-- ELSE --> acms-g-cols-1 acms-g-cols-sm-2 acms-g-cols-md-3<!-- END_IF -->">
+          <!-- BEGIN entry:loop -->
+          <article aria-labelledby="card-entry{eid}">
+            <a href="{url}" class="card-link">
+              <div class="card-link-inner">
+                <div class="card">
+                  <div class="card-img-wrap">
+                    <!-- BEGIN_IF [{path}/nem] -->
+                    <img
+                      src="%{ROOT_DIR}{path}[resizeImg(800)]"
+                      alt="{alt}"
+                      class="card-img"
+                      width="800"
+                      height="{path}[imageRatioSizeH(800)]"
+                      loading="lazy"
+                      decoding="async"
+                    >
+                    <!-- ELSE -->
+                    <img
+                      src="/images/noimage.png"
+                      alt=""
+                      class="card-img"
+                      width="1200"
+                      height="675"
+                      loading="lazy"
+                      decoding="async"
+                    >
+                    <!-- END_IF -->
+                    <!-- BEGIN category:veil -->
+                    <p class="card-img-label-position left-top">
+                      <span class="label is-dark">
+                        <!-- BEGIN_IF [{event_status}/eq/pre]-->募集前
+                        <!-- ELSE_IF [{event_status}/eq/open] -->募集中
+                        <!-- ELSE_IF [{event_status}/eq/full] -->満員御礼
+                        <!-- ELSE_IF [{event_status}/eq/closed] -->終了
+                        <!-- END_IF -->
+                      </span>
+                    </p>
+                    <!-- END category:veil -->
+                  </div>
+                  <div class="card-texts-layout">
+                    <!-- BEGIN event_labels:veil -->
+                    <div class="event-card-labels-layout">
+                      <!-- BEGIN_IF [{date#}/nem] -->
+                      <dl class="acms-lh-1 acms-my-0">
+                        <dt class="acms-hide-visually">開催日時</dt>
+                        <dd class="card-date-layout acms-ms-0">
+                          <time class="event-card-date" datetime="{date#Y}-{date#m}-{date#d}">{date#Y}年{date#n}月{date#j}日（{date#week}）</time>
+                          <!-- BEGIN event_time:veil -->
+                          <span class="event-card-time">{event_time}</span>
+                          <!-- END event_time:veil -->
+                        </dd>
+                      </dl>
+                      <!-- END_IF -->
+                      <!-- BEGIN labels:veil -->
+                      <div class="card-labels-layout">
+                        <!-- BEGIN new -->
+                        <p class="label">New</p>
+                        <!-- END new -->
+                        <!-- BEGIN event_pref:veil -->
+                        <p class="label">{event_pref}</p>
+                        <!-- END event_pref:veil -->
+                        <!-- BEGIN categoryField:veil -->
+                        <!-- BEGIN categoryField -->
+                        <dl class="acms-lh-1 acms-my-0">
+                          <dt class="acms-hide-visually">カテゴリー</dt>
+                          <dd class="acms-ms-0">
+                            <span class="label">{fieldCategoryName}</span>
+                          </dd>
+                        </dl>
+                        <!-- END categoryField -->
+                        <!-- END categoryField:veil -->
+                      </div>
+                      <!-- END labels:veil -->
+                    </div>
+                    <!-- END event_labels:veil -->
+                    <h3 id="card-entry{eid}" class="card-title">{title}</h3>
+                    <!-- BEGIN summary:veil -->
+                    <p class="card-description">{summary}</p>
+                    <!-- END summary:veil -->
+                  </div>
+                </div>
+              </div>
+            </a>
+          </article>
+          <!-- END entry:loop -->
+        </div>
+      </div>
+      <!-- END entry_list:veil -->
+    </div>
+
+    <p class="acms-mt-6 acms-mt-sm-8 acms-mt-md-12 acms-mb-0 acms-text-right">
+      <a href="%{HOME_URL}event/" class="button-view-all-articles">
+        <span class="button-view-all-articles-text">開催中・開催予定のイベント一覧を見る</span>
+        <span class="button-view-all-articles-icon" aria-hidden="true">@include("/images/icon/chevron-right-bold.svg")</span>
+      </a>
+    </p>
+  </div>
+</section><!-- END_MODULE Entry_Summary -->

@@ -1,0 +1,100 @@
+<!-- BEGIN_MODULE Entry_Body id="{{module_id|default("body_no_date")}}" -->
+
+<!-- BEGIN notFound -->
+<section class="acms-entry entry-style">
+  <h2>Not Found</h2>
+  <p>お探しの記事は見つかりませんでした。</p>
+</section>
+<!-- END notFound -->
+
+<!-- BEGIN entry:loop -->
+
+<!-- BEGIN_MODULE Touch_Login -->
+<div class="acms-form-group">
+  <!-- バージョン管理 -->
+  @include("/admin/entry/revision-info.html")
+  <!-- 編集ボックス -->
+  @include("/admin/entry/action.html")
+</div>
+<!-- END_MODULE Touch_Login -->
+
+<article class="entry {entry:loop.class}">
+  <div>
+    <!-- BEGIN_IF [%{ECD}/nem]-->
+    <!-- BEGIN title:veil -->
+    <header class="entry-header">
+      <!-- BEGIN_MODULE Touch_Category -->
+      <h1 class="entry-header-title">{title}</h1>
+      <!-- END_MODULE Touch_Category -->
+      <!-- ※カテゴリー無所属のエントリーの場合はページヘッダーにエントリータイトルを表示 -->
+
+      <!-- BEGIN entry-header-info:veil -->
+      <div class="entry-header-info">
+        <!-- BEGIN entry-header-date:veil -->
+        <p class="acms-my-0">
+          <!-- BEGIN date:veil -->
+          <time datetime="{date#Y}-{date#m}-{date#d}" class="entry-header-date">{date#Y}年{date#n}月{date#j}日（{date#l}[weekEN2JP]）</time>
+          <!-- END date:veil -->
+          <!-- BEGIN new --><span class="label is-md">New</span><!-- END new -->
+        </p>
+        <!-- END entry-header-date:veil -->
+
+        <!-- BEGIN category:veil -->
+        <p class="entry-header-category-list">
+          <!-- BEGIN categoryField -->
+          <a href="{fieldCategoryUrl}" class="entry-header-category-label">{fieldCategoryName}</a><!-- END categoryField -->
+        </p>
+        <!-- END category:veil -->
+      </div>
+      <!-- END entry-header-info:veil -->
+
+      <!-- BEGIN tag:veil -->
+      <ul class="entry-tag-list">
+        <!-- BEGIN tag:loop -->
+        <li class="entry-tag-item"><a href="%{ROOT_CATEGORY_URL}tag/{name}">#{name}</a></li>
+        <!-- END tag:loop -->
+      </ul>
+      <!-- END tag:veil -->
+    </header>
+    <!-- END title:veil -->
+    <!-- END_IF -->
+
+    <!-- BEGIN entry:veil -->
+    <div class="acms-entry entry-style">
+      <!-- カスタムフィールドの読み込み -->
+      @include("/include/entry/field.html")
+
+      <!-- BEGIN unit:veil -->
+      @include("/include/unit.html")
+      <!-- END unit:veil -->
+      <!-- 続きを読む -->
+      @include("/include/parts/continue.html")
+
+      <!-- BEGIN_MODULE Touch_Entry -->
+      <!-- カスタムフィールドの読み込み -->
+      @include("/include/entry/field_foot.html")
+      <!-- END_MODULE Touch_Entry -->
+    </div>
+    <!-- END entry:veil -->
+
+    <!-- BEGIN formBody -->
+    @include("/include/form/unit.html")
+    <!-- END formBody -->
+
+    <!-- BEGIN_MODULE Touch_Login -->
+    <div class="acms-form-group">
+      <!-- バージョン管理 -->
+      @include("/admin/entry/revision-info.html")
+      <!-- 編集ボックス -->
+      @include("/admin/entry/action.html")
+    </div>
+    <!-- END_MODULE Touch_Login -->
+  </div>
+
+</article>
+
+<!-- END entry:loop -->
+
+<!-- ページャー -->
+@include("/include/parts/pager.html")
+<!-- END_MODULE Entry_Body -->

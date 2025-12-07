@@ -1,0 +1,15 @@
+@extends("/_layouts/base.html")
+
+@section("main")
+<div class="acms-container">
+  @include("/include/parts/local-nav.html", {"module_id": "nav_realestate", "direction": ""})
+
+  @include("/include/tag/filter.html")
+
+  <!-- サマリー：記事一覧、キーワード、フィールド、日付の検索テキスト表示 -->
+  @include("/include/entry/summary-realestate.html")
+
+  <!-- 条件から検索する -->
+  @include("/include/parts/search-realestate.html")
+</div>
+@endsection

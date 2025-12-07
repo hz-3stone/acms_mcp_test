@@ -1,0 +1,91 @@
+<tr>
+  <th>サイトのロゴマーク
+    <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="ヘッダーのメインイメージ上に表示するロゴマークです"></i>
+  </th>
+  <td class="js-media-field">
+    <div class="js-droparea" data-thumbnail="{site_logo@thumbnail}" data-type="image" style="width:200px"></div>
+    <p class="js-text acms-admin-text-danger" style="display:none">許可されていないファイルのため挿入できません。</p>
+    <div class="acms-admin-margin-top-mini">
+      <button type="button" class="js-insert acms-admin-btn" data-type="image">メディアを選択</button>
+    </div>
+
+    <p class="acms-admin-margin-top-mini">
+      代替テキスト:
+      <input type="text" name="site_logo_alt" value="{site_logo_alt}" size="40" />
+      <input type="hidden" name="field[]" value="site_logo_alt" />
+    </p>
+
+    <input type="hidden" name="site_logo" value="{site_logo}" class="js-value" />
+    <input type="hidden" name="field[]" value="site_logo" />
+    <input type="hidden" name="site_logo:extension" value="media" />
+  </td>
+</tr>
+<tr>
+  <th>メインイメージ
+    <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="ヘッダーの背景画像を設定します。"></i>
+  </th>
+  <td class="js-media-field">
+    <div class="js-droparea" data-thumbnail="{main_img@thumbnail}" data-type="image" style="width:200px"></div>
+    <p class="js-text acms-admin-text-danger" style="display:none">許可されていないファイルのため挿入できません。</p>
+    <div class="acms-admin-margin-top-mini">
+      <button type="button" class="js-insert acms-admin-btn" data-type="image">メディアを選択</button>
+    </div>
+    <input type="hidden" name="main_img" value="{main_img}" class="js-value" />
+    <input type="hidden" name="field[]" value="main_img" />
+    <input type="hidden" name="main_img:extension" value="media" />
+  </td>
+</tr>
+<tr>
+  <th>noimage画像
+    <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="noimage画像を設定します。(推奨サイズ：360 × 203)"></i>
+  </th>
+  <td class="js-media-field">
+    <div class="js-droparea" data-thumbnail="{noimage@thumbnail}" data-type="image" style="width:200px"></div>
+    <p class="js-text acms-admin-text-danger" style="display:none">許可されていないファイルのため挿入できません。</p>
+    <div class="acms-admin-margin-top-mini">
+      <button type="button" class="js-insert acms-admin-btn" data-type="image">メディアを選択</button>
+    </div>
+    <input type="hidden" name="noimage" value="{noimage}" class="js-value" />
+    <input type="hidden" name="field[]" value="noimage" />
+    <input type="hidden" name="noimage:extension" value="media" />
+  </td>
+</tr>
+<tr>
+  <th>
+    <label for="input-text-height">ヘッダーの高さ</label>
+    <i class="acms-admin-icon-tooltip js-acms-tooltip-hover" data-acms-tooltip="ヘッダーの高さを調整します。"></i>
+  </th>
+  <td>
+    <input type="text" name="height" value="{height}" placeholder="例）88" id="input-text-height"/>
+    <input type="hidden" name="field[]" value="height" />
+    <input type="hidden" name="height:c" value="n"/>
+    <span style="display:inline-block;margin-left:5px;">px</span>
+  </td>
+</tr>
+<tr>
+  <th>
+    <label for="input-text-height_sp">ヘッダーの高さ（スマホ）</label>
+    <i class="acms-admin-icon-tooltip js-acms-tooltip-hover" data-acms-tooltip="スマホサイズの時のヘッダーの高さを調整します。"></i>
+  </th>
+  <td>
+    <input type="text" name="height_sp" value="{height_sp}" placeholder="例）88" id="input-text-height_sp"/>
+    <input type="hidden" name="field[]" value="height_sp" />
+    <input type="hidden" name="height_sp:c" value="n"/>
+    <span style="display:inline-block;margin-left:5px;">px</span>
+  </td>
+</tr>
+<tr>
+  <th>
+    <label for="header_color">ヘッダーの文字色</label>
+    <i class="acms-admin-icon-tooltip js-acms-tooltip-hover" data-acms-tooltip="ヘッダーの文字色を変更します。"></i>
+  </th>
+  <td>
+    <input
+      type="color"
+      name="header_color"
+      id="header_color"
+      value="<!-- BEGIN_IF [{header_color}/nem] -->{header_color}<!-- ELSE -->#333333<!-- END_IF -->"
+    />
+    <input type="hidden" name="field[]" value="header_color" />
+  </td>
+</tr>

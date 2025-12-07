@@ -1,0 +1,16 @@
+<!-- BEGIN_IF [%{RBID}/eq/%{BID}/_and_/%{VIEW}/eq/top] -->
+<div class="topicpath-wrap is-root-top">
+<!-- ELSE -->
+<div class="topicpath-wrap">
+  <nav aria-label="現在位置">
+    <!-- BEGIN_MODULE Topicpath id="" -->
+    @include("/admin/module/setting.html")
+    <ol class="topicpath"><!-- BEGIN blog:loop -->
+      <li><a href="{url}">{name}</a></li><!-- END blog:loop --><!-- BEGIN category:loop -->
+      <li><a href="{url}">{name}</a></li><!-- END category:loop --><!-- BEGIN entry -->
+      <li><a href="{url}">{title}</a></li><!-- END entry -->
+    </ol>
+    <!-- END_MODULE Topicpath -->
+  </nav>
+<!-- END_IF -->
+</div>

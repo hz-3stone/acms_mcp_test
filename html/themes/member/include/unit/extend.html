@@ -1,0 +1,41 @@
+<!-- BEGIN unit#custom_unit_space -->
+<div class="not-editor-style" style="padding-bottom: var(--unit-space-{unit_space})"></div>
+<!-- END unit#custom_unit_space -->
+
+<!-- BEGIN unit#custom_outline -->
+<nav class="entry-outline not-editor-style">
+  <h2 class="entry-outline-title js-except">目次</h2>
+  <div class="js-outline-yield entry-outline-list-wrap"></div>
+</nav>
+<!-- END unit#custom_outline -->
+
+<!-- BEGIN unit#custom_pricing -->
+<ul class="pricing-group not-editor-style"><!-- BEGIN group_pricing:loop -->
+  <li class="pricing-item<!-- BEGIN_IF [{pricing_recommend}/eq/true] --> is-recommend<!-- END_IF -->">
+    <div class="pricing-inner">
+      <div class="pricing-header"><!-- BEGIN_IF [{pricing_recommend}/eq/true] -->
+        <div class="pricing-label-wrap">
+          <p class="pricing-label">おすすめ</p>
+        </div><!-- END_IF --><!-- BEGIN pricing_title:veil -->
+        <h3 class="pricing-title">{pricing_title}</h3><!-- END pricing_title:veil --><!-- BEGIN pricing_desc:veil -->
+        <p class="pricing-desc">{pricing_desc}[nl2br]</p><!-- END pricing_desc:veil -->
+      </div>
+      <div class="pricing-body"><!-- BEGIN pricing_price:veil -->
+        <p class="pricing-price">{pricing_price}<span class="pricing-unit">{pricing_price_unit}</span></p>
+        <!-- END pricing_price:veil --><!-- BEGIN pricing_check_list:veil -->
+        <ul class="pricing-check-group">
+          {pricing_check_list}[list]
+        </ul><!-- END pricing_check_list:veil -->
+      </div>
+      <div class="pricing-footer"><!-- BEGIN pricing_btn_url:veil -->
+        <a href="{pricing_btn_url}" class="button pricing-button">詳細を見る</a><!-- END pricing_btn_url:veil -->
+        <!-- BEGIN pricing_micro_copy:veil -->
+        <p class="pricing-text-info">{pricing_micro_copy}</p><!-- END pricing_micro_copy:veil -->
+      </div>
+    </div>
+  </li><!-- END group_pricing:loop -->
+</ul>
+<!-- END unit#custom_pricing -->
+
+<!-- BEGIN unit#custom_sample -->
+<!-- END unit#custom_sample -->

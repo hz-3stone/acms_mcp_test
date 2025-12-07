@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+  <head>
+    @section("head-meta")
+    @include("/include/head/meta.html")
+    @endsection
+
+    @section("head-link")
+    @include("/include/head/link.html")
+    @endsection
+
+    @section("head-js")
+    @include("/include/head/js.html")
+    @endsection
+  </head>
+
+  <body id="top" class="blog%{BID}-%{VIEW}">
+    @section("body-start")
+    @include("/include/body-start.html")
+    @endsection
+
+    @section("header")
+    @include("/include/header/header.html")
+    @endsection
+
+    @section("page-title")
+    @include("/include/parts/page-title/root-category-name.html")
+    @endsection
+
+    @section("topicpath")
+    @include("/include/parts/topicpath.html")
+    @endsection
+
+    @section("admin-part")
+    <!-- BEGIN_MODULE Touch_Login -->
+    <!-- ※管理用パーツ -->
+    <div class="acms-container">
+      @include("/admin/action.html")
+      @include("/admin/switch-user.html")
+    </div>
+    <!-- END_MODULE Touch_Login -->
+    @endsection
+
+    @section("content-wrapper")
+    <div class="content-wrapper">
+      @section("main")
+      <p>継承してメインコンテンツを設定してください</p>
+      @endsection
+    </div>
+    @endsection
+
+    @section("check-seo")
+    <!-- BEGIN_MODULE Touch_SessionWithAdministration -->
+    <!-- meta情報確認 -->
+    <div class="acms-mt-8">
+      @include("/include/check-seo.html")
+    </div>
+    <!-- END_MODULE Touch_SessionWithAdministration -->
+    @endsection
+
+    @section("footer-cta")
+    <!-- Call to Action -->
+    @include("/include/parts/cta.html", {"module_id": "mf_cta", "cta-section-mt": "true"})
+    @endsection
+
+    @section("footer")
+    @include("/include/footer/footer.html")
+    @endsection
+
+    @section("body-end")
+    @include("/include/body-end.html")
+    @endsection
+  </body>
+</html>

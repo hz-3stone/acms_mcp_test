@@ -1,0 +1,69 @@
+@extends("/_layouts/base.html")
+
+@section("head-link")
+@parent
+<!-- BEGIN_MODULE Touch_RootBlog -->
+<!-- サイトトップページ用 構造化データ -->
+@include("/include/head/structured-data-sitetop.html")
+<!-- END_MODULE Touch_RootBlog -->
+<link rel="stylesheet" href="/css/splide.min.css">
+@endsection
+
+@section("head-js")
+@parent
+<script defer src="/js/splide.min.js"></script>
+<script defer src="/js/banner-carousel.js"></script>
+<script defer src="/js/popup-banner.js"></script>
+@endsection
+
+@section("page-title")
+<!-- トップ用メインビジュアル -->
+@include("/include/header/main-visual.html", {"module_id": "mf_main_visual"})
+<!-- @include("/include/header/main-visual-ex01.html", {"module_id": "mf_main_visual"}) -->
+<!-- @include("/include/header/main-visual-ex02.html", {"module_id": "mf_main_visual"})  -->
+@endsection
+
+@section("topicpath")
+@endsection
+
+@section("content-wrapper")
+@section("main")
+<!-- トップ用メッセージ -->
+@include("/include/parts/message-top.html")
+
+<!-- エントリーサマリー：事業内容 -->
+@include("/include/entry/summary-service-top.html")
+
+<!-- エントリーサマリー：イベント -->
+@include("/include/entry/summary-event-top.html")
+
+<!-- エントリーサマリー：採用情報 -->
+@include("/include/entry/summary-recruit-top.html")
+
+<!-- 採用情報 -->
+@include("/include/parts/cta-visual.html", {"cta-section-mt": ""})
+
+<!-- エントリーサマリー&バナー：最新情報 -->
+@include("/include/entry/summary-news-top.html")
+
+<!-- エントリーサマリー：スタッフブログ -->
+@include("/include/entry/summary-blog-top.html")
+
+<!-- 動画 -->
+@include("/include/parts/video-top.html")
+<!-- @include("/include/parts/banner-slide.html", {"module_id": "banner_slide_top"}) -->
+
+<!-- バナーモジュール -->
+@include("/include/parts/banner.html", {"module_id": "banner_top"})
+
+@endsection
+@endsection
+
+@section("footer-cta")
+<div class="section-separator"></div>
+<!-- CTA：お問い合わせ -->
+@include("/include/parts/cta.html", {"module_id":"mf_cta_contact", "cta-section-mt": "true"})
+
+<!-- 右下追従ポップアップバナー -->
+@include("/include/parts/popup-banner.html")
+@endsection

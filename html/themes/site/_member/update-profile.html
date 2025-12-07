@@ -1,0 +1,201 @@
+@extends("/_layouts/base.html")
+
+@section("head-title")
+<title>プロフィール変更 | %{BLOG_NAME}</title>
+@endsection
+
+@section("head-link")
+@parent
+<!-- 編集画面用カスタムCSSを読み込み -->
+<link rel="stylesheet" href="/include/edit/custom.css">
+<style>
+  input.validator-result- {
+    display: block;
+  }
+</style>
+@endsection
+
+@section("head-js")
+@parent
+<!-- カスタムJSを記述 -->
+<script src="/include/edit/custom.js" charset="UTF-8"></script>
+@endsection
+
+@section("page-title")
+@include("/include/parts/page-title/mypage.html")
+@endsection
+
+@section(topicpath)
+@include("/include/parts/topicpath/mypage.html", {"page_name": "プロフィール変更"})
+@endsection
+
+@section("admin-part")
+@endsection
+
+@section("main")
+<!-- BEGIN_MODULE Member_Update_Profile -->
+<div class="acms-container">
+  <h2 class="heading-lg acms-mb-8">プロフィール変更</h2>
+
+  <div class="local-nav-wrap">
+    <div class="local-nav-inner">
+      <div class="local-nav">
+        <ul class="local-nav-list">
+          <li class="local-nav-item">
+            <a href="%{BLOG_URL}%{EMAIL_UPDATE_SEGMENT}" class="local-nav-link">
+              <span class="local-nav-link-text">メールアドレス変更</span>
+              <span class="local-nav-link-icon" aria-hidden="true">@include("/images/icon/chevron-right-bold.svg")</span></a>
+          </li>
+          <li class="local-nav-item">
+            <a href="%{BLOG_URL}%{PASSWORD_UPDATE_SEGMENT}" class="local-nav-link">
+              <span class="local-nav-link-text">パスワード変更</span>
+              <span class="local-nav-link-icon" aria-hidden="true">@include("/images/icon/chevron-right-bold.svg")</span></a>
+          </li>
+          <!-- BEGIN_MODULE Member_Tfa_Check -->
+          <li class="local-nav-item">
+            <!-- BEGIN_IF [{step}/eq/unregistered] -->
+            <a href="%{BLOG_URL}%{TFA_UPDATE_SEGMENT}" class="local-nav-link">
+              <span class="local-nav-link-text">2段階認証設定する</span>
+              <span class="local-nav-link-icon" aria-hidden="true">@include("/images/icon/chevron-right-bold.svg")</span></a>
+            <!-- END_IF -->
+            <!-- BEGIN_IF [{step}/eq/registered] -->
+            <a href="%{BLOG_URL}%{TFA_UPDATE_SEGMENT}" class="local-nav-link">
+              <span class="local-nav-link-text">2段階認証編集（設定済み）</span>
+              <span class="local-nav-link-icon" aria-hidden="true">@include("/images/icon/chevron-right-bold.svg")</span>
+            </a>
+            <!-- END_IF -->
+          </li>
+          <!-- END_MODULE Member_Tfa_Check -->
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="acms-member-main-box">
+    <form action="" method="post" enctype="multipart/form-data" class="acms-form">
+      <!-- BEGIN success -->
+      <div class="acms-alert acms-alert-info">プロフィールを更新しました。</div>
+      <!-- END success-->
+
+      <!-- BEGIN notSuccessful -->
+      <div class="acms-alert acms-alert-danger">プロフィールの更新に失敗しました</div>
+      <!-- END notSuccessful-->
+
+      @include("/_member/parts/error.html")
+      @include("/_member/parts/sns-message.html")
+
+      <h3 class="acms-admin-admin-title2">基本情報</h3>
+      <table class="acms-admin-table-admin-edit acms-admin-py-5">
+        <tbody>
+          <tr>
+            <th><label for="input-text-name">名前</label></th>
+            <td>
+              <input type="text" name="name" value="{name}" class="acms-form-large {name:validator#required} acms-form-width-small" id="input-text-name" placeholder="" />
+              <input type="hidden" name="user[]" value="name" />
+              <input type="hidden" name="name:validator#required" id="validator-name-required" />
+              <div role="alert">
+                <div data-validator-label="validator-name-required" class="validator-result-{name:validator#required}">
+                  <p class="error-text"><span class="acms-icon acms-icon-attention" aria-hidden="true"></span>名前が入力されていません。</p>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th><label for="input-text-code">ユーザーID</label></th>
+            <td>
+              <input
+                type="text"
+                name="code"
+                value="{code}"
+                id="input-text-code"
+                class="acms-form-large validator-result-{code:validator#required} acms-form-width-small"
+                placeholder=""
+              />
+              <input type="hidden" name="user[]" value="code" />
+              <input type="hidden" name="code:validator#regex" value="%{REGEX_VALID_ID}" id="validator-code-regex" />
+              <div role="alert">
+                <div data-validator-label="validator-code-regex" class="validator-result-{code:validator#regex}">
+                  <p class="error-text"><span class="acms-icon acms-icon-attention" aria-hidden="true"></span>無効なユーザーIDです。</p>
+                </div>
+                <div data-validator-label="validator-code-doubleCode" class="validator-result-{code:validator#doubleCode}">
+                  <p class="error-text"><span class="acms-icon acms-icon-attention" aria-hidden="true"></span>既に使用されているユーザーIDです。</p>
+                </div>
+                <div data-validator-label="validator-code-string" class="validator-result-{code:validator#string}">
+                  <p class="error-text"><span class="acms-icon acms-icon-attention" aria-hidden="true"></span>不正な文字が含まれています。</p>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th><label for="input-file-icon">アイコン画像</label></th>
+            <td>
+              <!-- BEGIN icon@path:veil -->
+              <img src="%{ARCHIVES_DIR}{icon@path}" width="64" height="64" />
+              <input type="hidden" name="icon@old" value="{icon@path}" /><br />
+              <div class="acms-form-checkbox">
+                <input type="checkbox" name="icon@edit" value="delete" id="input-checkbox-icon" />
+                <label for="input-checkbox-icon"><i class="acms-ico-checkbox"></i>削除</label>
+              </div><!-- END icon@path:veil -->
+              <input
+                type="file"
+                name="icon"
+                size="20"
+                id="input-file-icon"
+                class="acms-inline-block acms-margin-top-mini acms-align-middle"
+                style="max-width: 100%;"
+              />
+              <input type="hidden" name="icon:extension" value="image" />
+              <input type="hidden" name="icon@squareWidth" value="220" />
+              <input type="hidden" name="user[]" value="icon" />
+            </td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td>{mail} （
+              <input type="hidden" name="mail_magazine" value="off" />
+              <div class="acms-form-checkbox">
+                <input type="checkbox" name="mail_magazine" value="on"{mail_magazine:checked#on} id="input-checkbox-mail_magazine" />
+                <label for="input-checkbox-mail_magazine">
+                  <i class="acms-ico-checkbox"></i>
+                  メールマガジンを受け取る ）
+                </label>
+              </div>
+
+              <input type="hidden" name="user[]" value="mail_magazine" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="_admin-user-field">
+        @include("/_member/parts/profile/geo.html")
+        @include("/admin/user/field.html")
+      </div>
+      <style>
+        ._admin-user-field {
+          margin-top: 32px;
+        }
+        ._admin-user-field table {
+          padding-top: 20px;
+          padding-bottom: 20px;
+        }
+      </style>
+
+      <div class="acms-d-flex acms-justify-content-center acms-mt-8 acms-mt-md-12">
+        <button
+          type="submit"
+          class="button is-width-lg"
+          name="ACMS_POST_Member_Update_Profile"
+        >
+          保存
+        </button>
+      </div>
+    </form>
+
+    @include("/_member/parts/profile/sns.html")
+  </div>
+</div>
+<!-- END_MODULE Member_Update_Profile -->
+
+@endsection
+

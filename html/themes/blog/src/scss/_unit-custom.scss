@@ -1,0 +1,113 @@
+@use "sass:map";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+ カスタムユニット
+------------------------------ */
+
+/* 目次
+------------------------------ */
+.#{acms.$entry-class} {
+  .outline-wrap {
+    margin-block: var(--unit-margin-top) calc(var(--unit-margin-bottom) + 1.5rem);
+  }
+
+  .outline {
+    padding: 15px;
+    border: 2px solid global.$key-color;
+  }
+
+  .outline-header {
+    display: flex;
+  }
+
+  .outline-title {
+    margin: 0;
+    line-height: 1;
+    color: global.$key-color;
+
+    @include acms.font-size(16);
+  }
+
+  .outline-btn {
+    padding: 2px 7px;
+    margin-top: -5px;
+    margin-left: auto;
+    color: #FFF;
+    background: global.$key-color;
+    border: 0;
+    border-radius: 3px;
+
+    @include acms.font-size(12);
+
+    .acms-icon-arrow-small-down {
+      margin-right: 5px;
+      vertical-align: middle;
+
+      @include acms.font-size(18);
+    }
+  }
+
+  .outline-list-wrap {
+    & > .outline-list {
+      padding-left: 0;
+
+      & > .outline-item:first-child {
+        margin-top: 15px;
+      }
+    }
+  }
+
+  .outline-list {
+    padding: 0 0 0 20px;
+    margin: 0;
+    list-style: none;
+    counter-reset: section;
+
+    &.level-1 > .outline-item {
+      font-weight: bold;
+    }
+  }
+
+  .outline-item {
+    margin: 10px 0 0;
+    font-weight: normal;
+
+    @include acms.font-size(12);
+
+    &::before {
+      content: none;
+    }
+
+    a {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      border: none;
+
+      @include global.link-color(global.$text-color-light, global.$key-color);
+
+      &::before {
+        padding-right: 10px;
+        font-weight: bold;
+        color: global.$key-color;
+        white-space: nowrap;
+        content: counters(section, '-') '. ';
+        counter-increment: section;
+      }
+    }
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    .outline-title {
+      margin-bottom: 5px;
+
+      @include acms.font-size(18);
+    }
+
+    .outline-item {
+      @include acms.font-size(14);
+    }
+  }
+}

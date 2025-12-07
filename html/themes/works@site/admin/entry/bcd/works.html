@@ -1,0 +1,151 @@
+<div class="acms-admin-margin-bottom-medium">
+  <h2 class="acms-admin-admin-title2">事例概要</h2>
+  <table class="acms-admin-table-admin-edit">
+    <tbody>
+      <tr>
+        <th>メイン画像 <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="記事一覧や詳細ページで利用する画像です。"></i></th>
+        <td class="js-media-field">
+          <div class="js-droparea" data-thumbnail="{entry_main_image@thumbnail}" data-type="image" data-thumbnail-type="{entry_main_image@type}" data-width="300px" data-height="200px"></div>
+          <p class="js-text acms-admin-text-danger" style="display:none">許可されていないファイルのため挿入できません。</p>
+          <div class="acms-admin-margin-top-mini">
+            <button type="button" class="js-insert acms-admin-btn" data-type="image">メディアを選択</button>
+          </div>
+          <input type="hidden" name="entry_main_image" class="js-value" value="{entry_main_image}" />
+          <input type="hidden" name="field[]" value="entry_main_image" />
+          <input type="hidden" name="entry_main_image:extension" value="media" />
+        </td>
+      </tr>
+      <tr>
+        <th>業種 <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="業種を選択してください。"></i></th>
+        <td>
+          <select name="work_industry">
+            <option value=""></option>
+            <option value="industry1" {work_industry:selected#industry1}>製造業</option>
+            <option value="industry2" {work_industry:selected#industry2}>建設・建築</option>
+            <option value="industry3" {work_industry:selected#industry3}>卸売・小売</option>
+            <option value="industry4" {work_industry:selected#industry4}>医療・福祉</option>
+            <option value="industry5" {work_industry:selected#industry5}>人材紹介・派遣</option>
+            <option value="industry6" {work_industry:selected#industry6}>不動産</option>
+            <option value="industry7" {work_industry:selected#industry7}>自治体・官公庁</option>
+            <option value="industry8" {work_industry:selected#industry8}>IT・システム開発</option>
+            <option value="industry9" {work_industry:selected#industry9}>ウェブサービス・デザイン</option>
+          </select>
+          <input type="hidden" name="field[]" value="work_industry" />
+        </td>
+      </tr>
+      <tr>
+        <th>規模 <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="規模を選択してください。"></i></th>
+        <td>
+          <div class="acms-admin-form-radio">
+            <input type="radio" name="work_scale" {work_scale:checked#scale1} id="input-radio-work_scale-scale1" value="scale1" />
+            <label for="input-radio-work_scale-scale1">
+              <i class="acms-admin-ico-radio"></i>1-10名</label>
+          </div>
+          <div class="acms-admin-form-radio">
+            <input type="radio" name="work_scale" {work_scale:checked#scale2} id="input-radio-work_scale-scale2" value="scale2" />
+            <label for="input-radio-work_scale-scale2">
+              <i class="acms-admin-ico-radio"></i>10-50名</label>
+          </div>
+          <div class="acms-admin-form-radio">
+            <input type="radio" name="work_scale" {work_scale:checked#scale3} id="input-radio-work_scale-scale3" value="scale3" />
+            <label for="input-radio-work_scale-scale3">
+              <i class="acms-admin-ico-radio"></i>50名以上</label>
+          </div>
+          <input type="hidden" name="field[]" value="work_scale" />
+        </td>
+      </tr>
+
+      <tr>
+        <th>目的 <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="目的を選択してください。"></i></th>
+        <td>
+          <div class="acms-admin-form-checkbox">
+            <input type="checkbox" name="work_goal[]" {work_goal:checked#goal1} id="input-checkbox-work_goal-goal1" value="goal1" />
+            <label for="input-checkbox-work_goal-goal1">
+              <i class="acms-admin-ico-checkbox"></i>コンバージョン改善</label>
+          </div><br>
+          <div class="acms-admin-form-checkbox">
+            <input type="checkbox" name="work_goal[]" {work_goal:checked#goal2} id="input-checkbox-work_goal-goal2" value="goal2" />
+            <label for="input-checkbox-work_goal-goal2">
+              <i class="acms-admin-ico-checkbox"></i>ユーザー体験(UX)改善</label>
+          </div><br>
+          <div class="acms-admin-form-checkbox">
+            <input type="checkbox" name="work_goal[]" {work_goal:checked#goal3} id="input-checkbox-work_goal-goal3" value="goal3" />
+            <label for="input-checkbox-work_goal-goal3">
+              <i class="acms-admin-ico-checkbox"></i>業務効率化</label>
+          </div><br>
+          <div class="acms-admin-form-checkbox">
+            <input type="checkbox" name="work_goal[]" {work_goal:checked#goal4} id="input-checkbox-work_goal-goal4" value="goal4" />
+            <label for="input-checkbox-work_goal-goal4">
+              <i class="acms-admin-ico-checkbox"></i>集客強化</label>
+          </div><br>
+          <div class="acms-admin-form-checkbox">
+            <input type="checkbox" name="work_goal[]" {work_goal:checked#goal5} id="input-checkbox-work_goal-goal5" value="goal5" />
+            <label for="input-checkbox-work_goal-goal5">
+              <i class="acms-admin-ico-checkbox"></i>ブランドイメージ向上</label>
+          </div>
+          <input type="hidden" name="field[]" value="work_goal" />
+        </td>
+      </tr>
+      <tr>
+        <th>期間 <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="機関を選択してください。"></i></th>
+        <td>
+          <div class="acms-admin-form-radio">
+            <input type="radio" name="work_period" {work_period:checked#short} id="input-radio-work_period-short" value="short" />
+            <label for="input-radio-work_period-short">
+              <i class="acms-admin-ico-radio"></i>短期（1〜3カ月）</label>
+          </div>
+          <div class="acms-admin-form-radio">
+            <input type="radio" name="work_period" {work_period:checked#mid} id="input-radio-work_period-mid" value="mid" />
+            <label for="input-radio-work_period-mid">
+              <i class="acms-admin-ico-radio"></i>中期（3〜6カ月）</label>
+          </div>
+          <div class="acms-admin-form-radio">
+            <input type="radio" name="work_period" {work_period:checked#long} id="input-radio-work_period-long" value="long" />
+            <label for="input-radio-work_period-long">
+              <i class="acms-admin-ico-radio"></i>長期（6〜12カ月）</label>
+          </div>
+          <div class="acms-admin-form-radio">
+            <input type="radio" name="work_period" {work_period:checked#large} id="input-radio-work_period-large" value="large" />
+            <label for="input-radio-work_period-large">
+              <i class="acms-admin-ico-radio"></i>大規模（1年以上）</label>
+          </div>
+          <input type="hidden" name="field[]" value="work_period" />
+        </td>
+      </tr>
+      <tr>
+        <th>事例名リード文 <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="記事一覧や詳細ページの事例名（記事タイトル）の前に表示されるリード文です。OGP設定のタイトルには反映されません。"></i></th>
+        <td>
+          <input type="text" name="work_copy" class="acms-admin-form-width-full" value="{work_copy}" />
+          <input type="hidden" name="field[]" value="work_copy" />
+        </td>
+      </tr>
+      <tr>
+        <th>事例名 <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="タイトルに事例名を設定してください。"></i></th>
+        <td>
+          記事編集ページ上部の「タイトル」欄で設定できます。
+        </td>
+      </tr>
+      <tr>
+        <th>サイトURL <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="実際のウェブサイトのURLを設定してください。"></i></th>
+        <td>
+          <input type="text" name="work_url" class="acms-admin-form-width-full" value="{work_url}" />
+          <input type="hidden" name="field[]" value="work_url" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const element = document.getElementById('seo-entry_main_image');
+  if (element) {
+    element.remove();
+  }
+
+  const titleElement = document.getElementById('seo-entry-accordion-title');
+  if (titleElement) {
+    titleElement.innerText = 'SEO設定';
+  }
+});
+</script>

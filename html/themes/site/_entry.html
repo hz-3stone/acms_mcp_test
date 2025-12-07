@@ -1,0 +1,26 @@
+@extends("/_layouts/base.html")
+
+@section("page-title")
+<!-- BEGIN_MODULE Touch_RootBlog -->
+<!-- BEGIN_MODULE Touch_NotCategory -->
+@include("/include/parts/page-title/unaffiliated-entry.html")
+<!-- END_MODULE Touch_NotCategory -->
+
+<!-- BEGIN_MODULE Touch_Category -->
+@include("/include/parts/page-title/root-category-name.html")
+<!-- END_MODULE Touch_Category -->
+<!-- END_MODULE Touch_RootBlog -->
+
+<!-- BEGIN_MODULE Touch_NotRootBlog -->
+@include("/include/parts/page-title/blog-name.html")
+<!-- END_MODULE Touch_NotRootBlog -->
+@endsection
+
+@section("main")
+<div class="acms-container">
+  <div class="container-md">
+    <!-- エントリー本文 -->
+    @include("/include/entry/body.html", {"module_id": "body_no_date", "entry_share": "false"})
+  </div>
+</div>
+@endsection

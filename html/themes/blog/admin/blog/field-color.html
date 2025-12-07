@@ -1,0 +1,18 @@
+<tr>
+  <th>
+    <label for="key_color">キーカラー</label>
+    <i
+      class="acms-admin-icon-tooltip js-acms-tooltip-hover"
+      data-acms-tooltip="グローバルナビゲーションのボーダーカラー、続きを読むカラー、エントリー一覧の矢印アイコンカラー、リンクカラー、エントリーのNEWラベル、エントリーの目次カラー、カレンダーの日付背景色を変更します。"
+    ></i>
+  </th>
+  <td>
+    <input
+      type="color"
+      name="key_color"
+      id="key_color"
+      value="<!-- BEGIN_IF [{key_color}/nem] -->{key_color}<!-- ELSE -->#E28484<!-- END_IF -->"
+    />
+    <input type="hidden" name="field[]" value="key_color" />
+  </td>
+</tr>

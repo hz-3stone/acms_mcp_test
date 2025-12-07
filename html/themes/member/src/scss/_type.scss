@@ -1,0 +1,168 @@
+@use "sass:map";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　タイポグラフィ
+------------------------------ */
+.heading-lg {
+  padding-top: (global.$header-height + 0.5rem);
+  margin: -1rem 0 global.$entry-el-margin-sm 0;
+  font-size: map.get(global.$font-scales, heading-s);
+  line-height: global.$line-height-sm;
+
+  &.heading-line {
+    padding-bottom: 1rem;
+    border-bottom: global.$border-width-md solid global.$color-gray100;
+  }
+
+  &.heading-primary {
+    position: relative;
+    margin-bottom: calc(global.$entry-el-margin-xs + 0.25rem + global.$entry-el-margin-sm);
+
+    &::before {
+      position: absolute;
+      bottom: -1rem;
+      left: 0;
+      display: block;
+      width: 3.5rem;
+      height: global.$border-width-lg;
+      content: "";
+      background: global.$color-primary;
+    }
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    padding-top: 3.5rem;
+    margin-top: -1rem; // アンカーリンクのための余白を打ち消す用
+    margin-bottom: global.$entry-el-margin-sm;
+    font-size: map.get(global.$font-scales, heading-m);
+
+    &.heading-primary {
+      margin-bottom: calc(global.$entry-el-margin-md + 0.25rem + global.$entry-el-margin-sm);
+
+      &::before {
+        bottom: -1.5rem;
+      }
+    }
+  }
+}
+
+.heading-md {
+  margin: 4rem 0 global.$entry-el-margin-sm 0;
+  font-size: map.get(global.$font-scales, heading-ss);
+  line-height: global.$line-height-sm;
+
+  &.heading-line {
+    padding-bottom: 1rem;
+    border-bottom: global.$border-width-md solid global.$color-gray100;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    margin: 4rem 0 global.$entry-el-margin-md 0;
+    font-size: map.get(global.$font-scales, heading-s);
+
+    &.heading-line {
+      margin: 4rem 0 (global.$entry-el-margin-sm + 0.5rem) 0;
+    }
+  }
+}
+
+.heading-sm {
+  margin: 4rem 0 global.$entry-el-margin-sm 0;
+  font-size: map.get(global.$font-scales, body-m);
+
+  &.heading-line {
+    padding-bottom: 1rem;
+    border-bottom: global.$border-width-md solid global.$color-gray100;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    margin: 4rem 0 global.$entry-el-margin-sm 0;
+    font-size: map.get(global.$font-scales, heading-ss);
+  }
+}
+
+.heading-ss {
+  margin: 4rem 0 global.$entry-el-margin-sm 0;
+  font-size: map.get(global.$font-scales, body-m);
+
+  &.heading-line {
+    padding-bottom: 1rem;
+    border-bottom: global.$border-width-md solid global.$color-gray100;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    margin: 4rem 0 global.$entry-el-margin-sm 0;
+    font-size: map.get(global.$font-scales, body-m);
+  }
+}
+
+.heading-lg,
+.heading-md,
+.heading-sm,
+.heading-ss {
+  &.heading-margin-top-none {
+    margin-top: 0;
+  }
+
+  &.heading-color-danger {
+    color: global.$color-error;
+  }
+}
+
+.paragraph {
+  margin: 0 0 global.$entry-el-margin-md 0;
+  line-height: global.$line-height-lg;
+
+  @include acms.media-breakpoint-up(md) {
+    margin: 0 0 global.$entry-el-margin-lg 0;
+  }
+}
+
+.text-word-break {
+  display: inline-block;
+}
+
+.unordered-list {
+  padding: 0 0 0 2rem;
+  margin: 0 0 global.$entry-el-margin-md 0;
+
+  li {
+    position: relative;
+    clear: both;
+    margin: 0 0 0.5rem;
+    line-height: global.$line-height-base;
+    list-style: none;
+
+    &::before {
+      position: absolute;
+      top: 0.5rem;
+      left: -1.5rem;
+      width: 0.5rem;
+      height: 0.5rem;
+      content: "";
+      background: global.$color-secondary;
+      border-radius: 50%;
+    }
+  }
+}
+
+.list-centered {
+  text-align: center;
+
+  ol,
+  ul {
+    display: inline-block;
+  }
+
+  li {
+    text-align: left;
+  }
+}
+
+@include acms.media-breakpoint-up(md) {
+  .list-centered {
+    padding-right: 1.5rem;
+  }
+}

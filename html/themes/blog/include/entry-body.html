@@ -1,0 +1,187 @@
+<!-- BEGIN_MODULE Entry_Body id="" -->
+<!-- BEGIN notFound -->
+<section class="entry">
+  <h2 class="entry-title">Not Found</h2>
+  <p>お探しの記事は見つかりませんでした。</p>
+</section>
+<!-- END notFound -->
+<!-- BEGIN entry:loop -->
+<!-- BEGIN_MODULE Touch_Login -->
+<div class="acms-form-group">
+  @include("/admin/entry/revision-info.html")
+</div><!-- END_MODULE Touch_Login -->
+<article class="entry <!-- BEGIN_MODULE Touch_NotEntry -->-index<!-- END_MODULE Touch_NotEntry -->">
+  <!-- BEGIN_MODULE Touch_NotEdit -->
+  <header class="entry-header">
+    <!-- BEGIN_MODULE Touch_Entry -->
+    <h1 class="entry-title"><a href="{titleUrl}">{title}</a></h1>
+    <!-- END_MODULE Touch_Entry -->
+    <!-- BEGIN_MODULE Touch_NotEntry -->
+    <h2 class="entry-title"><a href="{titleUrl}">{title}</a></h2>
+    <!-- END_MODULE Touch_NotEntry -->
+
+    <!-- BEGIN date-new:veil -->
+    <p class="entry-date">
+      <!-- BEGIN date:veil -->
+      <time datetime="{date#Y}-{date#m}-{date#d}">{date#Y}年{date#m}月{date#d}日({date#week})</time>
+      <!-- END date:veil -->
+      <!-- BEGIN new --><span class="entry-new">NEW</span><!-- END new -->
+    </p>
+    <!-- END date-new:veil -->
+
+    <!-- BEGIN labels:veil -->
+    <ul class="entry-labels">
+      <!-- BEGIN category:loop -->
+      <li><a href="{url}" class="entry-category-label">{name}</a></li>
+      <!-- END category:loop -->
+
+      <!-- BEGIN_MODULE Touch_NotEntry -->
+      <!-- BEGIN tag:loop -->
+      <li><a href="{url}" class="entry-tag-label">#{name}</a></li>
+      <!-- END tag:loop -->
+      <!-- END_MODULE Touch_NotEntry -->
+
+      <!-- BEGIN_MODULE Touch_Entry -->
+      <!-- BEGIN_SetRendered id="tag" -->
+      <!-- BEGIN tag:loop -->
+      <li><a href="{url}" class="entry-tag-label">#{name}</a></li>
+      <!-- END tag:loop -->
+      <!-- END_SetRendered -->
+      <!-- GET_Rendered id="tag" -->
+      <!-- END_MODULE Touch_Entry -->
+    </ul>
+    <!-- END labels:veil -->
+  </header>
+  <!-- END_MODULE Touch_NotEdit -->
+
+  <div class="acms-entry js-outline"
+    data-target=".js-outline-yield"
+    data-link="true"
+    data-listType="ol"
+    data-listClassName="outline-list"
+    data-itemClassName="outline-item"
+    data-linkClassName="scrollTo"
+    data-anchorName="heading-$1"
+    data-levelLimit="3"
+    data-exceptClass="js-except">
+    <!-- カスタムフィールドの読み込み -->
+    @include("/include/entry/field.html")
+    @include("/include/unit.html")
+
+    <!-- BEGIN_MODULE Touch_Entry -->
+    <!-- カスタムフィールドの読み込み -->
+    @include("/include/entry/field_foot.html")
+    <!-- END_MODULE Touch_Entry -->
+  </div>
+
+  <!-- BEGIN formBody -->
+  @include("/include/form/unit.html")
+  <!-- END formBody -->
+
+  <!-- BEGIN continueLink:veil -->
+  <a href="{continueUrl}" class="entry-continue-btn">続きを読む</a>
+  <!-- END continueLink:veil -->
+
+  <!-- 編集ボックス -->
+  @include("/admin/entry/action.html")
+
+  <!-- BEGIN_IF [%{EID}/nem] -->
+  <!-- BEGIN footer:veil -->
+  <footer class="entry-footer">
+    <div class="entry-info">
+      <!-- BEGIN_IF [{date#Y}{date#m}{date#d}{date#H}{date#i}/lt/{udate#Y}{udate#m}{udate#d}{udate#H}{udate#i}] -->
+      <p class="entry-udate-info">更新 {udate#Y}/{udate#m}/{udate#d} {udate#H}:{udate#i}</p>
+      <!-- END_IF -->
+      @include("/include/social/sns_entry.html")
+    </div>
+
+    <!-- BEGIN userField -->
+    <!-- BEGIN_IF [{position}{user_title}{profile}[delnl]{image@thumbnail}{twitter}{facebook}{profile_link}/nem] -->
+    <div class="profile">
+      <div class="profile-info">
+        <!-- BEGIN image_thumbnail:veil -->
+        <img src="%{MEDIA_ARCHIVES_DIR}{image@path}[resizeImg(80, 80)]" class="profile-img" alt="{image@alt}">
+        <!-- END image_thumbnail:veil -->
+
+        <div class="profile-info-base">
+          <p class="profile-name">{fieldUserName}</p><!-- BEGIN position_title:veil -->
+          <p class="profile-position">{position}<!-- BEGIN_IF [{position}/nem/_and_/{user_title}/nem] --> <!-- END_IF -->{user_title}</p><!-- END position_title:veil --><!-- BEGIN_IF [{profile_link}/nem/_or_/{twitter}/nem/_or_/{facebook}/nem] -->
+          <div class="profile-icon-list"><!-- BEGIN_IF [{profile_link}/nem] -->
+            <a href="{profile_link}" class="social-icon"><span class="acms-hide-visually">{name}のプロフィールへのリンク</span><i class="acms-icon-user"></i></a><!-- END_IF --><!-- BEGIN twitter:veil --><a href="{twitter}" class="social-icon social-icon-twitter"><span class="acms-hide-visually">{twitter}のX（旧Twitter）へのリンク</span><i class="acms-icon-x"></i></a><!-- END twitter:veil --><!-- BEGIN facebook:veil --><a href="{facebook}" class="social-icon social-icon-facebook"><span class="acms-hide-visually">{facebook}のFacebookへのリンク</span><i class="acms-icon-facebook"></i></a><!-- END facebook:veil -->
+          </div><!-- END_IF -->
+        </div>
+      </div>
+      <p class="profile-text">{profile}[raw|nl2br]</p>
+    </div>
+    <!-- END_IF -->
+    <!-- END userField -->
+  </footer>
+  <!-- END footer:veil -->
+  <!-- END_IF -->
+</article>
+<!-- END entry:loop -->
+
+<!-- コメント -->
+<!-- @include("/admin/comment/edit.html") -->
+
+<!-- コメント一覧 -->
+<!-- @include("/include/comment.html") -->
+
+<!-- ページャー -->
+@include("/include/entry-body-pager.html")
+
+<!-- END_MODULE Entry_Body -->
+
+<!-- 確認用テンプレート -->
+@include("/include/check-seo.html")
+
+<!-- BEGIN_MODULE Touch_Entry -->
+<!-- BEGIN_MODULE Entry_TagRelational -->
+<section class="tag-relational">
+  <h2 class="sub-heading">関連記事</h2>
+  @include("/admin/module/setting.html")
+  <!-- BEGIN notFound --><div class="tag-relational-description">この記事のハッシュタグに関連する記事が見つかりませんでした。</div><!-- END notFound -->
+  <!-- BEGIN_IF [<!-- BEGIN notFound -->notFound<!-- END notFound -->/em] -->
+    <div class="tag-relational-description">この記事のハッシュタグ <ul class="tag-relational-tags"><!-- GET_Rendered id="tag" --></ul> から関連する記事を表示しています。</div>
+    <div class="acms-cssgrid<!-- BEGIN_IF [{parent.loop.class}/nem] --> {parent.loop.class}<!-- ELSE --> acms-g-cols-2 acms-g-cols-sm-3<!-- END_IF -->" style="--acms-gap: 30px 5px;">
+      <!-- BEGIN entry:loop -->
+      <a href="{url}" class="tag-relational-entry">
+        <div class="acms-img-responsive tag-relational-img">
+          <!-- BEGIN_IF [{path}/nem/] -->
+            <img
+              class="js-focused-image"
+              data-focus-x="{focalX}"
+              data-focus-y="{focalY}"
+              src="%{ROOT_DIR}{path}[resizeImg(360)]"
+              alt="{alt}"
+              loading="lazy"
+              decoding="async"
+            >
+          <!-- ELSE_IF [<!-- BEGIN blogField -->{noimage@path}<!-- END blogField -->/nem] -->
+          <!-- BEGIN blogField -->
+          <img
+            class="js-focused-image"
+            src="%{MEDIA_ARCHIVES_DIR}{noimage@path}"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+          <!-- END blogField -->
+          <!-- ELSE -->
+          <img
+            class="js-focused-image"
+            src="/images/noimage.png"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+          <!-- END_IF -->
+        </div>
+        <h3 class="tag-relational-entry-title">{title}</h3><!-- BEGIN date:veil -->
+      </a>
+      <!-- END entry:loop -->
+    </div>
+  <!-- END_IF -->
+</section>
+<!-- END_MODULE Entry_TagRelational -->
+<!-- END_MODULE Touch_Entry -->

@@ -1,0 +1,78 @@
+<!-- BEGIN main_img:veil -->
+.header-bg {
+background-position:center center;
+background-image:url(%{MEDIA_ARCHIVES_DIR}{main_img@path});
+border-bottom: 1px solid #CCCCCC;
+}
+<!-- END main_img:veil -->
+
+<!-- BEGIN height:veil -->
+.header-wrap {
+height:{height}px;
+}
+<!-- END height:veil -->
+
+<!-- BEGIN height_sp:veil -->
+@media screen and (max-width: 767px) {
+.header-wrap {
+height:{height_sp}px;
+}
+}
+<!-- END height_sp:veil -->
+
+<!-- BEGIN header_color:veil -->
+.header-title, .header-title a, .header-title a:link, .header-title a:visited {
+color: {header_color};
+}
+<!-- END header_color:veil -->
+
+<!-- BEGIN key_color:veil -->
+.summary-entry-text span {
+background-color: {key_color};
+color: <!-- GET_Rendered id="contrast_color" -->;
+}
+
+@media screen and (min-width: 768px) {
+.nav-list a:hover {
+border-color: {key_color};
+}
+}
+
+.not-found-return:hover {
+color: {key_color};
+}
+.entry-new {
+background-color: {key_color};
+color: <!-- GET_Rendered id="contrast_color" -->;
+}
+.entry-continue-btn {
+color: {key_color};
+border-color: {key_color};
+}
+.entry-continue-btn:link,
+.entry-continue-btn:visited,
+.entry-continue-btn:focus,
+.entry-continue-btn:hover,
+.entry-continue-btn:active {
+color: {key_color};
+}
+
+/* $entry-class = .acms-entry */
+.acms-entry .outline {
+border-color: {key_color};
+}
+.acms-entry .outline-title {
+color: {key_color};
+}
+.acms-entry .outline-item a:hover,
+.acms-entry .outline-item a::before {
+color: {key_color};
+}
+
+.calendar-table .success a {
+background-color: {key_color};
+}
+.calendar-table .success a:link, .calendar-table .success a:visited {
+color: <!-- GET_Rendered id="contrast_color" -->;
+}
+<!-- END key_color:veil -->

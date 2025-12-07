@@ -1,0 +1,99 @@
+@use "sass:map";
+@use "../../global/acms-common" as acms;
+@use "../../global/common" as global;
+
+/* ------------------------------
+ テーブル
+------------------------------ */
+
+@include acms.editor-style(
+  ("table"),
+) {
+  margin: 0 0 global.$entry-el-margin-md;
+  border-collapse: collapse;
+  background-color: global.$color-white;
+  border: 0; /* リセット用 */
+  border-bottom: global.$border-width-sm solid global.$color-gray30;
+
+  tr {
+    border-top: global.$border-width-sm solid global.$color-gray30;
+  }
+
+  th,
+  td {
+    min-width: auto;
+    padding: global.$entry-el-padding-xs;
+    font-size: map.get(global.$font-scales, body-m);
+    line-height: global.$line-height-base;
+    vertical-align: top;
+    text-align: left;
+    white-space: normal;
+    border: 0; /* リセット用 */
+  }
+
+  th {
+    background-color: global.$color-gray10;
+  }
+
+  td {
+    background-color: global.$color-white; /* リセット用 */
+  }
+
+  p {
+    margin-block: 0;
+  }
+
+  a {
+    padding-block: 2px;
+    color: global.$color-link;
+    text-decoration: none;
+    border-bottom: global.$border-link;
+
+    &:hover {
+      border-color: transparent;
+    }
+
+    &[href^="tel:"] {
+      color: currentcolor;
+      border-bottom: global.$border-width-sm dashed;
+
+      &:hover {
+        border-color: transparent;
+      }
+    }
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    th,
+    td {
+      padding: global.$entry-el-padding-sm;
+      font-size: map.get(global.$font-scales, body-m);
+    }
+  }
+}
+
+/* ブロックエディター内のテーブル */
+@include acms.editor-style(("div:has(> table)")) {
+  margin-bottom: global.$entry-el-margin-md;
+  overflow-x: auto; // 横スクロールする時用
+
+  table {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+/* テーブルユニット */
+[class*="column-table"] {
+  min-width: 0;
+}
+
+/* スクロールするテーブル */
+.acms-table-scrollable,
+.js-table-unit-scroll-hint {
+  th,
+  td {
+    word-break: keep-all; // 横スクロールするテーブルの時は常時テキスト折り返しなし
+    white-space: nowrap;
+  }
+}

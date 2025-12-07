@@ -1,0 +1,92 @@
+@use "sass:map";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* 検索フォーム（大）
+------------------------------ */
+.form-search {
+  .form-search-action {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .form-search-label {
+    margin-right: 1rem;
+    font-size: map.get(global.$font-scales, body-s);
+    font-weight: bold;
+    line-height: 3rem;
+    white-space: nowrap;
+  }
+
+  input.form-search-input {
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    height: 3rem;
+    padding: 0.75rem 1rem;
+    font-size: map.get(global.$font-scales, body-m);
+    appearance: none;
+    background: var(--color-white);
+    border: var(--border-width-sm) solid var(--color-gray30);
+    border-radius: var(--border-radius-md);
+    transition: background-color 0.25s ease;
+
+    &:hover {
+      background: var(--color-white);
+      border-color: var(--color-gray50);
+    }
+
+    &:focus {
+      outline: none;
+      background: var(--color-white);
+      border-color: acms.$acms-form-focus-border-color;
+      box-shadow: var(--box-shadow-focus), acms.$acms-form-box-shadow;
+    }
+  }
+
+
+  .form-search-side-button {
+    display: flex;
+    white-space: nowrap;
+  }
+
+  .form-search-button {
+    width: initial;
+    padding: 0.75rem 2rem;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    .form-search-button {
+      padding: 0.75rem 2rem;
+    }
+  }
+}
+
+/* 検索結果 */
+.search-result-heading {
+  margin-bottom: 1.5rem;
+
+  .form-search-label {
+    display: none;
+  }
+}
+
+@include acms.media-breakpoint-up(md) {
+  .search-result-heading {
+    .form-search-action {
+      max-width: 50%;
+    }
+
+    .form-search-button {
+      min-width: initial;
+    }
+  }
+}
+
+.search-back-button-wrap {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 1rem 1rem 2rem;
+}

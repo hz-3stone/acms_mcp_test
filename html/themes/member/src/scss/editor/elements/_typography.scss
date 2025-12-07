@@ -1,0 +1,369 @@
+@use "sass:map";
+@use "../../global/acms-common" as acms;
+@use "../../global/common" as global;
+
+/* ------------------------------
+ テキスト
+------------------------------ */
+
+/* リンク
+----------------------------- */
+@include acms.editor-style(
+  ("a"),
+  $exclude-classes: ("not-editor-style", "media-image-block", "column-image", "column-media", "column-eximage")
+) {
+  padding-block: 2px;
+  color: global.$color-link;
+  text-decoration: none;
+  border-bottom: global.$border-link;
+
+  @media (hover: hover) {
+    &:where(:any-link):hover {
+      border-color: transparent;
+    }
+  }
+
+  &[href^="tel:"] {
+    color: currentcolor;
+    border-bottom: global.$border-width-sm dashed;
+
+    @media (hover: hover) {
+      &:where(:any-link):hover {
+        border-color: transparent;
+      }
+    }
+  }
+}
+
+/* em
+----------------------------- */
+@include acms.editor-style(
+  ("em"),
+) {
+  font-style: italic;
+  color: global.$color-text;
+}
+
+/* strong
+----------------------------- */
+@include acms.editor-style(
+  ("strong"),
+) {
+  font-weight: bold;
+  background: linear-gradient(transparent 60%, global.$color-highlight-light 60%);
+}
+
+/* mark
+----------------------------- */
+@include acms.editor-style(
+  ("mark"),
+) {
+  padding-block: 0.125rem;
+  color: inherit;
+  background-color: global.$color-highlight-light;
+  border-radius: 0.125rem; /* 2px */
+  box-decoration-break: clone;
+}
+
+/* code
+----------------------------- */
+@include acms.editor-style(
+  ("code"),
+  $exclude-classes: ("not-editor-style", "code-highlight"),
+) {
+  padding: 0.25em;
+  margin-inline: 0.25rem;
+  font-size: 87.5%;
+  color: global.$color-primary;
+  background-color: global.$color-white;
+  border: global.$border-width-sm solid currentcolor;
+  border-radius: global.$border-radius-sm;
+}
+
+/* 見出し
+----------------------------- */
+@include acms.editor-style("h2") {
+  margin-block: 0 global.$entry-el-margin-sm;
+  font-size: map.get(global.$font-scales, heading-s);
+  line-height: global.$line-height-sm;
+
+  &.heading-line {
+    padding-bottom: global.$entry-el-padding-xs;
+    border-bottom: global.$border-width-md solid global.$color-gray100;
+  }
+
+  &.heading-primary {
+    position: relative;
+    margin-bottom: calc(global.$entry-el-margin-xs + 0.25rem + global.$entry-el-margin-sm);
+
+    &::before {
+      position: absolute;
+      bottom: -1.25rem;
+      left: 0;
+      display: block;
+      width: 4rem;
+      height: global.$border-width-lg;
+      content: "";
+      background: global.$color-primary;
+    }
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    font-size: map.get(global.$font-scales, heading-m);
+
+    &.heading-primary {
+      margin-bottom: calc(global.$entry-el-margin-md + 0.25rem + global.$entry-el-margin-sm);
+
+      &::before {
+        bottom: -1.5rem;
+      }
+    }
+  }
+}
+
+@include acms.editor-style("h3") {
+  margin-block: 0 global.$entry-el-margin-sm;
+  font-size: map.get(global.$font-scales, heading-ss);
+  line-height: global.$line-height-sm;
+
+  &.heading-line {
+    padding-bottom: global.$entry-el-padding-xs;
+    border-bottom: global.$border-width-md solid global.$color-gray100;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    font-size: map.get(global.$font-scales, heading-s);
+  }
+}
+
+@include acms.editor-style("h4") {
+  margin-block: 0 global.$entry-el-margin-sm;
+  font-size: map.get(global.$font-scales, body-m);
+  line-height: global.$line-height-sm;
+
+  &.heading-line {
+    padding-bottom: 1rem;
+    border-bottom: global.$border-width-md solid global.$color-gray100;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    font-size: map.get(global.$font-scales, heading-ss);
+  }
+}
+
+/* 本文
+----------------------------- */
+@include acms.editor-style("p") {
+  margin-block: 0 global.$entry-el-margin-md;
+  font-size: map.get(global.$font-scales, body-m);
+  line-height: global.$line-height-lg;
+}
+
+/* リスト
+----------------------------- */
+@include acms.editor-style("ul") {
+  padding-left: global.$entry-el-padding-md;
+  margin-block: 0 global.$entry-el-margin-md;
+
+  li {
+    position: relative;
+    margin-bottom: 0.5rem;
+    font-size: map.get(global.$font-scales, body-m);
+    line-height: global.$line-height-lg;
+    list-style: none;
+
+    &::before {
+      position: absolute;
+      top: 0.5rem;
+      left: -1.5rem;
+      width: 0.5rem;
+      height: 0.5rem;
+      content: "";
+      background: global.$color-secondary;
+      border-radius: 50%;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    & > * {
+      /* ブロックエディター：リセット用 */
+      margin-block: 0;
+    }
+
+    ul {
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+/* 番号付きリスト */
+@include acms.editor-style("ol") {
+  padding-left: global.$entry-el-padding-md;
+  margin-block: 0 global.$entry-el-margin-md;
+  counter-reset: order-list;
+
+  li {
+    position: relative;
+    clear: both;
+    margin-bottom: 0.5rem;
+    font-size: map.get(global.$font-scales, body-m);
+    line-height: global.$line-height-lg;
+    list-style: none;
+
+    &::before {
+      position: absolute;
+      top: 2px;
+      left: -2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin: 0 1rem 0 0;
+      font-size: map.get(global.$font-scales, body-s);
+      color: global.$color-white;
+      content: counter(order-list);
+      counter-increment: order-list;
+      background: global.$color-secondary;
+      border-radius: 50%;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    & > * {
+      /* ブロックエディター：リセット用 */
+      margin-block: 0;
+    }
+
+    ol {
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+/* 記述リスト */
+@include acms.editor-style("dl") {
+  display: block; /* リセット用 */
+  padding-block: 0; /* リセット用 */
+  margin-block: 0 global.$entry-el-margin-md;
+  border: 0; /* リセット用 */
+
+  dt {
+    margin-bottom: 0.5rem;
+    font-size: map.get(global.$font-scales, body-m);
+    font-weight: bold;
+    line-height: global.$line-height-sm;
+  }
+
+  dd {
+    margin-bottom: 1rem;
+    margin-left: 0; /* リセット用 */
+    font-size: map.get(global.$font-scales, body-m);
+    line-height: global.$line-height-lg;
+  }
+
+  dd + dt {
+    margin-top: 0; /* リセット用 */
+  }
+
+  &.box-bordered {
+    border: global.$border-width-sm solid global.$color-gray40;
+
+    dt {
+      padding-inline: global.$entry-el-padding-sm;
+      padding-top: global.$entry-el-padding-sm;
+      border-top: global.$border-width-sm solid global.$color-gray40;
+
+      &:first-child {
+        border: 0;
+      }
+    }
+
+    dd {
+      padding-inline: global.$entry-el-padding-sm;
+      padding-bottom: global.$entry-el-padding-sm;
+      margin-bottom: 0;
+    }
+
+    @include acms.media-breakpoint-up(md) {
+      dt {
+        padding-inline: global.$entry-el-padding-md;
+        padding-top: global.$entry-el-padding-md;
+      }
+
+      dd {
+        padding-inline: global.$entry-el-padding-md;
+        padding-bottom: global.$entry-el-padding-md;
+      }
+    }
+  }
+}
+
+/* ソースコード
+----------------------------- */
+@include acms.editor-style(
+  ("pre"),
+) {
+  max-width: 100%;
+  padding: global.$entry-el-padding-sm;
+  margin-block: 0 global.$entry-el-margin-md;
+  overflow: auto;
+  font-size: map.get(global.$font-scales, body-m);
+  line-height: global.$line-height-lg;
+  color: global.$color-text; /* 閲覧側画面の文字色はライブラリに依存 */
+  background-color: global.$color-white;
+  border: global.$border-width-sm solid global.$color-primary;
+  border-radius: global.$border-radius-lg;
+
+  code {
+    padding: 0;
+
+    /* リセット用 */
+    margin: 0;
+    font-size: inherit;
+    color: inherit;
+    background-color: inherit;
+    border: none;
+    box-shadow: none;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    padding: global.$entry-el-padding-md;
+  }
+}
+
+/* 水平罫線
+----------------------------- */
+@include acms.editor-style(
+  ("hr"),
+  $exclude-classes: ("not-editor-style"),
+) {
+  margin-bottom: global.$entry-el-margin-md;
+  border: 0 solid global.$color-gray70;
+  border-top-width: global.$border-width-sm;
+
+  @include acms.media-breakpoint-up(md) {
+    margin-bottom: global.$entry-el-margin-lg;
+  }
+}
+
+/* ブロックエディター用 */
+[data-type="horizontalRule"] {
+  margin-block: global.$entry-el-margin-md;
+
+  hr {
+    margin-block: 0;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    margin-block: global.$entry-el-margin-md;
+
+    hr {
+      margin-block: 0;
+    }
+  }
+}

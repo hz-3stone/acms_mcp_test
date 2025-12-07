@@ -1,0 +1,82 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　検索フォーム
+------------------------------ */
+.search-form {
+	display: table;
+	width: 100%;
+	margin-bottom: 30px;
+	table-layout: fixed;
+}
+
+.search-form-text {
+	display: table-cell;
+	width: 100%;
+	height: 40px;
+	padding: 5px;
+	appearance: none;
+	border: 1px solid global.$btn-color;
+	border-right: none;
+	border-radius: 5px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+
+  @include acms.font-size(14);
+}
+
+.search-form-btn-wrap {
+	position: relative;
+	display: table-cell;
+	width: 40px;
+}
+
+.search-form-btn {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 40px;
+	padding: 0;
+	margin-left: -1px;
+	font-size: 20px;
+	line-height: 1;
+	vertical-align: middle;
+	color: global.$btn-color;
+	text-align: center;
+	background-color: #FFF;
+	border: 1px solid global.$btn-color;
+	border-left: none;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+	&:hover {
+		color: global.$text-color-light;
+	}
+}
+
+/* ------------------------------
+　　検索結果の表示
+------------------------------ */
+.search-result {
+	padding-bottom: 5px;
+	border-bottom: 4px solid global.$border-color-light;
+}
+
+.search-result-heading {
+	display: inline-block;
+	margin: 0;
+	line-height: 1.3;
+	color: global.$text-color-light;
+
+  @include acms.font-size(18);
+}
+
+.search-result-heading a {
+	color: global.$text-color-light;
+}
+
+.search-result-heading a:hover {
+	color: global.$text-color-light;
+}

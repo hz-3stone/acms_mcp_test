@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  @section("head-meta")
+  @include("/include/head/meta.html")
+  @endsection
+
+  @section("head-link")
+  @include("/include/head/link.html")
+  @endsection
+
+  @section("head-js")
+  @include("/include/head/js.html")
+  @endsection
+
+  @section("head-structured-data")
+  @include("/include/structured-data/breadcrumb-list.html")
+  @endsection
+</head>
+<body>
+@section("body-start")
+@include("/include/social/sns_script.html")
+@endsection
+
+<div class="header-nav-wrap">
+  @section("header")
+  <!-- ヘッダー -->
+  @include("/include/header.html")
+  @endsection
+
+  @section("navigation")
+  <!-- ナビゲーション -->
+  <div class="nav-wrap">
+    <div class="base-container">
+    @include("/include/navigation.html")
+    </div>
+  </div>
+  @endsection
+</div>
+
+<main class="base-container js-pretty-scroll-container">
+
+  @section("topic-path")
+  <!-- トピックパス -->
+  @include("/include/topicpath.html")
+  @endsection
+
+  <div class="base-container-grid">
+    <div class="main-column">
+      @section("admin-part")
+      <!-- アクションボックス -->
+      @include("/admin/action.html")
+      @include("/admin/switch-user.html")
+      @endsection
+
+      @section("main")
+      <h1>継承してメインコンテンツを設定してください</h1>
+      @endsection
+    </div>
+    <div class="sub-column">
+      <div class="js-pretty-scroll">
+        @section("sub")
+        @endsection
+        <div class="js-offcanvas" id="offcanvas">
+          <nav aria-label="メニュー">
+            @section("offcanvas")
+            <!-- SP用ナビゲーション -->
+            @include("/include/navigation-sp.html")
+            <!-- オフキャンバスの閉じボタン -->
+            @include("/include/offcanvas-btn-close.html")
+            @endsection
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+@section("footer")
+<!-- オフキャンバスのボタン -->
+@include("/include/offcanvas-btn.html")
+<!-- フッター -->
+<div class="footer-wrap">
+  <div class="base-container">
+    @include("/include/footer.html")
+  </div>
+</div>
+@endsection
+</body>
+</html>

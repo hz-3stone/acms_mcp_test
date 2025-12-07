@@ -1,0 +1,71 @@
+// ------------------------------
+//　設定
+// ------------------------------
+$enable-iphonex: true;
+
+
+// ------------------------------
+//　ベース
+// ------------------------------
+
+// メインカラム
+$main-column-width: 640px;
+$main-column-right-padding: 50px; // メインカラムとサブカラムの間の余白
+
+// サブカラム
+$sub-column-width: 300px;
+
+// SP時の左右余白
+$base-container-padding-sp: 10px;
+
+// コンテナ最大幅
+$base-container-max-width: $main-column-width + $sub-column-width + $main-column-right-padding;
+
+// ------------------------------
+//　カラー
+// ------------------------------
+
+// デフォルトのキーカラー
+$key-color: #E28484;
+
+// テキスト
+$text-color-base: #333;
+$text-color-light: #666;
+
+// 曜日カラー
+$week-color-sat: #2262AC;
+$week-color-sun: #B70000;
+
+// リンク
+$link-color: #4a90e2;
+$link-color-visited: #5e5cba;
+$link-color-dark: #3B5998;
+
+// ナビゲーション
+$nav-border-color: transparent;
+
+// blogテーマのボタン等で使用される色
+$btn-color: #999;
+$btn-color-on-hover: #666;
+
+// ボーダーカラー
+$border-color-base: #CCC;
+$border-color-dark: #979797;
+$border-color-light: #F5F5F5;
+
+// 背景カラー
+$bg-color-base: #F5F5F5;
+$bg-color-dark: #333;
+$bg-color-hover: $bg-color-base;
+$bg-color-label-hover: #CCC;
+
+// 各SNSカラー
+$facebook-color: #1877F2;
+$twitter-color: #55ACEE;
+$x-color: #000;
+
+// ホバー時の変化スピード
+$transition-speed: .2s;
+
+// 透過
+$opacity-hover: .7;

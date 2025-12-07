@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+  <head>
+    @include("/include/head/meta.html")
+    @include("/include/head/link.html")
+    @include("/include/head/js.html")
+  </head>
+
+  <body id="top" class="blog%{BID}-%{VIEW}">
+    @include("/include/body-start.html")
+
+    <div>
+
+      @include("/include/header/header.html")
+
+      <!-- BEGIN_MODULE Touch_NotCategory -->
+      @include("/include/parts/page-title/unaffiliated-entry.html")
+      <!-- END_MODULE Touch_NotCategory -->
+
+      <!-- BEGIN_MODULE Touch_Category -->
+      @include("/include/parts/page-title/root-category-name.html")
+      <!-- END_MODULE Touch_Category -->
+
+      @include("/include/parts/topicpath.html")
+
+      <!-- BEGIN_MODULE Touch_Login -->
+      <!-- ※管理用パーツ -->
+      <div class="acms-container">
+        @include("/admin/action.html")
+        @include("/admin/switch-user.html")
+      </div>
+      <!-- END_MODULE Touch_Login -->
+
+      <div class="acms-container js-pretty-scroll-container">
+        <div class="content-wrapper two-columns">
+          <div class="main-container">
+            <main>
+              <!-- エントリー本文 -->
+              @include("/include/entry/body.html", {"module_id": "body_date"})
+            </main>
+          </div>
+          <div class="side-container">
+            <div class="js-pretty-scroll">
+              <div class="section-side-layout">
+                <!-- エントリーサマリー：サイドバー用 -->
+                @include("/include/entry/summary-side.html", {"module_title": "新着記事"})
+
+                <!-- アーカイブリスト：月表示 -->
+                @include("/include/entry/archive-list.html")
+
+                @include("/include/parts/banner-side.html")
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BEGIN_MODULE Touch_SessionWithAdministration -->
+      <!-- meta情報確認 -->
+      <div class="acms-mt-8">
+        @include("/include/check-seo.html")
+      </div>
+      <!-- END_MODULE Touch_SessionWithAdministration -->
+
+      <!-- BEGIN_MODULE Touch_NotEdit -->
+      <!-- Call to Action -->
+      @include("/include/parts/cta.html", {"module_id": "mf_cta", "cta-section-mt": "true"})
+      <!-- END_MODULE Touch_NotEdit -->
+
+      @include("/include/footer/footer.html")
+    </div>
+
+    @include("/include/body-end.html")
+  </body>
+</html>

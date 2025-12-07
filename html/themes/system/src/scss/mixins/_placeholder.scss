@@ -1,0 +1,13 @@
+// ------------------------------
+// プレースホルダー
+// ------------------------------
+@mixin placeholder($color) {
+  &::placeholder {
+    color: $color;
+    text-overflow: ellipsis;
+  }
+
+  &:placeholder-shown {
+    text-overflow: ellipsis;
+  }
+}

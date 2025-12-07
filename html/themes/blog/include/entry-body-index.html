@@ -1,0 +1,59 @@
+<!-- BEGIN_MODULE Entry_Body id="" -->
+<!-- BEGIN notFound -->
+<p>ただいまページを準備しております。もうしばらくお待ちください。</p>
+<!-- END notFound -->
+
+<ul class="summary is-thumbnail-1column">
+  <!-- BEGIN entry:loop -->
+  <li class="summary-entry">
+    <a href="{titleUrl}" class="summary-entry-link" target="_self">
+      <div class="summary-entry-img-outer">
+        <div class="summary-entry-img">
+          <!-- BEGIN_IF [<!-- BEGIN mainImage -->{path}<!-- END mainImage -->/nem/] -->
+            <!-- BEGIN mainImage -->
+            <img class="js-focused-image"
+                data-focus-x="{focalX}"
+                data-focus-y="{focalY}"
+                src="%{ROOT_DIR}{path}[resizeImg(640)]" alt="{alt}">
+            <!-- END mainImage -->
+          <!-- ELSE_IF [<!-- BEGIN blogField -->{noimage@path}<!-- END blogField -->/nem] -->
+            <!-- BEGIN blogField -->
+            <img class="js-focused-image" src="%{MEDIA_ARCHIVES_DIR}{noimage@path}" alt="">
+            <!-- END blogField -->
+          <!-- ELSE -->
+          <img class="js-focused-image" src="/images/noimage.png" alt="">
+          <!-- END_IF -->
+        </div>
+      </div>
+      <div class="summary-entry-contents">
+        <h2 class="summary-entry-title">{title}</h2><!-- BEGIN date-new:veil -->
+        <p class="entry-date"><!-- BEGIN date:veil -->
+          <time datetime="{date#Y}-{date#m}-{date#d}">{date#Y}年{date#m}月{date#d}日({date#week})</time><!-- END date:veil --><!-- BEGIN new -->
+          <span class="entry-new">NEW</span><!-- END new -->
+        </p><!-- BEGIN date-new:veil -->
+        <!-- BEGIN labels:veil -->
+        <ul class="entry-labels"><!-- BEGIN categoryField:veil -->
+          <!-- BEGIN categoryField --><!-- BEGIN_IF [{fieldCategoryName}/nem] -->
+          <li>{fieldCategoryName}</li><!-- END_IF -->
+          <!-- END categoryField --><!-- END categoryField:veil -->
+          <!-- BEGIN tag:loop --><!-- BEGIN_IF [{name}/nem] -->
+          <li>#{name}</li><!-- END_IF -->
+          <!-- END tag:loop -->
+        </ul>
+        <!-- END labels:veil --><!-- BEGIN summary:veil -->
+        <p class="summary-entry-text">{summary} <span class="acms-icon-arrow-small-right"></span></p><!-- END summary:veil -->
+
+        <!-- BEGIN userField --><!-- BEGIN_IF [{image@path}/nem] -->
+        <p class="summary-entry-user"><img src="%{MEDIA_ARCHIVES_DIR}{image@path}[resizeImg(80, 80)]" alt="" class="summary-entry-user-icon">{fieldUserName}</p>
+        <!-- ELSE --><p class="summary-entry-user"><img src="%{ARCHIVES_DIR}{fieldUserIcon}" alt="" class="summary-entry-user-icon">{fieldUserName}</p><!-- END_IF --><!-- END userField -->
+      </div>
+    </a>
+  </li>
+  <!-- END entry:loop -->
+</ul>
+
+
+<!-- ページャー -->
+@include("/include/entry-body-pager.html")
+
+<!-- END_MODULE Entry_Body -->

@@ -1,0 +1,99 @@
+@use "sass:map";
+@use "../global/acms-common" as acms;
+@use "../global/common" as global;
+
+/* ------------------------------
+　　イベント
+------------------------------ */
+
+/* イベント一覧
+------------------------------ */
+
+/* 日時 と 背景付きラベルの縦積みレイアウト */
+.event-card-labels-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* イベント一覧用日付 */
+.event-card-date {
+  font-size: map.get(global.$font-scales, body-m);
+  line-height: var(--line-height-base);
+  color: var(--color-text-2nd);
+}
+
+/* イベント一覧用時間 */
+.event-card-time {
+  font-size: map.get(global.$font-scales, body-m);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+}
+
+
+/* イベント詳細
+------------------------------ */
+.event-main-image {
+  margin-bottom: var(--entry-el-margin-md);
+  border-radius: var(--border-radius-lg);
+}
+
+/* 開催日時・都道府県ラベル・Newラベル全体のレイアウト設定 */
+.event-entry-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: map.get(global.$font-scales, body-m);
+  color: var(--color-text-2nd);
+
+  @include acms.media-breakpoint-up(md) {
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+  }
+}
+
+.event-entry-header-date-label {
+  margin-right: 0.5rem;
+  font-size: map.get(global.$font-scales, body-m);
+  font-weight: bold;
+  line-height: var(--line-height-base);
+  color: var(--color-primary);
+}
+
+.event-entry-header-datetime {
+  font-size: map.get(global.$font-scales, body-m);
+  line-height: var(--line-height-base);
+}
+
+/* メイン画像 */
+.event-main-image {
+  margin: 0 0 2rem;
+}
+
+/* 「Googleマップで見る」リンク */
+.event-googlemap-link {
+  position: relative;
+}
+
+.event-googlemap-link-icon {
+  position: absolute;
+  top: -2px; /* 垂直位置調整 */
+  right: -24px; /* 別ダブで開くアイコンの右に配置 */
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  vertical-align: text-bottom;
+  color: var(--color-text);
+
+  svg {
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    object-fit: contain;
+
+    path {
+      fill: currentcolor;
+    }
+  }
+}

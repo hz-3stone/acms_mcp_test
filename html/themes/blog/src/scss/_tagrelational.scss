@@ -1,0 +1,88 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　タグリレーショナル
+------------------------------ */
+.tag-relational {
+  margin-bottom: 30px;
+}
+
+.tag-relational-description {
+  margin: 0 0 10px;
+  line-height: 1.4;
+
+  @include acms.font-size(14);
+}
+
+.tag-relational-tags {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  list-style-type: none;
+
+  li {
+    display: inline-block;
+    padding: 0 4px 4px 0;
+    line-height: 1;
+  }
+
+  a {
+    display: inline-block;
+    line-height: 1.2;
+    border-radius: 5px;
+
+    @include acms.font-size(14);
+    @include global.only-underline-on-hover;
+    @include global.link-color(global.$link-color-dark);
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}
+
+.tag-relational-entry {
+  padding: 0;
+  border: none;
+
+  &:hover {
+    .tag-relational-img {
+      opacity: global.$opacity-hover;
+    }
+  }
+}
+
+.tag-relational-img {
+  width: 100%;
+  height: 0;
+  padding: calc(100% / 2 * 0.5625); /* 画像が16:9になる高さ */
+  margin-right: 0;
+  margin-bottom: 8px;
+
+  @include global.transition-opacity;
+}
+
+.tag-relational-entry-title {
+  padding: 0 5px;
+  margin: 0;
+  font-weight: bold;
+  color: global.$text-color-base;
+
+  @include acms.font-size(12);
+}
+
+@include acms.media-breakpoint-up(sm) {
+  .tag-relational-description {
+    margin-bottom: 15px;
+  }
+
+  .tag-relational-entry-title {
+    @include acms.font-size(16);
+  }
+}

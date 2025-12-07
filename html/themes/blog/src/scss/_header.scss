@@ -1,0 +1,80 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　ヘッダーとナビゲーションの余白
+------------------------------ */
+.header-nav-wrap {
+	margin-bottom: 10px;
+}
+
+@include acms.media-breakpoint-up(md) {
+	.header-nav-wrap {
+		margin-bottom: 20px;
+	}
+}
+
+/* ------------------------------
+　　ヘッダー
+------------------------------ */
+.header {
+	padding: 20px 0;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.header-bg {
+	padding: 0;
+	background-color: #FFF;
+	border-bottom: 1px solid global.$border-color-base;
+}
+
+.header-wrap {
+	display: table;
+	width: 100%;
+	height: 65px;
+}
+
+.header-inner {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+
+	@include global.container;
+	@include acms.clearfix;
+}
+
+.header-logo {
+	max-width: 100%;
+	height: auto;
+	padding: 10px 0;
+	vertical-align: middle;
+}
+
+.header-title {
+	margin: 0;
+	font-weight: bold;
+
+  @include acms.font-size(18);
+
+	& a {
+		color: global.$text-color-base;
+
+		@include global.link-color(global.$text-color-base);
+		@include global.text-decoration-none;
+	}
+}
+
+@include acms.media-breakpoint-up(md) {
+	.header-bg{
+		border-bottom: none;
+	}
+
+	.header-wrap {
+		height: 88px;
+	}
+
+	.header-title {
+    @include acms.font-size(28);
+	}
+}

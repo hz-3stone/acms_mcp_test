@@ -1,0 +1,99 @@
+@extends("/_layouts/base.html")
+
+@section("head-title")
+<title>メールアドレス変更 | %{BLOG_NAME}</title>
+@endsection
+
+@section("head-link")
+@parent
+<!-- 編集画面用カスタムCSSを読み込み -->
+<link rel="stylesheet" href="/include/edit/custom.css">
+@endsection
+
+@section("head-js")
+@parent
+<!-- カスタムJSを記述 -->
+<script src="/include/edit/custom.js" charset="UTF-8"></script>
+@endsection
+
+@section("page-title")
+@include("/include/parts/page-title/mypage.html")
+@endsection
+
+@section(topicpath)
+@include("/include/parts/topicpath/mypage.html", {"page_name": "メールアドレス変更"})
+@endsection
+
+@section("admin-part")
+@endsection
+
+@section("main")
+<!-- BEGIN_MODULE Member_Update_Email -->
+<div class="acms-container">
+  <div class="container-sm">
+    <h2 class="heading-lg acms-mb-8">メールアドレス変更</h2>
+
+    <form action="" method="post" enctype="multipart/form-data">
+      <div class="acms-member-main-box">
+        <div class="acms-form">
+          <!-- BEGIN beforeSend -->
+          <div class="acms-alert acms-alert-info"><!--T-->メールアドレス変更を認証するためのメールを送信します。<!--/T--></div>
+          <!-- END beforeSend -->
+
+          <!-- BEGIN successUpdate -->
+          <div class="acms-alert acms-alert-info"><!--T-->メールアドレスを変更しました。<!--/T--></div>
+          <!-- END successUpdate-->
+
+          <!-- BEGIN successSent -->
+          <div class="acms-alert acms-alert-info">
+            <!--T-->ご記入いただいたメールアドレスに認証メールをお送りしました。<br> メールに記載されているURLをクリックして メールアドレス変更を完了してください。<!--/T-->
+          </div>
+          <!-- END successSent -->
+
+          @include("/_member/parts/error.html")
+
+          <!-- BEGIN badRequest -->
+          <div class="acms-alert acms-alert-danger"><!--T-->不正なアクセスです。<!--/T--></div>
+          <!-- END badRequest -->
+
+          <!-- BEGIN expired -->
+          <div class="acms-alert acms-alert-danger"><!--T-->有効期限切れのURLです。再度申請ください。<!--/T--></div>
+          <!-- END expired -->
+
+          <!-- BEGIN_IF [{mail:validator#required}/eq/0] -->
+          <div class="acms-alert acms-alert-danger"><!--T-->メールアドレスが入力されていません。<!--/T--></div>
+          <!-- END_IF -->
+
+          <!-- BEGIN_IF [{mail:validator#email}/eq/0] -->
+          <div class="acms-alert acms-alert-danger"><!--T-->不正なメールアドレスです。<!--/T--></div>
+          <!-- END_IF -->
+
+          <!-- BEGIN_IF [{mail:validator#doubleMail}/eq/0] -->
+          <div class="acms-alert acms-alert-danger"><!--T-->すでに登録されているメールアドレスです。<!--/T--></div>
+          <!-- END_IF -->
+
+          <!-- BEGIN_IF [{mail:validator#send}/eq/0] -->
+          <div class="acms-alert acms-alert-danger"><!--T-->メールの送信に失敗しました。システムの設定に問題があります。システムの管理者にお問い合わせください。<!--/T--></div>
+          <!-- END_IF -->
+
+          <!-- BEGIN form -->
+          <label for="input-text-mail" class="acms-member-form-label"><!--T-->新しいメールアドレス<!--/T--></label>
+          <input type="text" name="mail" value="{mail}" id="input-text-mail" class="acms-form-large acms-form-block acms-form-width-full validator-result-{mail:validator#required} validator-result-{mail:validator#email} validator-result-{mail:validator#doubleMail} validator-result-{mail:validator#send}" placeholder="" />
+          <input type="hidden" name="user[]" value="mail" />
+          <input type="hidden" name="mail:validator#required" />
+          <input type="hidden" name="mail:validator#email" />
+
+
+          <div class="acms-d-flex acms-justify-content-center acms-mt-8 acms-mt-md-12">
+            <button type="submit" class="button is-width-lg" name="ACMS_POST_Member_Update_Email"><!--T-->確認メールを送信<!--/T--></button>
+          </div>
+
+          <!-- END form -->
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- END_MODULE Member_Update_Email -->
+@endsection
+

@@ -1,0 +1,70 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　プロフィール
+------------------------------ */
+.profile {
+	margin-bottom: 30px;
+}
+
+.profile-info {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+
+.profile-img {
+	display: block;
+	width: 80px;
+	height: auto;
+	margin: 0 20px 12px 0;
+	border-radius: 50%;
+}
+
+.profile-name {
+	margin: 0 0 5px;
+	font-weight: bold;
+	color: global.$text-color-base;
+
+  @include acms.font-size(16);
+}
+
+.profile-position {
+	margin: 0;
+	color: global.$text-color-base;
+
+	@include acms.font-size(14);
+
+	span {
+		display: block;
+	}
+}
+
+.profile-icon-list {
+	margin-bottom: 12px;
+}
+
+.profile-text {
+	margin: 0;
+	color: global.$text-color-base;
+
+	@include acms.font-size(14);
+
+	a {
+		color: global.$link-color-dark;
+
+		@include global.only-underline-on-hover;
+		@include global.link-color(global.$link-color-dark);
+	}
+}
+
+@include acms.media-breakpoint-down(md) {
+	.profile-text {
+		margin-left: 100px;
+
+		&.-profile-img-none {
+			margin-left: 0;
+		}
+	}
+}

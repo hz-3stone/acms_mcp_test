@@ -1,0 +1,66 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ----------------
+ページャー
+------------------ */
+.pager {
+  width: 100%;
+  margin-bottom: 80px;
+
+  & ul {
+    padding: 0;
+    margin: 0 135px;
+    text-align: center;
+  }
+
+  & li {
+    margin-bottom: 5px;
+    list-style-type: none;
+    background: #fff;
+
+    & span {
+      display: block;
+      width: 100%;
+      color: #FFF;
+      background: global.$btn-color-on-hover;
+      border: 1px solid global.$btn-color-on-hover;
+      border-radius: 5px;
+
+      @include acms.font-size(14);
+    }
+
+    & a > span {
+      color: global.$text-color-light;
+      background: #FFF;
+      border: 1px solid global.$btn-color;
+
+      @include global.roll-over-border-color(global.$btn-color, global.$btn-color-on-hover, global.$transition-speed);
+    }
+  }
+
+  & a {
+    display: block;
+    width: 100%;
+
+    @include global.text-decoration-none;
+    @include global.link-color(#FFFFFF);
+  }
+}
+
+.pager-item {
+  display: inline-block;
+  width: 37px;
+  height: 33px;
+  line-height: 33px;
+}
+
+@include acms.media-breakpoint-down(md) {
+  .pager {
+    display: table;
+  }
+
+  .pager ul {
+    margin: 0;
+  }
+}

@@ -1,0 +1,34 @@
+<!-- BEGIN_MODULE Calendar_Month -->
+<section class="calendar-month">
+  @include("/admin/module/setting.html")
+  <h3 class="year">{year}</h3>
+  <h4 class="month">{month}</h4>
+  <table class="calendar-table">
+  <thead>
+    <tr>
+      <!-- BEGIN weekLabel:loop -->
+      <td class="week <!-- BEGIN_IF [{w}/eq/6] -->sat<!-- ELSE_IF [{w}/eq/0] -->sun<!-- END_IF -->">{label}</td>
+      <!-- END weekLabel:loop -->
+    </tr>
+  </thead>
+  <tbody>
+    <!-- BEGIN week:loop -->
+    <tr>
+      <!-- BEGIN day:loop -->
+      <!-- BEGIN spacer -->
+      <td></td>
+      <!-- END spacer -->
+      <!-- BEGIN none -->
+      <td>{day}</td>
+      <!-- END none -->
+      <!-- BEGIN link -->
+      <td class="success"><a href="{url}">{day}</a></td>
+      <!-- END link -->
+      <!-- END day:loop -->
+    </tr>
+    <!-- END week:loop -->
+  </tbody>
+  </table>
+  <p class="link-outer"><a href="%{BLOG_URL}calendar.html" class="link">&lt; 過去のエントリーを日付から探す</a></p>
+</section>
+<!-- END_MODULE Calendar_Month -->

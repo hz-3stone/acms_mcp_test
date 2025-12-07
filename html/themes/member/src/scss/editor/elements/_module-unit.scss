@@ -1,0 +1,8 @@
+@use "../../global/common" as global;
+
+/* ------------------------------
+ モジュールユニット
+------------------------------ */
+[class*="column-module"] {
+  margin-block: 0 global.$entry-el-margin-sm;
+}

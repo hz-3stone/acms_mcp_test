@@ -1,0 +1,87 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　エントリー一覧
+------------------------------ */
+.entry-list {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0;
+  margin: 0 0 30px;
+  list-style-type: none;
+  border-top: 1px solid global.$border-color-base;
+
+   li {
+    display: flex;
+    padding: 10px;
+    color: global.$text-color-base;
+    border-bottom: 1px solid global.$border-color-base;
+  }
+
+  a {
+    display: block;
+    flex: 1 1 auto;
+    padding: 10px;
+    margin: -10px;
+
+    @include global.link-color(global.$text-color-base);
+    @include global.text-decoration-none;
+    @include global.roll-over-bg-color(transparent, global.$bg-color-hover, global.$transition-speed);
+  }
+}
+
+:where(.entry-list > *) {
+  width: 100%;
+}
+
+.entry-list-date {
+  display: inline-block;
+  margin-bottom: 5px;
+  color: global.$text-color-light;
+
+  @include acms.font-size(12);
+}
+
+.entry-list-category {
+  display: inline-block;
+  margin-bottom: 5px;
+  color: global.$text-color-light;
+
+  @include acms.font-size(12);
+}
+
+.entry-list-title {
+  display: block;
+  font-weight: bold;
+
+  @include acms.font-size(14);
+}
+
+
+/* メインカラムにある時のみ画像あり
+------------------------------ */
+.entry-list.is-thumbnail {
+  a {
+    display: flex;
+  }
+}
+
+.entry-list-thumbnail-img-outer {
+  width: 80px;
+  height: 80px;
+  margin: 0 10px 0 0;
+}
+
+.entry-list-thumbnail-info {
+  flex: 1;
+}
+
+@include acms.media-breakpoint-down(sm) {
+  .entry-list.is-thumbnail {
+    a {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}

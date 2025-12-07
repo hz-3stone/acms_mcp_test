@@ -1,0 +1,549 @@
+@use "sass:map";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　お問い合わせ
+------------------------------ */
+
+/* Entry_Bodyとフォーム間mp余白をつけるためのスタイル */
+.form-initial-step-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  @include acms.media-breakpoint-up(md) {
+    gap: 4rem;
+  }
+}
+
+/* ステップ
+------------------------------ */
+.form-step {
+  display: flex;
+  padding: 0;
+  margin: 0 0 3rem;
+
+  /* カウンターの設定 */
+  counter-reset: mailStep;
+}
+
+.form-step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: map.get(global.$font-scales, body-m);
+  color: var(--color-text);
+  list-style: none;
+
+  &::before {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    margin: 0 0 0.5rem;
+    line-height: var(--line-height-lg);
+    color: var(--color-text);
+    content: counter(mailStep);
+
+    /* カウンターの設定 */
+    counter-increment: mailStep;
+    background: var(--color-gray10);
+    border-radius: 50%;
+  }
+
+  &.is-current {
+    font-weight: bold;
+
+    &::before {
+      color: var(--color-white);
+      background: var(--color-primary);
+    }
+  }
+
+  &:not(:last-child) {
+    margin: 0 1.25rem 0 0;
+  }
+}
+
+@include acms.media-breakpoint-up(md) {
+  .form-step {
+    padding: 1rem 1rem 1rem 0;
+  }
+
+  .form-step-item {
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: map.get(global.$font-scales, heading-ss);
+
+    &::before {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin: 0 0.5rem 0 0;
+      font-size: map.get(global.$font-scales, heading-ss);
+    }
+
+    &:not(:last-child) {
+      margin: 0 2rem 0 0;
+    }
+  }
+}
+
+@include acms.media-breakpoint-down(md) {
+  .form-step {
+    justify-content: center;
+  }
+}
+
+/* フォームレイアウト
+------------------------------ */
+
+.form-input-wrap {
+  padding-bottom: 3rem;
+}
+
+.form-group-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  &.is-confirm {
+    padding-top: .5rem;
+    padding-bottom: var(--gutter-lg);
+  }
+}
+
+.form-group-inner {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.form-group {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0;
+}
+
+.form-label {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  margin: 0 0 1rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+.form-control {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+}
+
+.form-item-vertical-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+.form-button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+
+  .button {
+    margin: 0;
+  }
+}
+
+@include acms.media-breakpoint-up(md) {
+  .form-button-group {
+    flex-direction: row;
+  }
+}
+
+@include acms.media-breakpoint-down(md) {
+  .form-button {
+    width: 100%;
+
+    .button {
+      display: block;
+      width: 15rem;
+      margin: 0 auto;
+    }
+  }
+
+  .form-button-return {
+    order: 1;
+  }
+}
+
+/* ラベル
+------------------------------ */
+.label-required {
+  padding: 0.25rem 0.5rem;
+  margin: 0 0 0 1rem;
+  font-size: map.get(global.$font-scales, body-s);
+  font-weight: normal;
+  vertical-align: middle;
+  color: var(--color-danger);
+  background: var(--color-danger-light);
+  border-radius: var(--border-radius-sm);
+}
+
+.label-optional {
+  padding: 0.25rem 0.5rem;
+  margin: 0 0 0 1rem;
+  font-size: map.get(global.$font-scales, body-s);
+  font-weight: normal;
+  vertical-align: middle;
+  color: var(--color-text);
+  background: var(--color-gray10);
+  border-radius: var(--border-radius-sm);
+}
+
+/* フォーム要素
+------------------------------ */
+.form-group {
+  display: block;
+  border: 0;
+
+  select {
+    &[required]:required {
+      border: var(--border-width-sm) solid var(--color-error);
+    }
+
+    &.focused:invalid {
+      border: var(--border-width-sm) solid var(--color-error);
+    }
+
+    &[required]:valid {
+      border: var(--border-width-sm) solid var(--color-gray30);
+    }
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="url"],
+  input[type="search"],
+  input[type="tel"],
+  textarea,
+  select {
+    color: var(--color-text);
+    background-color: var(--color-white);
+    border: 1px solid rgb(0 0 0 / 20%);
+    box-shadow: none;
+
+    &[required]:required {
+      background-color: var(--color-white);
+    }
+
+    &.focused:invalid,
+    &.invalid {
+      background-color: var(--color-white);
+      border-color: var(--color-error);
+      box-shadow: var(--box-shadow-error), acms.$acms-form-box-shadow;
+    }
+
+    &[required]:valid {
+      background-color: var(--color-white);
+    }
+
+    &:focus-visible {
+      background-color: var(--color-white);
+      border-color: var(--color-focus);
+      box-shadow: var(--box-shadow-focus), acms.$acms-form-box-shadow;
+    }
+  }
+
+  // 入力欄をスマホのサイズのままにする
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="url"],
+  input[type="search"],
+  input[type="tel"] {
+    box-sizing: border-box;
+    padding: 0.75rem;
+    font-size: map.get(global.$font-scales, body-m);
+    line-height: var(--line-height-base);
+    border: var(--border-width-sm) solid rgb(0 0 0 / 20%);
+    border-radius: var(--border-radius-md);
+  }
+
+  textarea {
+    box-sizing: border-box;
+    padding: 0.75rem;
+    font-size: map.get(global.$font-scales, body-m);
+    border-radius: var(--border-radius-sm);
+  }
+
+  select {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.75rem 3rem 0.75rem 1rem;
+    font-size: map.get(global.$font-scales, body-m);
+    line-height: var(--line-height-base);
+    vertical-align: top;
+    background-image: url(#{global.$root-theme-img}icon/chevron-down.svg);
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.5rem auto;
+    border-radius: var(--border-radius-sm);
+  }
+}
+
+@include acms.media-breakpoint-up(md) {
+  .form-group {
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"] {
+      padding: 0.75rem;
+    }
+
+    textarea {
+      padding: 0.75rem;
+    }
+
+    select {
+      width: fit-content;
+    }
+  }
+}
+
+.form-checkbox {
+  --form-checkbox-icon-size: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  label {
+    position: relative;
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  input[type="checkbox"] {
+    position: absolute;
+    width: var(--form-checkbox-icon-size);
+    height: var(--form-checkbox-icon-size);
+    margin: 0;
+    opacity: 0;
+
+    &:checked + .ico-checkbox {
+      background-color: var(--color-primary);
+      background-image: url('#{global.$root-theme-img}icon-color/check-white.svg');
+      border-color: var(--color-primary);
+    }
+
+    &:focus-visible + .ico-checkbox {
+      border-color: var(--color-primary);
+      box-shadow: var(--box-shadow-focus), 0 1px 1px rgb(0 0 0 / 10%) inset;
+    }
+  }
+
+  .ico-checkbox {
+    box-sizing: border-box;
+    display: inline-block;
+    flex-shrink: 0;
+    width: var(--form-checkbox-icon-size);
+    height: var(--form-checkbox-icon-size);
+    vertical-align: middle;
+    pointer-events: none;
+    background-color: var(--color-white);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% auto;
+    border: 1px solid var(--color-gray30);
+    border-radius: var(--border-radius-md);
+    transition: background-color 0.2s, border-color 0.2s;
+
+    &.invalid {
+      border-color: var(--color-danger);
+    }
+  }
+}
+
+.form-radio {
+  --form-radio-icon-size: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  label {
+    position: relative;
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    width: var(--form-radio-icon-size);
+    height: var(--form-radio-icon-size);
+    margin: 0;
+    opacity: 0;
+
+    &:checked + .ico-radio {
+      background-color: var(--color-primary);
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMCAxMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOS44MDAxOSA1LjAwMjY0QzkuODAwMTkgNy42NTM2IDcuNjUxMTYgOS44MDI2NCA1LjAwMDE5IDkuODAyNjRDMi4zNDkyMyA5LjgwMjY0IDAuMjAwMTk1IDcuNjUzNiAwLjIwMDE5NSA1LjAwMjY0QzAuMjAwMTk1IDIuMzUxNjcgMi4zNDkyMyAwLjIwMjYzNyA1LjAwMDE5IDAuMjAyNjM3QzcuNjUxMTYgMC4yMDI2MzcgOS44MDAxOSAyLjM1MTY3IDkuODAwMTkgNS4wMDI2NFoiIGZpbGw9IndoaXRlIi8+PC9zdmc+");
+      background-size: 10px 10px;
+      border-color: var(--color-primary);
+    }
+
+    &:focus-visible + .ico-radio {
+      border-color: var(--color-primary);
+      box-shadow: var(--box-shadow-focus), 0 1px 1px rgb(0 0 0 / 10%) inset;
+    }
+  }
+
+  .ico-radio {
+    box-sizing: border-box;
+    display: inline-block;
+    flex-shrink: 0;
+    width: var(--form-radio-icon-size);
+    height: var(--form-radio-icon-size);
+    pointer-events: none;
+    background-color: var(--color-white);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% auto;
+    border: 1px solid var(--color-gray30);
+    border-radius: var(--border-radius-round);
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+}
+
+
+/* ヘルパーテキスト
+------------------------------ */
+.form-helper-text {
+  margin: 1rem 0 0;
+  font-size: map.get(global.$font-scales, body-s);
+  color: var(--color-text-2nd);
+
+  .acms-entry & {
+    margin: 1rem 0;
+  }
+
+}
+
+/* バリデーター
+------------------------------ */
+.form-group {
+  .valid-mark {
+    display: none;
+  }
+
+  .valid-mark.valid {
+    float: right;
+    display: inline;
+    color: #5cb85c;
+  }
+
+  .invalid {
+    border-color: var(--color-error);
+    box-shadow: var(--box-shadow-error), acms.$acms-form-box-shadow;
+  }
+
+  .form-error-text {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin: 1rem 0 0;
+    font-size: map.get(global.$font-scales, body-s);
+    line-height: var(--line-height-base);
+    color: var(--color-error);
+
+    .form-helper-text + .validator-result-0 & {
+      margin-top: 0;
+    }
+  }
+
+  .form-error-text-icon {
+    box-sizing: border-box;
+    display: inline-block;
+    flex: 0 0 1.25rem;
+
+    svg {
+      width: 100%;
+      height: auto;
+      color: inherit;
+
+      path {
+        stroke: currentcolor;
+      }
+    }
+  }
+
+  .form-error-text-inner {
+    padding-top: 1px; /* 横並びアイコンとの位置揃え用 */
+  }
+
+  .transaction-notice-,
+  .v-result-,
+  .v-result-1,
+  .validator-result-,
+  .validator-result-1 {
+    display: none;
+  }
+}
+
+
+/* メッセージ
+------------------------------ */
+.form-message {
+  margin: 0 0 3rem;
+}
+
+.form-message-back {
+  text-align: center;
+}

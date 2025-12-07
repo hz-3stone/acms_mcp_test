@@ -1,0 +1,40 @@
+<!-- BEGIN_IF [%{BID}/neq/%{RBID}/_or_/%{CID}/nem/_or_/%{EID}/nem] -->
+<!-- BEGIN_MODULE Topicpath id="" -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement":
+  [
+  <!-- BEGIN blog:loop --><!-- BEGIN glue -->,<!-- END glue -->{
+    "@type": "ListItem",
+    "position": {sNum},
+    "item":
+    {
+    "@id": "{url}",
+    "name": "{name}"
+    }
+  }<!-- END blog:loop --><!-- BEGIN category:loop --><!-- BEGIN glue -->,<!-- END glue -->
+  {
+    "@type": "ListItem",
+    "position": {sNum},
+    "item":
+    {
+    "@id": "{url}",
+    "name": "{name}"
+    }
+  }<!-- END category:loop --><!-- BEGIN entry --><!-- BEGIN glue -->,<!-- END glue -->
+  {
+    "@type": "ListItem",
+    "position": {sNum},
+    "item":
+    {
+    "@id": "{url}",
+    "name": "{title}"
+    }
+  }<!-- END entry -->
+  ]
+}
+</script>
+<!-- END_MODULE Topicpath -->
+<!-- END_IF -->

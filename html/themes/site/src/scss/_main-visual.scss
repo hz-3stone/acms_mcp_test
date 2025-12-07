@@ -1,0 +1,558 @@
+@use "sass:map";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　メインビジュアル（デフォルト）
+------------------------------ */
+.main-visual {
+  position: relative;
+  box-sizing: content-box; /* スライダーページネーション用のpaddingを含めない */
+  height: var(--mv-height-sp, calc(100svh - var(--header-height-fixed)));
+  min-height: 20rem;
+
+  &:has(.splide__controls) {
+    /* スライダーページネーションの高さを確保 */
+    padding-bottom: 5.125rem;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    height: var(--mv-height-pc, 48rem);
+  }
+
+  .main-visual-filter {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgb(0 0 0 / 0%) 50%, #000 100%);
+  }
+
+  .main-visual-bg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    .is-alone {
+      animation: zoom 3s 0.3s 1 both;
+      animation-duration: ease-out;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .main-visual-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-sizing: border-box;
+    display: grid;
+    gap: 1.5rem;
+    place-content: center;
+    width: calc(100vw - 2rem);
+    max-width: 480px;
+    padding: 2rem;
+    color: var(--color-primary);
+    text-align: center;
+    background: rgb(255 255 255 / 90%);
+    transform: translate(-50%, -50%);
+
+    @include acms.media-breakpoint-up(md) {
+      box-sizing: border-box;
+      gap: 2rem;
+      width: auto;
+      max-width: 40rem;
+      padding-block: 4.5rem;
+      padding-inline: 5rem;
+      overflow: hidden;
+      text-align: unset;
+
+      &.is-left {
+        left: 0;
+        text-align: left;
+        transform: translate(0, -50%);
+
+        .main-visual-links {
+          justify-content: flex-start;
+        }
+      }
+
+      &.is-center {
+        text-align: center;
+      }
+
+      &.is-right {
+        right: 0;
+        left: auto;
+        text-align: right;
+        transform: translate(0, -50%);
+
+        .main-visual-links {
+          justify-content: flex-end;
+        }
+      }
+    }
+
+    @include acms.media-breakpoint-up(lg) {
+      padding-block: 5rem;
+      padding-inline: 6.5rem;
+    }
+  }
+
+  .main-visual-catch {
+    margin: 0;
+    font-size: map.get(global.$font-scales, heading-l);
+    line-height: var(--line-height-base);
+    animation: fade-in 0.3s 0.8s 1 both;
+    will-change: transform, opacity;
+
+    @include acms.media-breakpoint-up(md) {
+      font-size: map.get(global.$font-scales, heading-3xl);
+    }
+  }
+
+  .main-visual-catch-sub {
+    margin: 0;
+    font-size: map.get(global.$font-scales, body-m);
+    font-weight: bold;
+    line-height: var(--line-height-base);
+    animation: fade-in 0.3s 1.3s 1 both;
+    will-change: transform, opacity;
+  }
+
+  .main-visual-links {
+    display: grid;
+    gap: 1rem;
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 200px;
+    }
+
+    @include acms.media-breakpoint-up(md) {
+      display: flex;
+      gap: calc(var(--col-gutter) / 2);
+      justify-content: space-between;
+      width: 100%;
+      margin: 0 auto;
+
+      .button {
+        flex: 1;
+      }
+    }
+  }
+}
+
+/* ------------------------------
+　　メインビジュアル（main-visual-ex01.html）
+------------------------------ */
+.main-visual-extend01 {
+  --main-visual-extend01-side-padding: 1rem;
+
+  @include acms.media-breakpoint-up(sm) {
+    --main-visual-extend01-side-padding: 2rem;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    --main-visual-extend01-side-padding: 4rem;
+  }
+
+  @include acms.media-breakpoint-up(lg) {
+    --main-visual-extend01-side-padding: 5rem;
+  }
+}
+
+.main-visual-extend01 {
+  position: relative;
+  height: var(--mv-height-sp, calc(100svh - var(--header-height-fixed)));
+  min-height: 20rem;
+  overflow: hidden;
+
+  &:has(.splide__controls) .main-visual-box {
+    /* スライダーページネーション表示時のコンテンツボックス位置 */
+    bottom: 9.5rem;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    height: var(--mv-height-pc, 48rem);
+
+    &:has(.splide__controls) .main-visual-box {
+      /* スライダーページネーション表示時のコンテンツボックス位置 */
+      bottom: 13rem;
+    }
+  }
+
+  .main-visual-filter {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgb(0 0 0 / 0%) 50%, #000 100%);
+  }
+
+  .main-visual-bg {
+    width: 100%;
+    height: 100%;
+
+    .is-alone {
+      animation: zoom 3s 0.3s 1 both;
+      animation-duration: ease-out;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .main-visual-box {
+    position: absolute;
+    bottom: 6rem; /* スライダーページネーションがない時のコンテンツボックス位置 */
+    left: 0;
+    z-index: 10;
+    box-sizing: border-box;
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+    padding-inline: var(--main-visual-extend01-side-padding);
+    color: var(--color-white);
+
+    @include acms.media-breakpoint-up(md) {
+      bottom: 8rem; /* スライダーページネーションがない時のコンテンツボックス位置 */
+      box-sizing: border-box;
+    }
+  }
+
+  .main-visual-box-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    @include acms.media-breakpoint-up(md) {
+      gap: 1rem;
+    }
+  }
+
+  .main-visual-catch {
+    margin: 0;
+    font-size: map.get(global.$font-scales, heading-s);
+    font-weight: bold;
+    line-height: var(--line-height-base);
+    animation: fade-in 0.3s 1.3s 1 both;
+    will-change: transform, opacity;
+
+    @include acms.media-breakpoint-up(sm) {
+      font-size: map.get(global.$font-scales, heading-2xl);
+    }
+
+    @include acms.media-breakpoint-up(md) {
+      font-size: map.get(global.$font-scales, heading-3xl);
+    }
+  }
+
+  .main-visual-catch-sub {
+    margin: 0;
+    font-size: map.get(global.$font-scales, body-m);
+    font-weight: bold;
+    line-height: var(--line-height-base);
+    animation: fade-in 0.3s 0.8s 1 both;
+    will-change: transform, opacity;
+
+    @include acms.media-breakpoint-up(sm) {
+      font-size: map.get(global.$font-scales, body-l);
+    }
+  }
+
+  .main-visual-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .button {
+      display: inline-flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      min-width: 200px;
+    }
+
+    @include acms.media-breakpoint-up(sm) {
+      .button {
+        flex: none;
+        min-width: 200px;
+      }
+    }
+  }
+
+  .splide__controls {
+    position: absolute;
+    inset: auto auto 0 0;
+    z-index: 10;
+    height: auto;
+    padding-inline: var(--main-visual-extend01-side-padding);
+    margin-block: 0 6rem;
+
+    @include acms.media-breakpoint-up(md) {
+      margin-block-end: 8rem;
+    }
+  }
+
+  .pagination-page-extend01 {
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 1.75rem;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: 0;
+
+    &,
+    &:hover {
+      opacity: 1; /* リセット */
+    }
+
+    &::after {
+      box-sizing: border-box;
+      width: 1.5rem;
+      height: 0.25rem;
+      content: "";
+      background-color: transparent;
+      border: 1px solid var(--color-white);
+
+      @media (hover: hover) {
+        transition: background-color 0.25s ease;
+      }
+    }
+
+    @media (hover: hover) {
+      &:hover::after {
+        background-color: var(--color-gray20);
+      }
+    }
+
+    &.is-active {
+      transform: none;
+
+      &::after {
+        background-color: var(--color-white);
+      }
+
+      @media (hover: hover) {
+        &:hover::after {
+          background-color: var(--color-gray20);
+        }
+      }
+    }
+  }
+
+  .splide__toggle {
+    background-color: transparent;
+
+    &,
+    .splide__toggle__play,
+    .splide__toggle__pause {
+      transition: background-color 0.3s ease;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--color-white);
+
+        .splide__toggle__play,
+        .splide__toggle__pause {
+          background-color: var(--color-gray100);
+        }
+      }
+    }
+  }
+}
+
+/* ------------------------------
+　　メインビジュアル（main-visual-ex02.html）
+------------------------------ */
+.main-visual-extend02 {
+  --main-visual-extend02-side-padding: 1rem;
+
+  @include acms.media-breakpoint-up(sm) {
+    --main-visual-extend02-side-padding: 2rem;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    --main-visual-extend02-side-padding: 4rem;
+  }
+
+  @include acms.media-breakpoint-up(lg) {
+    --main-visual-extend02-side-padding: 5rem;
+  }
+}
+
+.main-visual-extend02 {
+  position: relative;
+  box-sizing: content-box; /* スライダーページネーション用のpaddingを含めない */
+  height: var(--mv-height-sp, calc(100svh - var(--header-height-fixed)));
+  min-height: 34rem;
+  overflow: hidden;
+
+  @include acms.media-breakpoint-up(md) {
+    height: var(--mv-height-pc, 48rem);
+
+    &:has(.splide__controls) .main-visual-box {
+      /* スライダーページネーション表示時のコンテンツボックス位置 */
+      bottom: 14.25rem;
+    }
+  }
+
+  .main-visual-bg {
+    width: 100%;
+    height: 100%;
+
+    .is-alone {
+      animation: zoom 3s 0.3s 1 both;
+      animation-duration: ease-out;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @include acms.media-breakpoint-up(md) {
+      img {
+        display: block;
+        width: 70% !important;
+        margin-left: auto;
+      }
+    }
+
+    @include acms.media-breakpoint-up(xl) {
+      img {
+        width: calc(100% - 27rem) !important;
+      }
+    }
+  }
+
+  .main-visual-box {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    box-sizing: border-box;
+    display: grid;
+    gap: 2rem;
+    width: 100%;
+    padding-inline: var(--main-visual-extend02-side-padding);
+    color: var(--color-primary);
+    transform: translateY(-50%);
+
+    @include acms.media-breakpoint-up(md) {
+      top: auto;
+      bottom: 8rem; /* スライダーページネーションがない時のコンテンツボックス位置 */
+      box-sizing: border-box;
+      gap: 4rem;
+      transform: none;
+    }
+  }
+
+  .main-visual-catch {
+    display: inline;
+    padding-inline: 0.5rem;
+    margin: 0;
+    font-size: map.get(global.$font-scales, heading-m);
+    line-height: var(--line-height-base);
+    color: var(--color-white);
+    background: var(--color-primary);
+    animation: fade-in 0.3s 0.8s 1 both;
+    will-change: transform, opacity;
+    box-decoration-break: clone;
+
+    @include acms.media-breakpoint-up(sm) {
+      padding-inline: 1rem;
+      font-size: map.get(global.$font-scales, heading-2xl);
+    }
+
+    @include acms.media-breakpoint-up(md) {
+      font-size: map.get(global.$font-scales, heading-3xl);
+    }
+  }
+
+  .main-visual-catch-sub-wrap {
+    margin-top: 1rem;
+
+    @include acms.media-breakpoint-up(md) {
+      margin-top: 1.5rem;
+    }
+  }
+
+  .main-visual-catch-sub {
+    display: inline;
+    padding-block: 0.25rem;
+    padding-inline: 0.5rem;
+    margin: 0;
+    font-size: map.get(global.$font-scales, body-m);
+    font-weight: bold;
+    line-height: 1.8;
+    color: var(--color-white);
+    background: var(--color-gray100);
+    animation: fade-in 0.3s 1.3s 1 both;
+    will-change: transform, opacity;
+    box-decoration-break: clone;
+
+    @include acms.media-breakpoint-up(sm) {
+      padding-inline: 1rem;
+      font-size: map.get(global.$font-scales, body-l);
+    }
+  }
+
+  .main-visual-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .button {
+      display: inline-flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      min-width: 200px;
+    }
+
+    @include acms.media-breakpoint-up(sm) {
+      .button {
+        flex: none;
+        min-width: 200px;
+      }
+    }
+  }
+
+  .splide__controls {
+    position: absolute;
+    inset: auto 0 0 50%;
+    z-index: 10;
+    width: 100%;
+    height: auto;
+    margin-block: 0 4.5rem;
+    transform: translateX(-50%);
+
+    @include acms.media-breakpoint-up(sm) {
+      margin-block-end: 6rem;
+    }
+
+    @include acms.media-breakpoint-up(md) {
+      inset: auto auto 0 0;
+      width: auto;
+      padding-inline: var(--main-visual-extend02-side-padding);
+      margin-block-end: 8rem;
+      transform: none;
+    }
+  }
+}

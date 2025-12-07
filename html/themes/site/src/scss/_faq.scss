@@ -1,0 +1,187 @@
+@use "sass:map";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　よくあるご質問
+------------------------------ */
+.faq {
+  --hover-speed: 0.3s;
+
+  min-width: 0; /* .faq-body 内要素はみ出し防止 */
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow);
+
+  .entry-style &::before {
+    content: none; /* モジュールユニット時のユニットスタイルによるスタイル上書き防止 */
+  }
+
+  @media (hover: hover) {
+    transition: box-shadow var(--hover-speed) ease;
+
+    &:hover {
+      box-shadow: var(--box-shadow-hover);
+    }
+  }
+}
+
+.faq-question-button {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: 100%; /* エントリー編集画面でのリセット用 */
+  background: transparent; /* エントリー編集画面でのリセット用 */
+  border: 0; /* エントリー編集画面でのリセット用 */
+
+  &.toggle-button {
+    padding: 2rem 1rem;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    &.toggle-button {
+      padding: 2rem;
+    }
+  }
+}
+
+.faq-icon {
+  flex: 0 0 auto;
+  min-width: 1.5rem;
+  margin-block: 0;
+  font-size: map.get(global.$font-scales, heading-s);
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  text-box-trim: trim-both;
+  text-box-edge: text;
+
+  @include acms.media-breakpoint-up(md) {
+    min-width: 2rem;
+    font-size: map.get(global.$font-scales, heading-m);
+  }
+
+  .entry-style & {
+    /* モジュールユニット時のユニットスタイルによるスタイル上書き防止 */
+    margin-block: 0;
+    font-size: map.get(global.$font-scales, heading-s);
+    line-height: 1;
+
+    @include acms.media-breakpoint-up(md) {
+      font-size: map.get(global.$font-scales, heading-m);
+    }
+  }
+
+  a {
+    color: currentcolor;
+    text-decoration: none;
+  }
+}
+
+.faq-question {
+  margin-block: 0;
+  font-size: map.get(global.$font-scales, body-m);
+  border-radius: var(--border-radius-lg);
+
+  &:has(+ [aria-hidden="false"]) {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .faq-icon {
+    color: var(--color-primary);
+  }
+
+  .faq-title {
+    flex: 1;
+    margin: 0;
+    font-weight: bold;
+    line-height: var(--line-height-base);
+    color: var(--color-text);
+    text-align: left;
+  }
+
+  @media (hover: hover) {
+    transition: background-color var(--hover-speed) ease;
+
+    .faq:hover & {
+      background-color: var(--color-hover-bg-2nd);
+    }
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    font-size: map.get(global.$font-scales, heading-ss);
+  }
+}
+
+.faq-body {
+  min-width: 0; /* .faq-body 内要素はみ出し防止 */
+}
+
+.acms-admin-unit-content .faq .toggle-body-contents,
+.acms-admin-modal-content .faq .toggle-body-contents {
+  display: none; /* モジュールユニットで表示する時は常に非表示 */
+}
+
+.faq-answer {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 2rem 0;
+  margin: 0 1rem;
+  border-top: 1px solid var(--color-gray30);
+
+  .faq-icon {
+    color: var(--color-gray90);
+  }
+
+  .entry-style {
+    margin-bottom: calc(var(--entry-el-margin-md) * -1);
+  }
+
+  .acms-admin-btn-action-group {
+    /* .entry-style に負の margin-bottom を指定しているため、
+      ログイン時に表示されるエントリー編集ボックスが、ユニットと密着しないように間隔を追加 */
+    margin-top: calc(var(--entry-el-margin-md) + 1rem);
+  }
+
+  @media (hover: hover) {
+    transition: border-top-color var(--hover-speed) ease;
+
+    .faq:hover & {
+      border-top-color: transparent;
+    }
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    margin: 0 2rem;
+  }
+}
+
+/* 質問リスト */
+.faq-list {
+  display: grid;
+  gap: 2rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  .entry-style & {
+    /* モジュールユニット時のユニットスタイルによるスタイル上書き防止 */
+    gap: 2rem;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+/* 質問セクションリスト */
+.faq-section-list {
+  display: grid;
+  gap: 3rem;
+
+  @include acms.media-breakpoint-up(md) {
+    gap: 4rem;
+  }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+  <head>
+    @include("/include/head/meta.html")
+    @include("/include/head/link.html")
+    @include("/include/head/js.html")
+  </head>
+
+  <body id="top" class="blog%{BID}-%{VIEW}">
+    @include("/include/body-start.html")
+
+    @include("/include/header/header.html")
+
+    @include("/include/parts/page-title/root-category-name.html")
+
+    @include("/include/parts/topicpath.html")
+
+    <!-- BEGIN_MODULE Touch_Login -->
+    <!-- ※管理用パーツ -->
+    <div class="acms-container">
+      @include("/admin/action.html")
+      @include("/admin/switch-user.html")
+    </div>
+    <!-- END_MODULE Touch_Login -->
+
+    <div class="content-wrapper">
+      <div class="acms-container">
+        <div class="container-md">
+          <!-- タグ検索非対応 -->
+
+          <!-- BEGIN_IF [%{PCID}/nem] -->
+          <h2 class="page-sub-title">%{CATEGORY_NAME}</h2>
+          <!-- END_IF -->
+
+          <!-- 日付検索非対応 -->
+
+          <!-- カテゴリー毎のキーワード検索非対応 -->
+
+          <!-- サマリー：記事一覧 -->
+          @include("/include/entry/summary-recruit.html")
+        </div>
+      </div>
+    </div>
+
+    <!-- BEGIN_MODULE Touch_SessionWithAdministration -->
+    <!-- meta情報確認 -->
+    <div class="acms-mt-8">
+      @include("/include/check-seo.html")
+    </div>
+    <!-- END_MODULE Touch_SessionWithAdministration -->
+
+    <!-- Call to Action -->
+    @include("/include/parts/cta.html", {"module_id": "mf_cta", "cta-section-mt": "true"})
+
+    @include("/include/footer/footer.html")
+
+    @include("/include/body-end.html")
+  </body>
+</html>

@@ -1,0 +1,143 @@
+<!-- BEGIN_SetTemplate id="calendar_event_entry" -->
+<a href="{url}" class="calendar-event-item-link">
+  <div class="calendar-event-item">
+    <div class="calendar-item-texts-layout">
+      <!-- BEGIN event_labels:veil -->
+      <div class="calendar-item-labels-layout">
+        <!-- BEGIN event_time:veil -->
+        <dl class="acms-lh-1 acms-my-0">
+          <dt class="acms-hide-visually">開催時間</dt>
+          <dd class="acms-ms-0"><span class="calendar-item-time">{event_time}</span></dd>
+        </dl>
+        <!-- BEGIN event_status:veil -->
+        <p class="label is-dark">
+          <!-- BEGIN_IF [{event_status}/eq/pre]-->募集前
+          <!-- ELSE_IF [{event_status}/eq/open] -->募集中
+          <!-- ELSE_IF [{event_status}/eq/full] -->満員御礼
+          <!-- ELSE_IF [{event_status}/eq/closed] -->終了
+          <!-- END_IF -->
+        </p>
+        <!-- END event_status:veil -->
+        <!-- BEGIN event_pref:veil -->
+        <p class="label">{event_pref}</p>
+        <!-- END event_pref:veil -->
+        <!-- BEGIN categoryField:veil -->
+        <!-- BEGIN categoryField -->
+        <dl class="acms-lh-1 acms-my-0">
+          <dt class="acms-hide-visually">カテゴリー</dt>
+          <dd class="acms-ms-0">
+            <span class="label">{fieldCategoryName}</span>
+          </dd>
+        </dl>
+        <!-- END categoryField -->
+        <!-- END categoryField:veil -->
+      </div>
+      <!-- END event_labels:veil -->
+      <h3 class="calendar-event-item-title">{title}</h3>
+    </div>
+    <!-- BEGIN entry_main_image:veil -->
+    <img
+      src="%{MEDIA_ARCHIVES_DIR}{entry_main_image@path}[resizeImg(360)]"
+      alt=""
+      width="360"
+      height="{entry_main_image@path}[getHeightFromRatio(360)]"
+      class="calendar-event-item-img"
+      loading="lazy"
+      decoding="async"
+    >
+    <!-- END entry_main_image:veil -->
+  </div>
+</a>
+<!-- END_SetTemplate -->
+
+<!-- BEGIN_MODULE Entry_Calendar id="{{module_id}}" -->
+<div>
+  @include("/admin/module/setting.html")
+
+  <!-- BEGIN date -->
+  <div class="calendar-heading">
+    <div class="calendar-pagination">
+      <h2 class="calendar-pagination-title">{year}年{month}[date('n')]月</h2>
+      <!-- BEGIN calendar-pagination-group:veil -->
+      <ul class="calendar-pagination-group">
+        <li class="calendar-pagination-item-previous"><a href="%{BASE_URL}calendar.html/{prevDate}" class="calendar-pagination-link" aria-label="{prevDate}月へ"><span class="calendar-pagination-link-icon" aria-hidden="true">@include("/images/icon/chevron-left-bold.svg")</span><span class="calendar-pagination-link-text">{prevDate}[date('n月')]</span></a></li>
+        <li class="calendar-pagination-item-next"><a href="%{BASE_URL}calendar.html/{nextDate}" class="calendar-pagination-link" aria-label="{nextDate}月へ"><span class="calendar-pagination-link-text">{nextDate}[date('n月')]</span><span class="calendar-pagination-link-icon" aria-hidden="true">@include("/images/icon/chevron-right-bold.svg")</span></a></li>
+      </ul><!-- END header-pagination-group:veil -->
+    </div>
+  </div>
+  <!-- END date -->
+
+  <table class="calendar-event-table">
+    <!-- BEGIN week:loop -->
+
+    <!-- BEGIN foreSpacer -->
+    <tr class="calendar-event-fore-spacer">
+      <th>
+        <span class="calendar-event-day-layout">
+          <span class="calendar-event-day"><span class="acms-hide-visually">{prevDate}[date('n')]月</span>{prevDay}<span class="acms-hide-visually">日</span></span>
+          <span class="badge-day is-week-{w}">{week}</span>
+        </span>
+      </th>
+      <td>
+        <div class="calendar-event-entry-list">
+          <!-- BEGIN foreEntry:loop -->
+          <!-- GET_Template id="calendar_event_entry" -->
+          <!-- END foreEntry:loop -->
+        </div>
+      </td>
+    </tr>
+    <!-- END foreSpacer -->
+
+    <!-- BEGIN day:loop -->
+    <tr>
+      <th class="{today}">
+        <span class="calendar-event-day-layout">
+          <span class="calendar-event-day">{day}<span class="acms-hide-visually">日</span></span>
+          <span class="badge-day is-week-{w}">{week}</span>
+        </span>
+      </th>
+      <td>
+        <div class="calendar-event-entry-list">
+          <!-- BEGIN entry:loop -->
+          <!-- GET_Template id="calendar_event_entry" -->
+          <!-- END entry:loop -->
+        </div>
+      </td>
+    </tr>
+    <!-- END day:loop -->
+
+    <!-- BEGIN rearSpacer -->
+    <tr class="calendar-event-rear-spacer">
+      <th>
+        <span class="calendar-event-day-layout">
+          <span class="calendar-event-day"><span class="acms-hide-visually">{nextDate}[date('n')]月</span>{nextDay}<span class="acms-hide-visually">日</span></span>
+          <span class="badge-day is-week-{w}">{week}</span>
+        </span>
+      </th>
+      <td>
+        <div class="calendar-event-entry-list">
+          <!-- BEGIN rearEntry:loop -->
+          <!-- GET_Template id="calendar_event_entry" -->
+          <!-- END rearEntry:loop -->
+        </div>
+      </td>
+    </tr>
+    <!-- END rearSpacer -->
+
+    <!-- END week:loop -->
+  </table>
+
+  <!-- BEGIN date -->
+  <div class="calendar-footing">
+    <div class="calendar-pagination">
+      <p class="calendar-pagination-return"><a href="%{BASE_URL}" class="button is-width-lg is-bg-white-bordered">%{BLOG_NAME}トップへ戻る</a></p>
+      <!-- BEGIN calendar-pagination-group:veil -->
+      <ul class="calendar-pagination-group">
+        <li class="calendar-pagination-item-previous"><a href="%{BASE_URL}calendar.html/{prevDate}" class="calendar-pagination-link" aria-label="{prevDate}月へ"><span class="calendar-pagination-link-icon" aria-hidden="true">@include("/images/icon/chevron-left-bold.svg")</span><span class="calendar-pagination-link-text">{prevDate}[date('n月')]</span></a></li>
+        <li class="calendar-pagination-item-next"><a href="%{BASE_URL}calendar.html/{nextDate}" class="calendar-pagination-link" aria-label="{nextDate}月へ"><span class="calendar-pagination-link-text">{nextDate}[date('n月')]</span><span class="calendar-pagination-link-icon" aria-hidden="true">@include("/images/icon/chevron-right-bold.svg")</span></a></li>
+      </ul><!-- END header-pagination-group:veil -->
+    </div>
+  </div>
+  <!-- END date -->
+</div>
+<!-- END_MODULE Entry_Calendar -->

@@ -1,0 +1,123 @@
+@use "sass:map";
+@use "sass:math";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+
+
+#adminBox {
+  margin-top: 20px;
+}
+
+/* ------------------------------
+　　ベース
+------------------------------ */
+html {
+  font-family: var(--font-base);
+  line-height: var(--line-height-lg);
+  color: var(--color-text);
+  background: var(--color-white);
+  scroll-behavior: smooth;
+
+  @include acms.media-breakpoint-up(md) {
+    scroll-padding-top: var(--header-height-fixed);
+  }
+}
+
+body {
+  word-break: normal;
+  overflow-wrap: anywhere;
+  line-break: strict;
+}
+
+/* リンクの設定 */
+a {
+  border: none;
+}
+
+::placeholder {
+  color: var(--color-gray70) !important;
+}
+
+/* コンテナー
+----------------------------- */
+.acms-container,
+.container-md,
+.container-sm {
+  box-sizing: border-box;
+  padding-right: var(--container-space-x);
+  padding-left: var(--container-space-x);
+  margin-right: auto;
+  margin-left: auto;
+
+  @if global.$enable-iphonex == true {
+    padding-right: calc(env(safe-area-inset-right) + var(--container-space-x));
+    padding-left: calc(env(safe-area-inset-left) + var(--container-space-x));
+  }
+
+  .acms-container,
+  .container-md,
+  .container-sm {
+    padding-right:0;
+    padding-left:0;
+  }
+}
+
+.acms-container {
+  max-width: var(--container);
+}
+
+.container-md {
+  max-width: var(--container-md);
+}
+
+.container-sm {
+  --gutter: var(--gutter-sm);
+
+  max-width: var(--container-sm);
+}
+
+/* グリッドシステム
+----------------------------- */
+.acms-cssgrid {
+  --acms-gap: var(--col-gutter);
+}
+
+/* レイアウト
+----------------------------- */
+.content-wrapper {
+  padding-top: var(--page-title-space-bottom);
+}
+
+/* 2カラム */
+.content-wrapper.two-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem 3.5rem;
+  justify-content: space-between;
+
+  @include acms.media-breakpoint-between(md, lg) {
+    max-width: 44rem;
+    margin: 0 auto;
+  }
+
+  @include acms.media-breakpoint-up(lg) {
+    flex-direction: row;
+  }
+}
+
+@include acms.media-breakpoint-up(lg) {
+  .main-container {
+    width: var(--width-main-container);
+  }
+
+  .side-container {
+    width: var(--width-side-container);
+  }
+}
+
+/* その他上書き
+----------------------------- */
+.js-open-street-map {
+  z-index: 0;
+}

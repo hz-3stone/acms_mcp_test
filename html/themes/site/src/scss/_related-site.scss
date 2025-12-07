@@ -1,0 +1,112 @@
+@use "sass:math";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　関連サイト
+------------------------------ */
+.news-banner-carousel {
+  padding-inline: 1rem; /* スライダー送り矢印ボタンが画面端から見切れないよう余白を確保 */
+
+  .splide__track {
+    position: relative; /* スライダー送り矢印の位置基準 */
+    padding: 0.5rem !important; /* box-shadow分の余白を確保 */
+    margin: calc(0.5rem * -1) !important; /* box-shadow分の余白を確保 */
+  }
+
+  .splide__arrow {
+    top: calc(50%);
+    width: 2rem;
+    height: 2rem;
+    background: var(--color-white);
+    box-shadow: var(--box-shadow);
+    transform: translateY(-50%);
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+      color: var(--color-gray80);
+
+      path {
+        fill: transparent;
+        stroke: currentcolor;
+      }
+
+      .splide__arrow--prev & {
+        transform-origin: top;
+      }
+    }
+
+    &,
+    &:hover:not(:disabled) {
+      opacity: 1; /* リセット */
+    }
+
+    @media (hover: hover) {
+      transition: box-shadow 0.3s ease;
+
+      &:hover:not(:disabled) {
+        box-shadow: var(--box-shadow-hover);
+      }
+    }
+  }
+
+  &.splide:not(.is-overflow) .splide__arrows {
+    display: none; /* スライドアイテムが全表示されている時はスライドする必要がないため矢印を非表示 */
+  }
+
+  .splide__arrow--prev {
+    left: 0;
+  }
+
+  .splide__arrow--next {
+    right: 0;
+  }
+
+  &.splide.is-overflow {
+    margin-bottom: 2.75rem; /* ドットページネーションの表示領域を確保 */
+  }
+
+  .splide__pagination {
+    position: absolute;
+    bottom: -2.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@include acms.media-breakpoint-up(sm) {
+  .news-banner-carousel {
+    padding-inline: 0;
+
+    .splide__arrow--prev {
+      left: -1rem;
+    }
+
+    .splide__arrow--next {
+      right: -1rem;
+    }
+  }
+}
+
+@include acms.media-breakpoint-up(lg) {
+  .news-banner-carousel {
+    .splide__arrow {
+      width: 3rem;
+      height: 3rem;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    .splide__arrow--prev {
+      left: -1.5rem;
+    }
+
+    .splide__arrow--next {
+      right: -1.5rem;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　バナー
+------------------------------ */
+.banner-list {
+  padding-left: 0;
+  margin-block: 0;
+  list-style: none;
+
+  .js .js-animation & {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  .js .js-animation.is-show & {
+    animation: fade-in 0.4s 0.5s 1 both;
+  }
+}
+
+.banner-item {
+  margin: 0;
+}
+
+.banner-link {
+  display: block;
+  text-decoration: none;
+
+  @media (hover: hover) {
+    &:any-link:hover {
+      .banner-img {
+        box-shadow: var(--box-shadow-hover);
+      }
+    }
+  }
+}
+
+.banner-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow);
+
+  @media (hover: hover) {
+    transition: box-shadow 0.3s ease;
+  }
+}

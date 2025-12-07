@@ -1,0 +1,57 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　トピックパス
+------------------------------ */
+.topicpath-wrap {
+  height: 28px;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.topicpath {
+  padding: 0 0 35px;
+  margin: 0;
+  overflow: scroll hidden;
+  line-height: 1;
+  white-space: nowrap;
+  list-style-type: none;
+
+  @include acms.font-size(12);
+
+  a {
+    @include global.link-color(global.$text-color-light);
+    @include global.only-underline-on-hover;
+  }
+}
+
+.topicpath li {
+  display: inline-block;
+  margin-left: 1px;
+
+  &::after {
+    display: inline-block;
+    margin-left: 5px;
+    content: ">";
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+}
+
+@include acms.media-breakpoint-down(md) {
+  .topicpath-wrap {
+    height: 20px;
+    margin-bottom: 10px;
+
+    &.is-root-top {
+      height: 0;
+    }
+  }
+}

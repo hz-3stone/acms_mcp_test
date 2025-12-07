@@ -1,0 +1,69 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　カテゴリーリスト
+------------------------------ */
+.list-add-amount {
+	padding: 0;
+	margin: 0 0 30px;
+
+	ul {
+		padding: 0;
+		margin: 0;
+		border-top: 1px solid global.$border-color-base;
+	}
+
+	li {
+		display: block;
+		padding: 15px 45px 15px 0;
+		overflow: hidden;
+		font-size: 14px;
+		line-height: 1.5;
+		list-style-type: none;
+		border-bottom: 1px solid global.$border-color-base;
+
+		ul {
+			padding-left: 25px;
+			margin: 15px -45px -15px 0;
+			border-bottom: none;
+
+			li:last-child {
+				border-bottom: none;
+			}
+		}
+
+		a {
+			position: relative;
+			display: block;
+			padding: 15px 45px 15px 15px;
+			margin: -15px -45px -15px -5px;
+			color: global.$text-color-base;
+			text-decoration: none;
+
+			@include global.roll-over-bg-color(transparent, global.$bg-color-hover, global.$transition-speed);
+
+			&:hover {
+				.list-add-amount-label {
+					background-color: global.$bg-color-label-hover;
+				}
+			}
+		}
+	}
+}
+
+.list-add-amount-label {
+	position: absolute;
+	top: 50%;
+	right: 5px;
+	display: inline-block;
+	min-width: 36px;
+	padding: 0 5px;
+	margin-top: -12px;
+	line-height: 25px;
+	color: global.$text-color-light;
+	text-align: center;
+	background-color: global.$bg-color-base;
+	border-radius: 3px;
+	transition: background-color global.$transition-speed;
+}

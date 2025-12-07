@@ -1,0 +1,103 @@
+@extends("/_layouts/unit.html")
+
+@section(media-unit)
+<!-- media -->
+<div role="figure" class="column-media column-media-{align} align-{align}" aria-labelledby="media-caption-{utid}">
+  <div class="{display_size_class}" {display_size}[raw] <!-- BEGIN_IF [{display_size_class}{display_size}/em/_and_/{type}/re/^(image|svg)$] --> style="width: {rootWidth}px; min-width: 0;"<!-- END_IF -->>
+  <!-- BEGIN type#image -->
+  <!-- BEGIN link#front -->
+  <a href="{url}" {viewer}[raw] data-group="{link_eid}">
+  <!-- END link#front -->
+    <img
+      <!-- BEGIN_IF [{anker}/nem] -->
+      id="{anker}"
+      <!-- END_IF -->
+      src="%{HTTP_ROOT}{path}[resizeImg({resizeWidth})]"
+      class="columnImage unit-id-{image_utid}"
+      width="{x}"
+      height="{y}"
+      alt="{alt}"
+      loading="lazy"
+      decoding="async"
+    >
+  <!-- BEGIN link#rear -->
+  </a>
+  <!-- END link#rear -->
+  <!-- BEGIN_IF [{caption}[delnl]/nem] -->
+  <p id="media-caption-{image_utid}" class="caption">{caption}[raw|nl2br]</p>
+  <!-- END_IF -->
+
+  <!-- END type#image -->
+  <!-- BEGIN type#svg -->
+  <!-- BEGIN link#front -->
+  <a href="{url}" {viewer}[raw] data-group="{link_eid}">
+  <!-- END link#front -->
+    <img
+      <!-- BEGIN_IF [{anker}/nem] -->
+      id="{anker}"
+      <!-- END_IF -->
+      src="%{HTTP_ROOT}{path}"
+      class="columnImage unit-id-{svg_utid}"
+      alt="{alt}"
+      width="{x}"
+      height="{y}"
+      loading="lazy"
+      decoding="async"
+    >
+  <!-- BEGIN link#rear -->
+  </a>
+  <!-- END link#rear -->
+  <!-- BEGIN_IF [{caption}[delnl]/nem] -->
+  <p id="media-caption-{svg_utid}" class="caption">{caption}[raw|nl2br]</p>
+  <!-- END_IF -->
+
+  <!-- END type#svg -->
+
+  <!-- BEGIN type#file -->
+  <!-- BEGIN_IF [{thumbnail}/nem/_and_/{use_icon}/neq/yes] -->
+  <a<!-- BEGIN_IF [{anker}/nem] --> id="{anker}"<!-- END_IF --> href="{url}" target="_blank">
+    <img
+      class="column-pdf-image unit-id-{file_utid}"
+      src="%{MEDIA_ARCHIVES_DIR}{thumbnail}"
+      alt="{alt}"
+      width="{x}"
+      height="{y}"
+      loading="lazy"
+      decoding="async"
+    >
+    <div class="column-pdf-image-caption-box">
+      <img
+        class="columnIcon"
+        src="%{HTTP_ROOT}{icon}"
+        alt="{alt}"
+        width="32"
+        height="37"
+        loading="lazy"
+        decoding="async"
+      >
+      <!-- BEGIN_IF [{caption}[delnl]/nem] -->
+      <p id="media-caption-{file_utid}" class="caption">{caption}[raw|nl2br]</p>
+      <!-- END_IF -->
+      <span class="column-pdf-image-download-icon" role="img" aria-label="ダウンロード">@include("/images/icon/arrow-down-to-line.svg")</span>
+    </div>
+  </a>
+  <!-- ELSE -->
+  <a<!-- BEGIN_IF [{anker}/nem] --> id="{anker}"<!-- END_IF --> href="{url}" target="_blank">
+    <img
+      class="columnIcon"
+      src="%{HTTP_ROOT}{icon}"
+      alt="{alt}"
+      width="{x}"
+      height="{y}"
+      loading="lazy"
+      decoding="async"
+    >
+    <!-- BEGIN_IF [{caption}[delnl]/nem] -->
+    <p id="media-caption-{file_utid}" class="caption">{caption}[raw|nl2br]</p>
+    <!-- END_IF -->
+  </a>
+  <!-- END_IF -->
+  <!-- END type#file -->
+  </div>
+</div>
+@endsection

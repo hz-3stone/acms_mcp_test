@@ -1,0 +1,31 @@
+@use "../variables" as var;
+
+@mixin link-text($color: currentcolor) {
+  color: $color;
+  text-decoration: underline dotted 2px;
+  text-underline-offset: 3px;
+
+  &[target="_blank"] {
+    margin-right: 4px;
+
+    &::after {
+      display: inline-block;
+      flex: none;
+      width: 0.875em;
+      height: 0.875em;
+      margin-left: 4px;
+      vertical-align: baseline;
+      content: '';
+      background-color: $color;
+      mask-image: url("#{var.$root-theme-img}icon/target_blank.svg");
+      mask-repeat: no-repeat;
+      mask-size: contain;
+    }
+  }
+
+  @media (hover: hover) {
+    &:any-link:hover {
+      text-decoration: none;
+    }
+  }
+}

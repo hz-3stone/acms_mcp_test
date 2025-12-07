@@ -1,0 +1,128 @@
+<!-- BEGIN_MODULE Entry_Summary id="summary_realestate" -->
+<section>
+  @include("/include/edit/module-custom.html")
+
+  <h2 class="acms-hide-visually">物件情報一覧</h2>
+
+  <div class="search-results">
+    <!-- BEGIN notFound -->
+    <p class="search-amount">検索条件に一致する物件は見つかりませんでした</p>
+    <!-- END notFound -->
+
+    <!-- BEGIN_MODULE Field_Search -->
+    <!-- BEGIN_IF [%{PCID}{station}{price}%{KEYWORD}/nem] -->
+    <!-- BEGIN\ itemsAmount:veil -->
+    <p class="search-amount">検索結果　\{itemsAmount\}件</p>
+    <!-- END\ itemsAmount:veil -->
+
+    <dl class="search-conditions">
+      <dt>検索条件</dt>
+
+      <!-- BEGIN_IF [%{PCID}/nem] -->
+      <dd>区分：%{CATEGORY_NAME}</dd>
+      <!-- END_IF -->
+
+      <!-- BEGIN station:veil -->
+      <dd>最寄駅：<!-- BEGIN station:loop --><!-- BEGIN station:glue -->・<!-- END station:glue -->{station}<!-- END station:loop --></dd>
+      <!-- END station:veil -->
+
+      <!-- BEGIN price:veil -->
+      <dd>家賃：<!-- BEGIN price0:veil -->{price[0]}[number_format]円以上 <!-- END price0:veil --><!-- BEGIN price1:veil -->{price[1]}[number_format]円以下<!-- END price1:veil --></dd>
+      <!-- END price:veil -->
+
+      <!-- BEGIN_IF [%{KEYWORD}/nem] -->
+      <dd>キーワード： %{KEYWORD}</dd>
+      <!-- END_IF -->
+    </dl>
+    <!-- END_IF -->
+    <!-- END_MODULE Field_Search -->
+  </div>
+
+  <!-- BEGIN entry_list:veil -->
+  <div class="acms-cssgrid<!-- BEGIN_IF [{parent.loop.class}/nem] --> {parent.loop.class}<!-- ELSE --> acms-g-cols-1 acms-g-cols-sm-2 acms-g-cols-md-3<!-- END_IF -->" style="--card-img-aspect-ratio: 16 / 9;">
+    <!-- BEGIN entry:loop -->
+    <article aria-labelledby="card-entry{eid}">
+      <a href="{url}" class="card-link">
+        <div class="card-link-inner">
+          <div class="card">
+            <div class="card-img-wrap">
+              <!-- BEGIN_IF [{path}/nem] -->
+              <img
+                src="%{ROOT_DIR}{path}[resizeImg(800)]"
+                alt="{alt}"
+                class="card-img"
+                width="800"
+                height="{path}[imageRatioSizeH(800)]"
+                loading="lazy"
+                decoding="async"
+              >
+              <!-- ELSE -->
+              <img
+                src="/images/noimage.png"
+                alt=""
+                class="card-img"
+                width="1200"
+                height="675"
+                loading="lazy"
+                decoding="async"
+              >
+              <!-- END_IF -->
+              <!-- BEGIN new -->
+              <p class="label-triangle left-top" role="img" aria-label="New">@include("/images/label-new-triangle.svg")</p>
+              <!-- END new -->
+              <!-- BEGIN price:veil -->
+              <p class="card-img-label-position right-bottom"><span class="label is-dark">{price}[number_format]円/月</span></p>
+              <!-- END price:veil -->
+            </div>
+            <div class="card-texts-layout">
+              <!-- BEGIN labels:veil -->
+              <dl class="card-labels-layout acms-lh-1 acms-my-0">
+                <!-- BEGIN categoryField:veil -->
+                <!-- BEGIN categoryField -->
+                <div class="acms-inline-block">
+                  <dt class="acms-hide-visually">カテゴリー</dt>
+                  <dd class="acms-ms-0">
+                    <span class="label">{fieldCategoryName}</span>
+                  </dd>
+                </div>
+                <!-- END categoryField -->
+                <!-- END categoryField:veil -->
+                <!-- BEGIN madori:veil -->
+                <div class="acms-inline-block">
+                  <dt class="acms-hide-visually">間取り</dt>
+                  <dd class="acms-ms-0">
+                    <span class="label">{madori}</span>
+                  </dd>
+                </div>
+                <!-- END madori:veil -->
+              </dl>
+              <!-- END labels:veil -->
+              <h3 class="card-title" id="card-entry{eid}">{title}</h3>
+              <!-- BEGIN_IF [{station}{price}/nem] -->
+              <dl class="card-supplement-label-list acms-lh-1 acms-my-0">
+                <!-- BEGIN_IF [{station}/nem] -->
+                <dt class="acms-hide-visually">アクセス</dt>
+                <dd class="acms-ms-0"><span class="card-supplement-label">{station}<!-- BEGIN_IF [{station}/nem/_and_/{toho}/nem] -->より徒歩{toho}分<!-- END_IF --></span></dd>
+                <!-- END_IF -->
+              </dl>
+              <!-- END_IF -->
+              <!-- BEGIN tag_list:veil -->
+              <dl class="card-tag-list acms-lh-1 acms-my-0">
+                <dt class="acms-hide-visually">タグ</dt>
+                <!-- BEGIN tag:loop -->
+                <dd class="acms-ms-0"><span class="tag-sm-label">#{name}</span></dd>
+                <!-- END tag:loop -->
+              </dl>
+              <!-- END tag_list:veil -->
+            </div>
+          </div>
+        </div>
+      </a>
+    </article>
+    <!-- END entry:loop -->
+  </div>
+  <!-- END entry_list:veil -->
+
+  @include("/include/parts/pager.html")
+</section>
+<!-- END_MODULE Entry_Summary -->

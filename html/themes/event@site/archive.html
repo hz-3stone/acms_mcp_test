@@ -1,0 +1,14 @@
+@extends("/_layouts/base.html")
+
+@section("main")
+<div class="acms-container">
+  @include("/include/parts/local-nav.html", {"module_id": "nav_event", "direction": ""})
+
+  @include("/include/tag/filter.html")
+
+  <h2 class="heading-lg acms-mb-8">終了したイベント</h2>
+
+  <!-- サマリー：記事一覧 -->
+  @include("/include/entry/summary-event.html", {"module_id": "summary_event_archive", "module_title_md": ""})
+</div>
+@endsection

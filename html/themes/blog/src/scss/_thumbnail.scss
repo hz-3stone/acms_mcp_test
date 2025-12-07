@@ -1,0 +1,90 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　エントリーサマリー（サムネイル表示）
+------------------------------ */
+.thumbnail {
+	display: flex;
+	flex-flow: row wrap;
+	padding: 0;
+	margin: 0 -5px 30px;
+
+	& li {
+		display: flex;
+		padding-right: 5px;
+		padding-left: 5px;
+		margin: 0 0 25px;
+		list-style-type: none;
+	}
+
+	& a {
+		flex: 1 1 auto;
+
+		@include global.text-decoration-none;
+		@include global.link-color(#FFFFFF);
+
+		&:hover {
+			.thumbnail-img-outer {
+				opacity: global.$opacity-hover;
+			}
+		}
+	}
+}
+
+:where(.thumbnail > *) {
+  width: 100%;
+}
+
+.thumbnail-inner {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.thumbnail-img-outer {
+	@include global.transition-opacity;
+}
+
+.thumbnail-img-outer {
+	width: 100%;
+	height: 0;
+	padding: calc(100% / 2 * 0.5625); /* 画像が16:9になる高さ */
+	margin: 0 0 5px;
+}
+
+.thumbnail-img {
+	@include global.transition-opacity;
+}
+
+.thumbnail-date {
+	margin-top: 0;
+	margin-bottom: 5px;
+	color: global.$text-color-light;
+
+	@include acms.font-size(14);
+}
+
+.thumbnail-title {
+	margin-top: 0;
+	margin-bottom: 0;
+	font-weight: bold;
+	color: global.$text-color-base;
+
+	@include acms.font-size(14);
+}
+
+.thumbnail-text {
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+@include acms.media-breakpoint-down(md) {
+	.thumbnail-date {
+		font-size: 10px;
+	}
+
+	.thumbnail-title {
+		font-size: 12px;
+	}
+}

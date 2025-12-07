@@ -1,0 +1,59 @@
+@use "global/common" as global;
+
+/* ------------------------------
+　　SNS連携
+------------------------------ */
+.sns-link {
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sns-link-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & + & {
+    margin-top: 1rem;
+  }
+}
+
+.sns-link-heading {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.sns-link-icon {
+  margin-right: 1rem;
+  font-size: 1.5rem;
+  line-height: 1;
+
+  & > * {
+    vertical-align: top;
+  }
+
+  &.-x {
+    color: #000;
+  }
+
+  &.-line {
+    background-color: #06c755;
+  }
+
+  .acms-icon {
+    padding: 0;
+  }
+}
+
+.sns-link-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.sns-link-buttons-linked {
+  margin: 0 1rem 0 0;
+  font-weight: bold;
+}

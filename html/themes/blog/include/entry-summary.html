@@ -1,0 +1,20 @@
+<!-- BEGIN_MODULE Entry_Summary id="" -->
+<section>
+  @include("/admin/module/setting.html")
+  <h2 class="sub-heading">最新記事</h2>
+  <!-- BEGIN notFound -->
+  <p>お探しの記事は見つかりませんでした。</p>
+  <!-- END notFound -->
+  <ul class="entry-list">
+    <!-- BEGIN entry:loop -->
+    <li class="{entry:loop.class}">
+      <a href="{url}">
+        <span class="entry-list-date">{date#Y}年{date#m}月{date#d}日</span>
+        <!-- BEGIN new --><span class="entry-new">NEW</span><!-- END new -->
+        <span class="entry-list-title">{title}</span>
+      </a>
+    </li>
+    <!-- END entry:loop -->
+  </ul>
+</section>
+<!-- END_MODULE Entry_Summary -->

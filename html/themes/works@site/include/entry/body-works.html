@@ -1,0 +1,118 @@
+<!-- BEGIN_MODULE Entry_Body id="body_works" -->
+<!-- BEGIN notFound -->
+<section class="acms-entry entry-style">
+  <h2>Not Found</h2>
+  <p>お探しの記事は見つかりませんでした。</p>
+</section>
+<!-- END notFound -->
+
+<!-- BEGIN entry:loop -->
+
+<!-- BEGIN_SetRendered id="tag" -->
+<!-- BEGIN tag:loop -->
+<li><a href="{url}">#{name}</a></li>
+<!-- END tag:loop -->
+<!-- END_SetRendered -->
+
+<!-- BEGIN_MODULE Touch_Login -->
+<div class="acms-form-group">
+  <!-- バージョン管理 -->
+  @include("/admin/entry/revision-info.html")
+  <!-- 編集ボックス -->
+  @include("/admin/entry/action.html")
+</div>
+<!-- END_MODULE Touch_Login -->
+
+<article class="entry {entry:loop.class}">
+  <div class="js-sticky-area">
+    <!-- BEGIN_IF [%{ECD}/nem]-->
+    <!-- BEGIN title:veil -->
+    <header class="entry-header">
+      <h1 class="entry-header-title entryTitle">
+        <a href="{titleUrl}" class="entry-header-title-link"><!-- BEGIN_IF [{work_copy}/nem] -->{work_copy} <span>{title}</span><!-- ELSE -->{title}<!-- END_IF --></a>
+      </h1>
+
+      <!-- BEGIN entry-header-info:veil -->
+      <div class="entry-header-info">
+        <!-- BEGIN entry-header-date:veil -->
+        <p class="acms-my-0">
+          <!-- BEGIN date:veil -->
+          <time datetime="{date#Y}-{date#m}-{date#d}" class="entry-header-time">{date#Y}年{date#n}月{date#j}日（{date#l}[weekEN2JP]）
+          </time>
+          <!-- END date:veil -->
+          <!-- BEGIN new --><span class="label is-md">New</span><!-- END new -->
+        </p>
+        <!-- END entry-header-date:veil -->
+
+        <!-- BEGIN category:veil -->
+        <p class="entry-header-category-list"><!-- BEGIN category:loop -->
+          <a href="{url}" class="entry-header-category-label">{name}</a><!-- BEGIN glue --><!-- END glue --><!-- END category:loop -->
+
+          <!-- BEGIN works-industry:veil -->
+          <a href="%{BLOG_URL}field/work_industry/{work_industry}" class="entry-header-category-label">
+            <!-- BEGIN_IF [{work_industry}/eq/industry1] -->製造業
+            <!-- ELSE_IF [{work_industry}/eq/industry2] -->建設・建築
+            <!-- ELSE_IF [{work_industry}/eq/industry3] -->卸売・小売
+            <!-- ELSE_IF [{work_industry}/eq/industry4] -->医療・福祉
+            <!-- ELSE_IF [{work_industry}/eq/industry5] -->人材紹介・派遣
+            <!-- ELSE_IF [{work_industry}/eq/industry6] -->不動産
+            <!-- ELSE_IF [{work_industry}/eq/industry7] -->自治体・官公庁
+            <!-- ELSE_IF [{work_industry}/eq/industry8] -->IT・システム開発
+            <!-- ELSE_IF [{work_industry}/eq/industry9] -->ウェブサービス・デザイン<!-- END_IF -->
+          </a>
+          <!-- END works-indutry:veil -->
+        </p>
+        <!-- END category:veil -->
+      </div>
+      <!-- END entry-header-info:veil -->
+
+      <!-- BEGIN tag:veil -->
+      <ul class="entry-tag-list">
+        <!-- BEGIN tag:loop -->
+        <li class="entry-tag-item"><a href="{url}">#{name}</a></li>
+        <!-- END tag:loop -->
+      </ul>
+      <!-- END tag:veil -->
+    </header>
+    <!-- END title:veil -->
+    <!-- END_IF -->
+
+    <!-- BEGIN entry:veil -->
+    <div class="acms-entry entry-style js-outline" data-target=".js-outline-yield" data-link="true" data-listType="ol" data-listClassName="outline-list" data-itemClassName="outline-item" data-linkClassName="css-scroll" data-anchorName="heading-$1" data-levelLimit="3" data-exceptClass="js-except">
+      <!-- カスタムフィールドの読み込み -->
+      @include("/include/entry/field.html")
+
+      <!-- BEGIN unit:veil -->
+      @include("/include/unit.html")
+      <!-- END unit:veil -->
+      <!-- 続きを読む -->
+      @include("/include/parts/continue.html")
+
+      <!-- BEGIN_MODULE Touch_Entry -->
+      <!-- カスタムフィールドの読み込み -->
+      @include("/include/entry/field_foot.html")
+      <!-- END_MODULE Touch_Entry -->
+    </div>
+    <!-- END entry:veil -->
+
+    <!-- BEGIN formBody -->
+    @include("/include/form/unit.html")
+    <!-- END formBody -->
+
+    <!-- 編集ボックス -->
+    @include("/admin/entry/action.html")
+
+    <!-- BEGIN_MODULE Touch_Entry -->
+    <footer class="entry-footer">
+      <!-- SNSシェアボタン -->
+      @include("/include/parts/sns-share.html")
+    </footer>
+    <!-- END_MODULE Touch_Entry -->
+  </div>
+</article>
+
+<!-- END entry:loop -->
+
+<!-- ページャー -->
+@include("/include/parts/pager.html")
+<!-- END_MODULE Entry_Body -->

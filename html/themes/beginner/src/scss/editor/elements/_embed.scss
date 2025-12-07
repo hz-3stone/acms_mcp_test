@@ -1,0 +1,106 @@
+@use "sass:map";
+@use "sass:math";
+@use "../../global/acms-common" as acms;
+@use "../../global/common" as global;
+
+/* ------------------------------
+ 埋め込みユニット
+------------------------------ */
+
+[class*="column-embed-"] {
+  margin-block: var(--unit-margin-top) var(--unit-margin-bottom);
+
+  a.acms-embed-link {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: var(--color-text);
+    text-decoration: none;
+    border: var(--border-width-sm) solid var(--color-gray30);
+    border-radius: var(--border-radius-lg);
+
+    @media (hover: hover) {
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: var(--color-hover-bg);
+      }
+    }
+  }
+
+  .acms-embed-link-image-container img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .acms-embed-link-content {
+    padding: 1rem;
+    margin: 0; /* リセット */
+  }
+
+  .acms-embed-link-site-name {
+    margin: 0;
+    font-size: map.get(global.$font-scales, body-s);
+    color: var(--color-text);
+  }
+
+  .acms-embed-link-title {
+    margin: 0 0 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: map.get(global.$font-scales, body-m);
+    font-weight: bold;
+    line-height: var(--line-height-sm);
+    white-space: nowrap;
+  }
+
+  .acms-embed-link-description {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    font-size: map.get(global.$font-scales, body-s);
+    -webkit-box-orient: vertical;
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    a.acms-embed-link {
+      flex-direction: row;
+    }
+
+    .acms-embed-link-image-container {
+      box-sizing: border-box;
+      flex: 1 0 auto;
+      width: math.div(100%, 3);
+      padding: 0;
+    }
+
+    .acms-embed-link-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .acms-embed-link-content {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      width: math.div(2, 3);
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .acms-embed-link-title {
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: map.get(global.$font-scales, heading-ss);
+      font-weight: bold;
+      white-space: nowrap;
+    }
+  }
+}

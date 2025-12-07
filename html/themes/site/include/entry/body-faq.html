@@ -1,0 +1,73 @@
+<!-- BEGIN_MODULE Entry_Body id="{{module_id}}" -->
+<!-- BEGIN notFound -->
+<section class="acms-entry entry-style">
+  <h2>Not Found</h2>
+  <p>お探しの記事は見つかりませんでした。</p>
+</section>
+<!-- END notFound -->
+
+<!-- BEGIN entry:loop -->
+
+<!-- BEGIN_MODULE Touch_Login -->
+<div class="acms-form-group">
+  <!-- バージョン管理 -->
+  @include("/admin/entry/revision-info.html")
+  <!-- 編集ボックス -->
+  @include("/admin/entry/action.html")
+</div>
+<!-- END_MODULE Touch_Login -->
+
+<article class="entry entry-faq {entry:loop.class}">
+
+  <div class="js-sticky-area">
+    <!-- BEGIN_IF [%{ECD}/nem]-->
+    <!-- BEGIN title:veil -->
+    <header class="entry-header">
+      <!-- BEGIN entry-header-info:veil -->
+      <div class="entry-header-info">
+        <!-- BEGIN date:veil -->
+        <time datetime="{date#Y}-{date#m}-{date#d}" class="entry-header-time">{date#Y}年{date#n}月{date#j}日（{date#l}[weekEN2JP]）</time>
+        <!-- END date:veil -->
+
+        <!-- BEGIN category:veil -->
+        <p class="entry-header-category-list"><!-- BEGIN category:loop -->
+          <a href="{url}" class="entry-header-category-label">{name}</a><!-- BEGIN glue -->
+          <!-- END glue --><!-- END category:loop -->
+        </p>
+        <!-- END category:veil -->
+      </div>
+      <!-- END entry-header-info:veil -->
+
+      <!-- BEGIN_MODULE Touch_Entry --><h1 class="entry-header-title entry-faq-title entryTitle"><span class="entry-faq-title-icon">Q</span>{title}</h1><!-- END_MODULE Touch_Entry -->
+    </header>
+    <!-- END title:veil -->
+    <!-- END_IF -->
+
+    <!-- BEGIN entry:veil -->
+    <div class="entry-faq-body">
+      <p class="entry-faq-body-icon">A</p>
+      <div class="acms-entry entry-style entry-faq-body-contents">
+        <!-- BEGIN unit:veil -->
+        @include("/include/unit.html")
+        <!-- END unit:veil -->
+        <!-- 続きを読む -->
+        @include("/include/parts/continue.html")
+      </div>
+    </div>
+    <!-- END entry:veil -->
+
+    <!-- BEGIN formBody -->
+    @include("/include/form/unit.html")
+    <!-- END formBody -->
+
+    <!-- 編集ボックス -->
+    @include("/admin/entry/action.html")
+  </div>
+</article>
+
+<!-- END entry:loop -->
+
+<!-- ページャー -->
+@include("/include/parts/pager.html")
+
+<!-- END_MODULE Entry_Body -->

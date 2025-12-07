@@ -1,0 +1,224 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　ナビゲーション
+------------------------------ */
+.nav-wrap {
+	display: none;
+}
+
+.nav {
+	@include acms.font-size(14);
+}
+
+.nav-list {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	margin: 0 auto;
+
+	@include acms.clearfix;
+
+	li {
+		display: block;
+		padding: 13px 20px;
+		list-style-type: none;
+	}
+
+	a {
+		display: block;
+		padding: 13px 20px;
+		margin: -13px -20px;
+		border-bottom: 2px solid transparent;
+
+		@include global.link-color(global.$text-color-light, global.$text-color-base);
+		@include global.text-decoration-none;
+		@include global.roll-over-border-color(global.$nav-border-color, global.$key-color, global.$transition-speed);
+	}
+}
+
+#nav-list-wrap {
+	display: inline;
+}
+
+.nav-title {
+	display: none;
+	padding: 10px;
+	margin: 0;
+	font-weight: bold;
+	color: global.$text-color-light;
+
+  @include acms.font-size(16);
+}
+
+@include acms.media-breakpoint-up(md) {
+	.nav-wrap {
+		display: block;
+		border-bottom: 1px solid global.$border-color-base;
+	}
+}
+
+/* ------------------------------
+　　オフキャンバスナビゲーション
+------------------------------ */
+.nav-sp-list {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.nav-sp-item {
+	color: global.$text-color-base;
+	border-bottom: 1px solid global.$border-color-base;
+
+	@include acms.font-size(14);
+
+	a {
+    display: inline-block;
+    width: 100%;
+  	padding: 20px 12px;
+		color: global.$text-color-base;
+
+		&:link,
+		&:visited,
+		&:focus,
+		&:hover,
+		&:active {
+			color: global.$text-color-base;
+			text-decoration: none;
+		}
+	}
+}
+
+
+/* ----------------
+シリアルナビ
+------------------ */
+.serial-nav {
+	position: static;
+	min-height: 34px;
+	margin-bottom: 80px;
+
+	@include acms.font-size(14);
+
+	& a {
+		display: block;
+		width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: #fff;
+		white-space: nowrap;
+		text-decoration: none;
+		border: 1px solid global.$btn-color;
+		border-radius: 5px;
+
+		@include global.link-color(global.$text-color-light);
+		@include global.text-decoration-none;
+		@include global.roll-over-border-color(global.$btn-color, global.$btn-color-on-hover, global.$transition-speed);
+	}
+}
+
+.serial-nav-list {
+	padding: 0;
+	margin: 0;
+}
+
+.serial-nav-prev,
+.serial-nav-next {
+	display: block;
+	list-style-type: none;
+}
+
+.serial-nav-prev {
+	width: 100%;
+	margin-bottom: 10px;
+
+	& a {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		height: 75px;
+		padding: 16px 20px 16px 38px;
+		text-align: left;
+		white-space: normal;
+	}
+}
+
+.serial-nav-prev-icon {
+	position: absolute;
+	top: 30px;
+	left: 15px;
+}
+
+.serial-nav-index {
+	display: none;
+}
+
+.serial-nav-next {
+	float: right;
+	width: 100%;
+	text-align: right;
+
+	& a {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		height: 75px;
+		padding: 16px 38px 16px 20px;
+		text-align: left;
+		white-space: normal;
+	}
+}
+
+.serial-nav-next-icon {
+	position: absolute;
+	top: 30px;
+	right: 15px;
+}
+
+@include acms.media-breakpoint-up(md) {
+	.serial-nav {
+		position: relative;
+		min-height: 75px;
+	}
+
+	.serial-nav-prev {
+		float: left;
+		width: calc(50% - 34px);
+		margin-bottom: 0;
+
+	}
+
+	.serial-nav-next {
+		width: calc(50% - 44px);
+	}
+
+	.serial-nav-index {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		display: block;
+		width: 70px;
+		margin-left: -30px;
+		text-align: center;
+		list-style-type: none;
+
+		a {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 75px;
+			padding: 27px 5px;
+		}
+	}
+}
+
+@include acms.media-breakpoint-up(md) {
+	.serial-nav-prev-title {
+		width: 100%;
+	}
+}

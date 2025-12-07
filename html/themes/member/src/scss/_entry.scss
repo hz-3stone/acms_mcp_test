@@ -1,0 +1,195 @@
+@use "sass:map";
+@use "sass:math";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　エントリー
+------------------------------ */
+
+/*
+　ヘッダー
+------------------------------ */
+.entry-header {
+  margin: 0 0 2rem;
+}
+
+.entry-header-info {
+  margin: 0 0 0.25rem;
+  font-size: map.get(global.$font-scales, body-m);
+  color: global.$color-gray80;
+}
+
+.entry-header-time + .entry-header-category {
+  &::before {
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    margin: 0 1em 0 0.5em;
+    content: "";
+    background: currentcolor;
+  }
+}
+
+.entry-header-category {
+  margin-right: 1rem;
+
+  &:link,
+  &:visited,
+  &:active,
+  &:focus {
+    color: global.$color-gray80;
+    text-decoration: none;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.entry-header-title {
+  position: relative;
+  padding: 0 0 1rem;
+  margin: 0 0 1.5rem;
+  font-size: map.get(global.$font-scales, heading-ss);
+  border-bottom: global.$border-width-lg solid global.$color-gray30;
+
+  &::before {
+    position: absolute;
+    bottom: -(global.$border-width-lg);
+    width: 3.5rem;
+    height: global.$border-width-lg;
+    content: "";
+    background: global.$color-primary;
+  }
+}
+
+.entry-header-info {
+  margin-bottom: 0.5rem;
+}
+
+.entry-header-title-link {
+  color: currentcolor;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+@include acms.media-breakpoint-up(md) {
+  .entry-header {
+    margin: 0 0 3rem;
+  }
+
+  .entry-header-info {
+    margin-bottom: 1rem;
+    font-size: map.get(global.$font-scales, body-m);
+  }
+
+  .entry-header-title {
+    padding: 0 0 1.5rem;
+    margin: 0 0 1.5rem;
+    font-size: map.get(global.$font-scales, heading-m);
+
+    &::before {
+      bottom: -(global.$border-width-lg);
+      width: 6.5rem;
+    }
+  }
+}
+
+/*
+　SNSシェアボタン
+------------------------------ */
+.sns-share-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem;
+  margin: 0 calc(var(--theme-gap-x) / -2) 2.5rem;
+  text-align: center;
+  background: global.$color-gray10;
+}
+
+.sns-share-title {
+  margin: 0 0 0.5rem;
+  font-size: map.get(global.$font-scales, body-m);
+}
+
+.share-list {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  &.is-align-right {
+    justify-content: flex-end;
+  }
+}
+
+.share-item {
+  margin: 0 0.5rem;
+
+  a {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: auto;
+    padding: 0.5rem;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(0.8);
+    }
+  }
+
+  .share-list.is-sm & {
+    margin: 0 0.5rem;
+  }
+
+  .share-list.is-sm & a {
+    width: auto;
+  }
+}
+
+@include acms.media-breakpoint-up(md) {
+  .sns-share-wrapper {
+    flex-direction: row;
+    align-items: center;
+    padding: 3rem 1.5rem;
+    margin: 0 0 3rem;
+    border-radius: global.$border-radius-xl;
+  }
+
+  .sns-share-title {
+    margin: 0 2.5rem 0 0;
+    font-size: map.get(global.$font-scales, heading-ss);
+  }
+
+  .share-item {
+    a {
+      width: 3rem;
+    }
+
+    .share-list.is-sm & a {
+      width: auto;
+    }
+  }
+}
+
+/*
+　プロフィール
+------------------------------ */
+.profile-heading {
+  margin-top: 2rem;
+}
+
+@include acms.media-breakpoint-up(md) {
+  .profile-heading {
+    margin-top: 2.5rem;
+  }
+}

@@ -1,0 +1,21 @@
+@extends("/_layouts/base.html")
+
+@section("page-title")
+@include("/include/parts/page-title/root-category-name.html")
+@endsection
+
+@section("main")
+<div class="acms-container">
+  <!-- エントリー本文 -->
+  @include("/include/entry/body.html", {"module_id": "body_no_date", "entry_share": "false"})
+</div>
+
+<div class="entry-bottom-button">
+  <a href="%{CATEGORY_URL}" class="button is-width-lg is-bg-white-bordered">%{CATEGORY_NAME}トップに戻る</a>
+</div>
+@endsection
+
+@section("footer-cta")
+<!-- Call to Action -->
+@include("/include/parts/cta.html", {"module_id": "mf_cta_contact", "cta-section-mt": "true"})
+@endsection

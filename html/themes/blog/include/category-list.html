@@ -1,0 +1,12 @@
+<!-- BEGIN_MODULE Category_List id="" -->
+<section class="list-add-amount">
+@include("/admin/module/setting.html")
+<h2 class="sub-heading">カテゴリー</h2>
+  <!-- BEGIN category:loop --><!-- BEGIN ul#front -->
+  <ul><!-- END ul#front --><!-- BEGIN li#front -->
+    <li><!-- END li#front --><!-- BEGIN category:veil -->
+      <a href="{url}">{name}<!-- BEGIN amount:veil --><span class="acms-hide-visually">エントリー数</span><span class="list-add-amount-label">{amount}</span><span class="acms-hide-visually">件</span><!-- END amount:veil --></a><!-- END category:veil --><!-- BEGIN li#rear -->
+    </li><!-- END li#rear --><!-- BEGIN ul#rear -->
+  </ul><!-- END ul#rear --><!-- END category:loop -->
+</section>
+<!-- END_MODULE Category_List -->

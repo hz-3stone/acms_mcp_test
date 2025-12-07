@@ -1,0 +1,91 @@
+@use "sass:map";
+@use "sass:math";
+@use "../../global/acms-common" as acms;
+@use "../../global/common" as global;
+
+/* 埋め込みユニット
+------------------------------ */
+[class*="column-embed"] {
+  margin-block: 0 global.$entry-el-margin-md;
+
+  a.acms-embed-link {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: global.$color-text;
+    text-decoration: none;
+    border: global.$border-width-sm solid global.$color-gray40;
+    border-radius: global.$border-radius-lg;
+    transition: 0.25s background-color ease;
+
+    &:hover {
+      background-color: global.$color-gray20;
+      border-color: global.$color-gray40; /* リセット用 */
+      opacity: 1; /* リセット用 */
+    }
+  }
+
+  .acms-embed-link-image-container img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .acms-embed-link-content {
+    padding: 1rem;
+    margin: 0; /* リセット用 */
+  }
+
+  .acms-embed-link-title {
+    margin: 0 0 0.5rem;
+    font-size: map.get(global.$font-scales, body-m);
+    font-weight: bold;
+    line-height: global.$line-height-sm;
+  }
+
+  .acms-embed-link-site-name {
+    margin: 0; /* リセット用 */
+    font-size: map.get(global.$font-scales, body-m);
+    color: global.$color-text-side;
+  }
+
+  .acms-embed-link-description {
+    display: none;
+    margin: 0 0 0.5rem;
+    font-size: map.get(global.$font-scales, body-s);
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    a.acms-embed-link {
+      flex-direction: row;
+    }
+
+    .acms-embed-link-image-container {
+      box-sizing: border-box;
+      flex: 1 0 auto;
+      width: calc(100% / 3);
+      padding: 2rem 1rem 2rem 2rem;
+    }
+
+    .acms-embed-link-image-container img {
+      width: 100%;
+    }
+
+    .acms-embed-link-content {
+      box-sizing: border-box;
+      width: calc(2 / 3 * 100%);
+      padding: 2rem 2rem 2rem 1rem;
+      text-align: left;
+    }
+
+    .acms-embed-link-title {
+      margin: 0 0 1.5rem;
+      font-size: map.get(global.$font-scales, heading-ss);
+      font-weight: bold;
+    }
+
+    .acms-embed-link-description {
+      display: block;
+    }
+  }
+}

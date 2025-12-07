@@ -1,0 +1,20 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　フッター
+------------------------------ */
+.footer {
+	padding-top: 30px;
+	padding-bottom: 20px;
+	margin-top: 30px;
+}
+
+.footer-copyright {
+	margin: 0;
+	font-family: verdana, sans-serif;
+	color: global.$text-color-light;
+	text-align: center;
+
+	@include acms.font-size(12);
+}

@@ -1,0 +1,40 @@
+<!-- BEGIN userField -->
+<!-- BEGIN_IF [{position}{user_title}{profile}{image@thumbnail}/nem] -->
+<div class="entry-writer">
+  <h4 class="heading-sm">この記事を書いたスタッフ</h4>
+  <div class="profile">
+    <div class="profile-body">
+      <!-- BEGIN image_thumbnail:veil -->
+      <div class="profile-item-img">
+        <img src="%{HTTP_ARCHIVES_DIR}{fieldUserIcon}[resizeImg(90, 90)]" width="90" height="90" class="profile-img" alt="">
+      </div><!-- END image_thumbnail:veil -->
+      <div class="profile-item-info">
+        <p class="profile-name"><!-- BEGIN profile-position:veil -->
+          <span class="profile-position">{user_title}</span>
+          <!-- END profile-position:veil -->
+          {fieldUserName}
+        </p><!-- END position_title:veil -->
+        <p class="profile-text acms-d-none acms-d-md-block">{profile}[raw|nl2br]</p>
+        <!-- END profile:veil -->
+        <ul class="profile-sns">
+          <!-- BEGIN_IF [{user_account_facebook}/nem] -->
+          <li class="profile-sns-item"><a href="https://www.facebook.com/{user_account_facebook}" target="_blank" class="profile-sns-item-facebook"><img src="/images/sns-logo/facebook-color.svg" alt="{fieldUserName}のFacebookアカウント" role="img" class="acms-img-responsive"></a></li>
+          <!-- END_IF -->
+          <!-- BEGIN_IF [{user_account_x}/nem] -->
+          <li class="profile-sns-item"><a href="https://x.com/{user_account_x}" target="_blank" class="profile-sns-item-twitter"><img src="/images/sns-logo/x-color.svg" alt="{fieldUserName}のXアカウント" role="img" class="acms-img-responsive"></a></li>
+          <!-- END_IF -->
+          <!-- BEGIN_IF [{user_account_instagram}/nem] -->
+          <li class="profile-sns-item"><a href="https://www.instagram.com/{user_account_instagram}" target="_blank" class="profile-sns-item-instagram"><img src="/images/sns-logo/instagram-color.png" alt="{fieldUserName}のInstagramアカウント" role="img" class="acms-img-responsive"></a></li>
+          <!-- END_IF -->
+        </ul>
+      </div>
+    </div>
+    <div class="profile-footer">
+      <!-- BEGIN profile:veil -->
+      <p class="profile-text acms-d-md-none">{profile}[raw|nl2br]</p><!-- END profile:veil -->
+      <!-- GET_Rendered id="user_entrylist" -->
+    </div>
+  </div>
+</div>
+<!-- END_IF -->
+<!-- END userField -->

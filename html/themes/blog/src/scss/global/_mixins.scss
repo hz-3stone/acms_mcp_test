@@ -1,0 +1,86 @@
+@use "variables" as var;
+
+// リンクカラー
+@mixin link-color($color: #FFFFFF, $on-color: $color) {
+  &:link,
+  &:visited {
+    color: $color;
+  }
+
+  &:hover {
+    color: $on-color;
+    cursor: pointer;
+  }
+}
+
+// text-decorationは常に無し
+@mixin text-decoration-none() {
+  &:link,
+  &:hover,
+  &:visited {
+    text-decoration: none;
+  }
+}
+
+// ホバー時にのみ下線あり
+@mixin only-underline-on-hover() {
+  &:link,
+  &:visited {
+    text-decoration: none;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+// コンテナーサイズ
+@mixin container($width: var.$base-container-max-width, $pad: var.$base-container-padding-sp) {
+  box-sizing: border-box;
+  max-width: $width + ($pad*2);
+  padding: 0 $pad;
+  margin: 0 auto;
+
+  @if  var.$enable-iphonex == true {
+    padding: 0 calc(#{$pad} + constant(safe-area-inset-right)) 0 calc(#{$pad} + constant(safe-area-inset-left));
+  }
+}
+
+// 背景カラーのみホバー時に変化
+@mixin roll-over-bg-color($before, $after, $speed) {
+  & {
+    background-color: $before;
+    transition: background-color $speed;
+
+    &:hover {
+      background-color: $after;
+    }
+  }
+}
+
+// ホバー時の透過
+@mixin transition-opacity($speed: var.$transition-speed) {
+  transition: opacity $speed;
+}
+
+// ボーダーカラーのみホバー時に変化
+@mixin roll-over-border-color($before, $after, $speed) {
+  border-color: $before;
+  transition: border-color $speed;
+
+  &:hover {
+    border-color: $after;
+  }
+}
+
+// エントリー下シェアボタン
+@mixin share-sns-btn($sns-color: #333){
+  font-size: 22px;
+  line-height: 1.2;
+  color: $sns-color;
+
+   &::before {
+    vertical-align: middle;
+  }
+}

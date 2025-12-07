@@ -1,0 +1,366 @@
+@use "sass:map";
+@use "../../global/acms-common" as acms;
+@use "../../global/common" as global;
+
+/* ------------------------------
+ カスタムユニット
+------------------------------ */
+
+/* 目次ユニット
+------------------------------ */
+.#{acms.$entry-class} {
+  .entry-outline {
+    padding-block: 1.5rem;
+    padding-inline: 1rem;
+    margin-block: var(--entry-el-margin-md) var(--entry-el-margin-lg);
+    background-color: var(--color-white);
+    border: var(--border-width-sm) solid var(--color-gray30);
+    border-radius: var(--border-radius-lg);
+
+    @include acms.media-breakpoint-up(sm) {
+      padding: 2rem;
+    }
+  }
+
+  /* 「目次」見出し */
+  .entry-outline-title {
+    margin: 0 0 1rem;
+    font-size: map.get(global.$font-scales, heading-ss);
+    font-weight: bold;
+    line-height: 1.5;
+  }
+
+  /* リスト */
+  .entry-outline-list-wrap .outline-list {
+    display: grid;
+    grid-template-columns: minmax(1.5rem, auto) 1fr; /* 列を「番号用」と「テキスト用」に分ける */
+    gap: 0.75rem 0.375rem; /* アイテム間余白, 番号とテキスト間余白 */
+    padding-inline-start: 0;
+    margin-block: 0;
+    counter-reset: outline-list;
+  }
+
+  /* 下階層リストレイアウト */
+  .entry-outline-list-wrap .outline-item .outline-list {
+    grid-column: 1 / -1; /* 列をまたいで全幅を確保 */
+    padding-left: 1rem;
+  }
+
+  /* アイテム */
+  .entry-outline-list-wrap .outline-item {
+    display: contents; /* li要素自体はグリッドレイアウトに影響させない */
+    font-size: map.get(global.$font-scales, body-m);
+    line-height: 1.5;
+    color: var(--color-text);
+
+    span,
+    strong,
+    em {
+      display: contents;
+      font-size: inherit;
+      font-style: inherit;
+      font-weight: inherit;
+      background: none;
+    }
+
+    &::marker {
+      content: none;
+    }
+  }
+
+  /* アイテムリンク */
+  .entry-outline-list-wrap .outline-item a {
+    display: grid;
+    grid-template-columns: subgrid; /* アイテム番号の幅を揃えるための設定 */
+    grid-column: 1 / -1; /* 列をまたいで全幅を確保 */
+    grid-auto-flow: column;
+    text-decoration: none;
+
+    &,
+    &:link,
+    &:visited {
+      color: inherit;
+    }
+
+    /* 番号を生成 */
+    &::before {
+      grid-column: 1;
+      font-weight: bold;
+      color: var(--color-text-2nd);
+      word-break: keep-all;
+      white-space: nowrap;
+      content: counters(outline-list, "-") ". ";
+      counter-increment: outline-list;
+    }
+
+    @media (hover: hover) {
+      transition: color 0.25s ease;
+
+      &:any-link:hover {
+        color: var(--color-primary);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+/* メッセージユニット
+------------------------------ */
+.#{acms.$entry-class} {
+  .message {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 var(--entry-el-margin-md);
+    overflow: hidden;
+    background: var(--color-gray10);
+    border-radius: var(--border-radius-lg);
+  }
+
+  .message-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 1rem;
+  }
+
+  .message-image {
+    height: 15rem;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .message-lead {
+    position: relative;
+    margin: 0;
+    font-size: map.get(global.$font-scales, heading-s);
+    font-weight: bold;
+  }
+
+  .message-content {
+    margin: 0;
+  }
+
+  .message-source {
+    margin: 0;
+
+    &::before {
+      display: inline-block;
+      width: 1.5rem;
+      height: 1px;
+      margin: 0 1rem 0 0;
+      vertical-align: middle;
+      content: "";
+      background: var(--color-gray30);
+    }
+  }
+}
+
+@include acms.media-breakpoint-up(md) {
+  .#{acms.$entry-class} {
+    .message {
+      flex-direction: row;
+    }
+
+    .message-wrap {
+      position: relative;
+      box-sizing: border-box;
+      width: 50%;
+      padding: 6rem 3rem;
+    }
+
+    .message-image {
+      order: 1;
+      width: 50%;
+      height: initial;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+
+      }
+
+    }
+
+    .message-lead {
+      height: auto;
+      font-size: map.get(global.$font-scales, heading-s);
+    }
+
+    .message-content {
+      margin: 0;
+    }
+  }
+}
+
+/* 料金テーブル
+------------------------------ */
+.#{acms.$entry-class} {
+  .pricing-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--col-gutter);
+    justify-content: center;
+    padding: 0;
+    margin: 0 0 var(--entry-el-margin-md);
+
+    &:has(.is-recommend) {
+      padding-top: 16px;
+    }
+  }
+
+  .pricing-item {
+    position: relative;
+    display: flex;
+    flex: 0 1 100%;
+    list-style: none;
+  }
+
+  .pricing-inner {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 2.5rem 1rem 1.5rem;
+    background: #fff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow);
+    transition: transform 0.25s ease;
+  }
+
+  .pricing-header {
+    padding: 0 0 1rem;
+    margin: 0 0 1rem;
+    text-align: center;
+    border-bottom: var(--border-width-sm) solid var(--color-gray30);
+  }
+
+  .pricing-label-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  .pricing-label {
+    display: inline-block;
+    padding: 0.25rem 1.5rem;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: var(--line-height-base);
+    color: var(--color-white);
+    background: var(--color-primary);
+    border-radius: var(--border-radius-round);
+    box-shadow: var(--box-shadow);
+
+    &::after {
+      position: absolute;
+      bottom: -9px;
+      left: 50%;
+      width: 12px;
+      height: 10px;
+      content: "";
+      background-color: var(--color-primary);
+      clip-path: polygon(50% 100%, 0 0, 100% 0);
+      transform: translateX(-50%);
+    }
+  }
+
+  .pricing-title {
+    margin: 0 0 0.5rem;
+    font-size: map.get(global.$font-scales, heading-ss);
+    color: var(--color-primary);
+  }
+
+  .pricing-desc {
+    margin: 0;
+    font-size: map.get(global.$font-scales, body-s);
+    line-height: var(--line-height-base);
+    color: var(--color-text-2nd);
+  }
+
+  .pricing-price {
+    margin: 0 0 0.5rem;
+    font-size: map.get(global.$font-scales, heading-l);
+    font-weight: bold;
+    line-height: var(--line-height-ss);
+    text-align: center;
+  }
+
+  .pricing-unit {
+    margin-left: 0.25rem;
+    font-size: map.get(global.$font-scales, body-m);
+  }
+
+  .pricing-check-group {
+    padding: 0;
+    margin: 0 0 1rem;
+    font-size: map.get(global.$font-scales, body-s);
+    list-style: none;
+
+    li {
+      padding-left: 1.625rem;
+      margin: 0 0 0.5rem;
+
+      &::before {
+        display: inline-block;
+        width: 1.25rem;
+        height: 1.25rem;
+        margin: 0 0.375rem 0 -1.625rem;
+        vertical-align: top;
+        content: "";
+        background: url(#{global.$root-theme-img}icon-color/circle-check-blue.svg);
+        background-size: contain;
+      }
+    }
+  }
+
+  .pricing-button {
+    display: block;
+    margin: 0 0 1rem;
+  }
+
+  .pricing-text-info {
+    margin: 0;
+    font-size: map.get(global.$font-scales, body-s);
+    line-height: var(--line-height-base);
+    color: var(--color-text-2nd);
+    text-align: center;
+  }
+}
+
+@include acms.media-breakpoint-up(md) {
+  .#{acms.$entry-class} {
+    .pricing-group {
+      flex-flow: row wrap;
+      gap: var(--col-gutter);
+    }
+
+    .pricing-item {
+      box-sizing: border-box;
+      flex: 1 1 calc(100% / 3 - 2rem);
+    }
+
+    .pricing-inner {
+      padding-inline: 1.5rem;
+    }
+
+    .pricing-label {
+      padding: 0.5rem 1.5rem;
+      font-size: 1.25rem;
+    }
+
+    .pricing-title {
+      font-size: map.get(global.$font-scales, heading-ss);
+    }
+  }
+}

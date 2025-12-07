@@ -1,0 +1,47 @@
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ----------------
+　404ページ
+------------------ */
+.not-found {
+	margin-bottom: 60px;
+}
+
+.not-found-title {
+	margin: 20px 0;
+	color: global.$text-color-base;
+	text-align: center;
+
+  @include acms.font-size(24);
+}
+
+.not-found-message {
+	color: global.$text-color-base;
+	text-align: center;
+
+  @include acms.font-size(16);
+}
+
+.not-found-message-text {
+	margin-bottom: 30px;
+}
+
+.not-found-return {
+	color: global.$text-color-light;
+
+	@include global.link-color(global.$text-color-light);
+	@include global.text-decoration-none;
+
+	border-bottom: 1px dashed;
+
+	&:hover {
+		color: global.$key-color;
+	}
+}
+
+@include acms.media-breakpoint-up(md) {
+	.not-found-title {
+    @include acms.font-size(28);
+	}
+}

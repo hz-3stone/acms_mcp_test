@@ -1,0 +1,57 @@
+@extends("/_layouts/base.html")
+
+@section("page-title")
+<!-- BEGIN_IF [%{ECD}/nem] -->
+<!-- BEGIN_MODULE Entry_Field -->
+<div class="entry-header-visual">
+  <div class="entry-header-visual-inner">
+    <!-- BEGIN bg_image:veil -->
+    <img src="%{MEDIA_ARCHIVES_DIR}{bg_image@path}" alt="" class="entry-header-visual-img" width="{bg_image@path}[imageRatioSizeW(380)]" height="380">
+    <!-- END bg_image:veil -->
+  </div>
+  <div class="entry-header-visual-box">
+    <div class="entry-header-visual-box-inner">
+      <h1 class="entry-header-visual-title entryTitle">{title}</h1>
+
+      <!-- BEGIN page_description:veil -->
+      <p class="entry-header-visual-desc">{page_description}[nl2br]</p>
+      <!-- END page_description:veil -->
+
+      <!-- BEGIN_IF [{btn_url}/nem/_and_/{btn_text}/nem] -->
+      <p class="entry-header-visual-btn-wrap">
+        <a href="{btn_url}" class="button is-bg-white">{btn_text}</a>
+      </p>
+      <!-- END_IF -->
+    </div>
+  </div>
+</div>
+<!-- END_MODULE Entry_Field -->
+<!-- ELSE -->
+@include("/include/parts/page-title/root-category-name.html")
+<!-- END_IF -->
+@endsection
+
+@section("main")
+<div class="container-md">
+  <!-- エントリー本文：採用情報用 -->
+  @include("/include/entry/body-recruit.html", {"module_id": "body_no_date"})
+</div>
+
+<!-- BEGIN_IF [%{ECD}/nem] -->
+<!-- エントリーサマリー：募集中の職種 -->
+@include("/include/entry/summary-recruit-footer.html")
+<!-- END_IF -->
+@endsection
+
+@section("footer-cta")
+<!-- BEGIN_MODULE Touch_NotEdit -->
+
+<!-- 応募ボタン -->
+<!-- BEGIN_MODULE Entry_Field --><!-- BEGIN btn_url:veil -->
+<div class="js-sticky sticky-contents is-centered is-bg">
+  <div class="acms-container">
+    <a href="{btn_url}" class="button is-width-lg is-shadow">{btn_text}</a>
+  </div>
+</div><!-- END btn_url:veil --><!-- END_MODULE Entry_Field -->
+<!-- END_MODULE Touch_NotEdit -->
+@endsection

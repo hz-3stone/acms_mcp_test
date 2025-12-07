@@ -1,0 +1,93 @@
+@use "sass:map";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　ヘッドライン
+------------------------------ */
+.headline-list {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow);
+
+  .js &.js-animation-row {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  .js &.js-animation-row.is-show {
+    animation: fade-in 0.2s 0.3s 1 both;
+  }
+}
+
+.headline-list-item {
+  background-color: var(--color-white);
+  border-bottom: var(--border-width-sm) solid var(--color-gray10);
+}
+
+.headline-link {
+  display: block;
+  text-decoration: none;
+
+  @media (hover: hover) {
+    transition: background-color 0.3s ease;
+
+    &:any-link:hover {
+      background-color: var(--color-hover-bg-2nd);
+    }
+  }
+}
+
+/* 1記事 */
+.headline {
+  padding: 1rem;
+
+  @include acms.media-breakpoint-up(md) {
+    padding: 2rem;
+  }
+}
+
+/* テキスト類全体の縦積みレイアウト */
+.headline-texts-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ラベルの横並びレイアウト */
+.headline-labels-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+}
+
+/* 日付とNewラベル配置 */
+.headline-date-layout {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+/* 日付 */
+.headline-date {
+  font-size: map.get(global.$font-scales, body-s);
+  line-height: var(--line-height-base);
+  color: var(--color-text-2nd);
+}
+
+/* 見出し */
+.headline-title {
+  margin-block: 0;
+  font-size: map.get(global.$font-scales, heading-3s);
+  font-weight: bold;
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+
+  @include acms.media-breakpoint-up(md) {
+    font-size: map.get(global.$font-scales, heading-ss);
+  }
+}

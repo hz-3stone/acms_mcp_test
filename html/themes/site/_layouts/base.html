@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+  <head>
+    @section("head-meta")
+    @include("/include/head/meta.html")
+    @endsection
+
+    @section("head-link")
+    @include("/include/head/link.html")
+    @endsection
+
+    @section('head-service')
+    <!-- BEGIN_MODULE Touch_Unlogin --><!-- BEGIN_MODULE Touch_NotPreview -->
+
+    <!-- Cookie利用同意ポップアップを使用する場合 -->
+    @include("/include/head/cookie-consent-init.html")
+
+    <!-- Cookie利用同意ポップアップを使用しない場合 -->
+    <!-- BEGIN_MODULE Blog_Field id="root" -->
+    <!-- BEGIN_IF [{cookie_consent}/neq/true] -->
+      <!-- BEGIN_IF [{gtm_enable}/eq/true] -->
+      {google_tag_manager}[raw|allow_dangerous_tag]
+      <!-- ELSE -->
+      {google_analytics}[raw|allow_dangerous_tag]
+      <!-- END_IF -->
+    <!-- END_IF -->
+    <!-- END_MODULE Blog_Field -->
+
+    <!-- END_MODULE Touch_NotPreview --><!-- END_MODULE Touch_Unlogin -->
+    @endsection
+
+    @section("head-js")
+    @include("/include/head/js.html")
+    @endsection
+  </head>
+
+  <body id="top" class="blog%{BID}-%{VIEW}">
+    @section("body-start")
+    @include("/include/body-start.html")
+    @endsection
+
+    @section("header")
+    @include("/include/header/header.html")
+    <!-- @include("/include/header/header-logo-center.html") -->
+    <!-- @include("/include/header/header-nav-bottom.html") -->
+    @endsection
+
+    @section("page-title")
+    @include("/include/parts/page-title/blog-name.html")
+    @endsection
+
+    @section("topicpath")
+    @include("/include/parts/topicpath/default.html")
+    @endsection
+
+    @section("admin-part")
+    <!-- BEGIN_MODULE Touch_Login -->
+    <!-- ※管理用パーツ -->
+    <div class="acms-container">
+      @include("/admin/action.html")
+      @include("/admin/switch-user.html")
+    </div>
+    <!-- END_MODULE Touch_Login -->
+    @endsection
+
+    @section("content-wrapper")
+    <div class="content-wrapper">
+      @section("main")
+      <p>継承してメインコンテンツを設定してください</p>
+      @endsection
+    </div>
+    @endsection
+
+    @section("check-seo")
+    <!-- BEGIN_MODULE Touch_SessionWithAdministration -->
+    <!-- meta情報確認 -->
+    <div class="acms-mt-8">
+      @include("/include/check-seo.html")
+    </div>
+    <!-- END_MODULE Touch_SessionWithAdministration -->
+    @endsection
+
+    @section("footer-cta")
+    <!-- BEGIN_MODULE Touch_NotEdit -->
+    <!-- Call to Action -->
+    @include("/include/parts/cta-visual.html", {"cta-section-mt": "true"})
+    <!-- END_MODULE Touch_NotEdit -->
+    @endsection
+
+    @section("footer")
+    @include("/include/footer/footer.html")
+    @endsection
+
+    @section("body-end")
+    @include("/include/body-end.html")
+    @endsection
+  </body>
+</html>

@@ -1,0 +1,133 @@
+@use "sass:map";
+@use "global/acms-common" as acms;
+@use "global/common" as global;
+
+/* ------------------------------
+　　タイポグラフィ
+------------------------------ */
+
+/* 見出し
+------------------------------ */
+.heading-lg {
+  margin-block: 0 var(--entry-el-margin-sm);
+  font-size: map.get(global.$font-scales, heading-s);
+  line-height: var(--line-height-sm);
+
+  &.heading-line {
+    padding-bottom: 1rem;
+    border-bottom: var(--border-width-md) solid var(--color-gray100);
+  }
+
+  &.heading-primary {
+    position: relative;
+    margin-bottom: calc(var(--entry-el-margin-xs) + 0.25rem + var(--entry-el-margin-sm));
+
+    &::before {
+      position: absolute;
+      bottom: calc(var(--entry-el-margin-xs) * -1);
+      left: 0;
+      display: block;
+      width: 3.5rem;
+      height: var(--border-width-lg);
+      content: "";
+      background: var(--color-primary);
+    }
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    font-size: map.get(global.$font-scales, heading-m);
+  }
+}
+
+.heading-md {
+  margin-block: 0 var(--entry-el-margin-sm);
+  font-size: map.get(global.$font-scales, heading-ss);
+  line-height: var(--line-height-sm);
+
+  &.heading-line {
+    padding-bottom: 1rem;
+    border-bottom: var(--border-width-md) solid var(--color-gray100);
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    font-size: map.get(global.$font-scales, heading-s);
+  }
+}
+
+.heading-sm {
+  margin-block: 0 var(--entry-el-margin-sm);
+  font-size: map.get(global.$font-scales, body-m);
+
+  &.heading-line {
+    padding-bottom: 1rem;
+    border-bottom: var(--border-width-md) solid var(--color-gray100);
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    font-size: map.get(global.$font-scales, heading-ss);
+  }
+}
+
+.heading-ss {
+  margin-block: 0 var(--entry-el-margin-sm);
+  font-size: map.get(global.$font-scales, body-m);
+
+  &.heading-line {
+    padding-bottom: 1rem;
+    border-bottom: var(--border-width-md) solid var(--color-gray100);
+  }
+
+  @include acms.media-breakpoint-up(md) {
+    font-size: map.get(global.$font-scales, body-m);
+  }
+}
+
+/* 本文
+------------------------------ */
+.paragraph {
+  margin-block: 0 var(--entry-el-margin-md);
+  font-size: map.get(global.$font-scales, body-m);
+  line-height: var(--line-height-lg);
+  color: var(--color-text);
+
+  a {
+    text-decoration: none;
+    border-bottom: var(--border-width-sm) dotted currentcolor;
+
+    &,
+    &:link,
+    &:visited {
+      color: inherit;
+    }
+
+    @media (hover: hover) {
+      &:any-link:hover {
+        border-bottom-color: transparent;
+      }
+    }
+  }
+}
+
+/* インラインスタイル
+------------------------------ */
+.text-word-break {
+  display: inline-block;
+}
+
+/* 記事検索結果の件数
+------------------------------ */
+.text-result-amount {
+  margin-block: 0 2rem;
+  font-size: map.get(global.$font-scales, body-m);
+  font-weight: bold;
+  line-height: var(--line-height-base);
+}
+
+/* 記事が notFound の時のメッセージ
+------------------------------ */
+.text-notfound-article {
+  margin-block: 0 1.5rem;
+  font-size: map.get(global.$font-scales, body-m);
+  font-weight: bold;
+  line-height: var(--line-height-base);
+}

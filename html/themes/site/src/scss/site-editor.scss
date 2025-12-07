@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+// ベーススタイル
+@use "./editor/base";
+
+// 編集画面設定
+@use "./editor/field";
+
+// エディター共通タイポグラフィー
+@use "./editor/elements/typography";
+
+// ブロックエディターのレイアウト
+@use "./editor/block-editor-layout";
+
+// ユニットのグルーピング（閲覧画面のみで使用）
+@use "./editor/group";
+
+// ユニット配置
+@use "./editor/unit-align";
+
+// ユニットパーツ
+@use "./editor/elements/blockquote";
+@use "./editor/elements/button";
+@use "./editor/elements/custom-unit";
+@use "./editor/elements/embed";
+@use "./editor/elements/file";
+@use "./editor/elements/image";
+@use "./editor/elements/map";
+@use "./editor/elements/module-unit";
+@use "./editor/elements/table";
+@use "./editor/elements/video";
+
+// モジュールユニットと共通
+@use "card-bordered";
+@use "card";
+@use "faq";
+@use "service";
+@use "toggle";
